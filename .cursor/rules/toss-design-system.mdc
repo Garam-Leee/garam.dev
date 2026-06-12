@@ -1,0 +1,320 @@
+---
+description: Toss 디자인 시스템 규칙 - 색상, 타이포그래피, 컴포넌트 스타일링 가이드
+alwaysApply: true
+---
+
+# Toss 디자인 시스템
+
+## 1. Visual Theme & Atmosphere
+
+Toss는 한국의 핀테크 슈퍼앱으로, 깔끔하고 자신감 있으며 놀라울 정도로 단순한 금융 인터페이스를 재정의했습니다. 페이지는 깨끗한 흰색 캔버스(`#ffffff`), 짙은 차콜 헤딩(`#191f28`), 그리고 모든 인터랙티브 요소의 시그니처 블루(`#3182f6`)로 구성됩니다.
+
+**핵심 특징:**
+- Toss Blue (`#3182f6`) - 기본 인터랙티브 색상
+- Toss Product Sans - 한글-라틴 광학 균형 및 고정폭 숫자 지원
+- OKLCH 색상 공간 - 모든 색조 스케일에서 지각적 균일성
+- 10단계 그레이 스케일 (grey50-grey900) - 따뜻한 언더톤
+- 최소한의 그림자 시스템 - 신뢰는 명확성에서 나옴
+- 모바일 우선 - 375px 디자인 기준선
+
+## 2. Color Palette & Roles
+
+### Primary
+- **Toss Blue** (`#3182f6`): 기본 인터랙티브 색상 - CTA, 링크, 활성 상태
+- **Blue Hover** (`#2272eb`): blue500 요소의 호버/누름 상태
+- **Blue Light** (`#e8f3ff`): 정보 배경, 은은한 블루 틴트 표면
+- **Pure White** (`#ffffff`): 페이지 배경, 카드 표면
+- **Dark Charcoal** (`#191f28`): 기본 헤딩 색상, 가장 강한 텍스트
+
+### Brand (로고/마케팅 전용)
+- **Brand Blue** (`#0064FF`): 공식 Toss 브랜드 색상 - 로고 및 마케팅 자료 전용
+- **Brand Gray** (`#202632`): 공식 보조 브랜드 색상
+
+### Semantic
+- **Error Red** (`#f04452`): 오류 상태, 파괴적 작업, 부정적 금융 지표
+- **Success Green** (`#03b26c`): 긍정적 금융 지표, 확인
+- **Warning Orange** (`#fe9800`): 대기 상태, 주의 필요 지표
+- **Caution Yellow** (`#ffc342`): 부드러운 경고, 하이라이트 순간
+- **Info Teal** (`#18a5a5`): 정보 강조, 대체 분류
+- **Premium Purple** (`#a234c7`): 프리미엄 기능, 특별 제공
+
+### Neutral Scale
+- **Grey 50** (`#f9fafb`): 가장 밝은 그레이
+- **Grey 100** (`#f2f4f6`): 보조 배경, 카드 채우기
+- **Grey 200** (`#e5e8eb`): 기본 테두리 색상, 구분선
+- **Grey 400** (`#b0b8c1`): 플레이스홀더 텍스트
+- **Grey 500** (`#8b95a1`): 캡션 텍스트, 보조 레이블
+- **Grey 600** (`#6b7684`): 본문 텍스트, 설명
+- **Grey 700** (`#4e5968`): 강조된 본문 텍스트
+- **Grey 800** (`#333d4b`): 강한 레이블, 네비게이션 텍스트
+
+## 3. Typography Rules
+
+### Font Family
+- **Primary**: `"Toss Product Sans", "Tossface", "SF Pro KR", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Basier Square", "Apple SD Gothic Neo", Roboto, "Noto Sans KR", sans-serif`
+- **Monospace**: `"SF Mono", SFMono-Regular, Menlo, Consolas, monospace`
+
+### Hierarchy
+- Display Hero: 30px / 700 / 40px line-height
+- Display Large: 26px / 700 / 36px line-height
+- Heading Large: 22px / 700 / 30px line-height
+- Heading: 20px / 600 / 28px line-height
+- Subtitle: 16px / 600 / 24px line-height
+- Body Large: 16px / 400 / 24px line-height
+- Body: 14px / 400 / 22px line-height
+- Body Small: 13px / 400 / 20px line-height
+- Caption: 12px / 400 / 18px line-height
+- Number Display: 30px+ / 700 (금융 금액 - 고정폭 숫자)
+
+### Principles
+- 8가지 웨이트 중 3가지 사용: 400(본문), 600(강조), 700(헤딩)
+- 고정폭 숫자를 금융 테이블과 주식 티커에 사용
+- 금융 기호 최적화: %, 쉼표, ±, 통화 기호
+
+## 4. Component Stylings
+
+### Buttons
+
+**Fill / Primary**
+- Background: `#3182f6`
+- Text: `#ffffff`
+- Radius: 16px
+- Padding: 0 20px
+- Font: 17px / 600
+- Height: 56px (xlarge)
+
+**Fill / Dark**
+- Background: `#4e5968`
+- Text: `#ffffff`
+- Radius: 16px
+- Font: 17px / 600
+
+**Fill / Danger**
+- Background: `#f04452`
+- Text: `#ffffff`
+- Radius: 16px
+- Font: 17px / 600
+
+**Weak / Primary**
+- Background: `rgba(100, 168, 255, 0.15)`
+- Text: `#2272eb`
+- Radius: 16px
+- Font: 17px / 600
+
+크기 스케일:
+- small: 32px · 13px/600 · 8px
+- medium: 38px · 15px/600 · 10px
+- large: 48px · 17px/600 · 14px
+- xlarge: 56px · 17px/600 · 16px (기본값)
+
+### Inputs
+
+**Box (기본값)**
+- Background: `rgba(0, 23, 51, 0.02)`
+- Text: `#333d4b`
+- Border: 1px solid `rgba(2, 32, 71, 0.05)`
+- Radius: 14px
+- Padding: 14px 16px
+- Font: 17px / 400
+- Placeholder: `#b0b8c1`
+- Focus: border `#3182f6`
+
+**Line**
+- Background: transparent
+- Border: 1px solid `#e5e8eb` (하단만)
+- Font: 17px / 400
+
+**Big**
+- Font: 22px / 600
+- Border: 1px solid `#e5e8eb` (하단만)
+
+**Hero**
+- Font: 30px / 600
+- Border: 1px solid `#e5e8eb` (하단만)
+
+**Error**
+- Border: 1px solid `#f04452`
+- 인라인 오류 메시지: `#f04452` 13px
+
+### Cards
+
+**Standard**
+- Background: `#ffffff`
+- Radius: 12px
+- Padding: 20px
+- Shadow: `0px 2px 8px rgba(0,0,0,0.08)`
+
+**Featured**
+- Background: `#ffffff`
+- Radius: 16px
+- Padding: 24px
+- Shadow: `0px 2px 8px rgba(0,0,0,0.08)`
+
+**Compact**
+- Background: `#ffffff`
+- Border: 1px solid `#e5e8eb`
+- Radius: 8px
+- Padding: 12px
+- Shadow: none
+
+### Badges
+
+**Fill / Blue (medium 기본값)**
+- Background: `#3182f6`
+- Text: `#ffffff`
+- Radius: 12px
+- Padding: 3px 7px
+- Font: 13px / 700
+
+**Fill / Green**
+- Background: `#22c55e`
+- Text: `#ffffff`
+
+**Fill / Red**
+- Background: `#ef4444`
+- Text: `#ffffff`
+
+**Weak / Blue**
+- Background: `rgba(100, 168, 255, 0.15)`
+- Text: `#2272eb`
+
+크기 스케일:
+- xsmall: 21px · 10px/600 · 9px · 3px 7px
+- small: 24px · 12px/700 · 11px · 3px 7px
+- medium: 26px · 13px/700 · 12px · 3px 7px
+- large: 29px · 14px/700 · 13px · 4px 8px
+
+## 5. Layout Principles
+
+### Spacing System
+- 기본 단위: 8px
+- 일반 값: 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px
+- 수평 패딩: 20px
+- 금융 데이터 그리드: 더 촘촘한 4px 내부 간격
+
+### Grid & Container
+- 디자인 기준선: 375px 모바일 너비
+- 콘텐츠: 20px 수평 패딩을 가진 전체 너비
+- 명시적 다열 그리드 없음 - 단일 열, 모바일 우선
+
+### Border Radius Scale
+- Compact (4px): 작은 배지, 인라인 요소
+- Standard (8px): 입력, 작은 버튼, 컴팩트 카드
+- Comfortable (12px): 표준 카드, 다이얼로그 모서리
+- Large (16px): 주요 카드, 바텀 시트 상단 모서리
+- Pill (9999px): 토글 스위치, 플로팅 칩
+
+## 6. Depth & Elevation
+
+- Flat (Level 0): 그림자 없음
+- Subtle (Level 1): `0px 1px 3px rgba(0,0,0,0.06)`
+- Standard (Level 2): `0px 2px 8px rgba(0,0,0,0.08)`
+- Elevated (Level 3): `0px 4px 12px rgba(0,0,0,0.12)`
+- Modal (Level 4): `0px 8px 24px rgba(0,0,0,0.16)`
+
+**그림자 철학**: Toss는 그림자를 최소화하고 중립적으로 유지합니다. 금융 앱에서 시각적 노이즈는 신뢰를 해칩니다.
+
+## 7. Do's and Don'ts
+
+### Do
+- 모든 인터랙티브 요소에 Toss Blue (`#3182f6`) 사용
+- 한글 폴백을 포함한 전체 폰트 스택 적용
+- 금융 데이터에 고정폭 숫자 사용
+- 금융 금액과 헤딩에 700 웨이트, 본문에 400, 강조에 600 사용
+- 대부분의 요소에 8px-16px 사이의 border-radius 유지
+- 긍정적 변화는 녹색(`#03b26c`), 부정적 변화는 빨간색(`#f04452`)으로 표시
+
+### Don't
+- Brand Blue (`#0064FF`)와 UI Blue (`#3182f6`)를 혼동하지 마세요
+- 무거운 그림자 사용하지 마세요
+- 본문 텍스트에 굵게(700) 사용하지 마세요
+- 동일한 데이터 컨텍스트에서 가변폭과 고정폭 숫자를 혼합하지 마세요
+- 기본 작업에 따뜻한 강조 색상(오렌지, 핑크) 사용하지 마세요
+- 토글/알약을 제외하고 16px 이상의 border-radius 사용하지 마세요
+- 금융 데이터 표시에 장식 요소 추가하지 마세요
+
+## 8. Responsive Behavior
+
+### Breakpoints
+- Mobile (Primary): <480px - 전체 디자인 충실도, 375px 기준선
+- Tablet: 480-768px - 확장된 카드, 선택적 측면 여백
+- Desktop (Web): >768px - 중앙 정렬 열, 최대 너비 ~480px
+
+### Touch Targets
+- Buttons: xlarge (~56px), large (~48px), medium (~40px), small (~36px)
+- List items: 금융 작업을 위한 최소 52px 행 높이
+- Keypad buttons: 보안 입력을 위한 큰 타겟(56-64px)
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Primary CTA: Toss Blue (`#3182f6`)
+- CTA Hover: Blue 600 (`#2272eb`)
+- Background: Pure White (`#ffffff`)
+- Background Surface: Light Gray (`#f2f4f6`)
+- Heading text: Dark Charcoal (`#191f28`)
+- Body text: Medium Gray (`#6b7684`)
+- Caption text: Gray (`#8b95a1`)
+- Placeholder: Soft Gray (`#b0b8c1`)
+- Border: Gray 200 (`#e5e8eb`)
+- Success/Positive: Green (`#03b26c`)
+- Error/Negative: Red (`#f04452`)
+- Warning: Orange (`#fe9800`)
+
+### 핵심 원칙
+1. 항상 전체 Toss Product Sans 폰트 스택을 한글 폴백과 함께 사용
+2. 기본 인터랙티브 색상은 `#3182f6` (blue500) - `#0064FF` (브랜드 블루) 아님
+3. 금융 숫자: 700 웨이트, 고정폭 숫자, 목록에서 오른쪽 정렬
+4. 그레이 스케일은 따뜻한 언더톤: grey900 `#191f28`, grey50 `#f9fafb`
+5. Border-radius: 8px 입력, 12px 카드, 16px 시트, 토글은 pill
+6. 그림자는 단일 레이어, 순수 검은색 불투명도, 색상 틴트 없음
+7. 모바일 우선: 375px에서 디자인, 20px 수평 패딩
+
+## 10. States
+
+- **Empty (첫 사용)**: grey700 본문 텍스트로 화면이 비어있는 이유 설명, 보조 버튼 하나 제공
+- **Loading**: `#f2f4f6` (grey100)의 스켈레톤 블록, 금융 금액은 `--`로 렌더링
+- **Error (인라인)**: `#f04452` 2px 테두리, 아래에 red500 13px 오류 텍스트
+- **Success (money moved)**: 전용 확인 화면 - 토스트 아님
+
+## 11. Motion & Easing
+
+**Durations:**
+- motion-instant: 0ms
+- motion-fast: 150ms
+- motion-standard: 250ms (기본값)
+- motion-slow: 400ms
+- motion-page: 350ms
+
+**Easings:**
+- ease-enter: `cubic-bezier(0.0, 0.0, 0.2, 1)`
+- ease-exit: `cubic-bezier(0.4, 0.0, 1, 1)`
+- ease-standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`
+
+## 12. Iconography
+
+### Icon Library
+하나의 일관된 아이콘 라이브러리 사용:
+- **Lucide React** (`lucide-react`): 권장 (1,400+ 아이콘, 트리 쉐이커블)
+- **Radix Icons** (`@radix-ui/react-icons`): 300+ 아이콘, 미니멀
+- **Heroicons** (`@heroicons/react`): 300+ 아이콘, Tailwind 팀
+
+### Icon Sizing Scale
+- Inline text: 16px (1rem)
+- Button icon: 18px (1.125rem)
+- Standalone: 24px (1.5rem)
+- Feature: 32-48px
+
+### SVG Rules
+- 모든 아이콘은 인라인 SVG 컴포넌트여야 함
+- 아이콘 색상은 `currentColor`에서 상속
+- 하드코딩된 fill/stroke 색상 사용 금지
+
+## 13. Document Policies
+
+### No Emojis
+UI 요소, 컴포넌트, 레이블, 상태 표시기 또는 문서에 이모지를 사용하지 마세요. 대신 선택한 아이콘 라이브러리의 SVG 아이콘을 사용하세요.
+
+- 상태 표시기: 이모지가 아닌 컬러 도트 또는 아이콘 컴포넌트 사용
+- 섹션 마커: 이모지가 아닌 텍스트 접두사("DO:" / "DON'T:") 또는 아이콘 사용
+- 네비게이션: 이모지가 아닌 아이콘 컴포넌트 사용

@@ -1,23 +1,28 @@
 "use client";
 
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-const ease = [0.16, 1, 0.3, 1];
+const ease = [0.16, 1, 0.3, 1] as const;
 
-function FadeUp({ children, delay = 0, className = "" }: {
+function FadeUp({
+  children,
+  delay = 0,
+  className = "",
+}: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 18 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay, ease }}
+      transition={{ duration: 0.58, delay, ease }}
       className={className}
     >
       {children}
@@ -25,211 +30,255 @@ function FadeUp({ children, delay = 0, className = "" }: {
   );
 }
 
-/* ── 마퀴 ── */
-const SKILLS = [
-  "Next.js", "React", "TypeScript", "Framer Motion",
-  "Tailwind CSS", "GA4", "Datadog", "SQL",
-  "Canvas API", "SWR", "Atomic Design",
-  "Figma", "Core Web Vitals", "Lighthouse",
-];
-
-function Marquee() {
-  const items = [...SKILLS, ...SKILLS];
-  return (
-    <div className="overflow-hidden border-y border-[#e5e8eb] bg-[#f7f8fa] py-4 select-none">
-      <motion.div
-        className="flex gap-6 whitespace-nowrap w-max"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      >
-        {items.map((s, i) => (
-          <span key={i} className="flex items-center gap-6 shrink-0">
-            <span className="text-[13px] font-semibold text-[#9ca3af] tracking-wide">{s}</span>
-            <span className="text-[#d1d5db]">·</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-/* ── 스킬 카드 ── */
-const SKILL_GROUPS = [
+const strengths = [
   {
-    category: "개발",
-    icon: "⚡",
-    skills: ["Next.js", "React", "TypeScript", "Node.js", "SWR", "Canvas API"],
+    title: "모던 프론트엔드 개발",
+    description:
+      "React, Next.js, TypeScript 기반으로 사용자 서비스와 운영 시스템을 개발하고 유지보수했습니다.",
+    image: "frontend",
+    tags: ["React", "Next.js", "TypeScript"],
   },
   {
-    category: "디자인",
-    icon: "🎨",
-    skills: ["Figma", "Framer Motion", "Tailwind CSS", "Atomic Design", "반응형 UI"],
+    title: "서비스 개선 및 최적화",
+    description:
+      "이미지 최적화, API 호출 구조 개선, 캐싱 전략 적용을 통해 초기 로딩 시간을 약 2초 단축했습니다.",
+    image: "performance",
+    tags: ["-2.0s", "Lazy Loading", "Caching"],
   },
   {
-    category: "데이터 & 성능",
-    icon: "📊",
-    skills: ["GA4", "Datadog", "SQL", "Lighthouse", "Core Web Vitals", "Bundle Analysis"],
-  },
-];
-
-/* ── 타임라인 ── */
-const TIMELINE = [
-  {
-    period: "2024 — 현재",
-    role: "시니어 프론트엔드 엔지니어",
-    place: "핀테크 스타트업",
-    desc: "KPI 대시보드 구축, 성능 최적화, 디자인 시스템 설계",
-    color: "#4f46e5",
+    title: "데이터 기반 의사결정",
+    description:
+      "GA4, Datadog, Elastic, SQL 데이터를 활용해 콘텐츠 편성, 추천 영역, 광고 배치 전략을 개선했습니다.",
+    image: "data",
+    tags: ["GA4", "Datadog", "Elastic", "SQL"],
   },
   {
-    period: "2022 — 2024",
-    role: "프론트엔드 엔지니어",
-    place: "커머스 플랫폼",
-    desc: "주요 화면 LCP 2초 단축, Atomic Design 도입, 코드 리뷰 문화 구축",
-    color: "#10b981",
-  },
-  {
-    period: "2020 — 2022",
-    role: "주니어 개발자",
-    place: "디자인 에이전시",
-    desc: "UI 개발 및 퍼블리싱, Figma-to-Code 워크플로우 정립",
-    color: "#f59e0b",
+    title: "커뮤니케이션 및 협업",
+    description:
+      "기획, 디자인, 운영 조직과 협업하며 사용자 문의와 운영 이슈를 개발 과제로 연결했습니다.",
+    image: "collaboration",
+    tags: ["Notion", "Jira", "Code Review"],
   },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="bg-white">
-      {/* 마퀴 */}
-      <Marquee />
+    <section
+      id="about"
+      className="relative overflow-hidden bg-white px-4 py-24 sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto max-w-[1024px]">
+        <FadeUp className="text-center">
+          <p className="text-sm font-bold text-[#2663f2]">핵심 역량</p>
+          <h2 className="mt-3 text-[clamp(1.9rem,3.5vw,2.7rem)] font-semibold leading-[1.2] tracking-[-0.04em] text-[#111111]">
+            서비스를 이해하고, 데이터를 보고,
+            <br className="hidden sm:block" /> 사용자 경험을 개선합니다.
+          </h2>
+        </FadeUp>
 
-      {/* 소개 텍스트 */}
-      <div className="container py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="mt-14 grid gap-8 md:grid-cols-2">
+          {strengths.map((item, index) => (
+            <FadeUp key={item.title} delay={index * 0.06}>
+              <article className="group h-full overflow-hidden rounded-[28px] border border-[#e5e8eb] bg-white shadow-[0_10px_34px_rgba(25,31,40,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_52px_rgba(25,31,40,0.1)]">
+                <div className="relative h-[220px] overflow-hidden bg-[#f5f6f8]">
+                  <MockVisual type={item.image} />
 
-          {/* 왼쪽 */}
-          <div>
-            <FadeUp delay={0}>
-              <p className="t-label mb-5">About me</p>
-            </FadeUp>
-            <FadeUp delay={0.06}>
-              <h2 className="t-section text-[#111827] mb-6 leading-[1.15]">
-                코드와 디자인,<br />
-                두 언어를 씁니다.
-              </h2>
-            </FadeUp>
-            <FadeUp delay={0.12}>
-              <p className="t-body mb-5">
-                5년 차 프론트엔드 엔지니어이자 UI 디자이너입니다.
-                Figma에서 시작한 아이디어를 Next.js로 구현하고,
-                GA4와 Datadog으로 결과를 측정합니다.
-              </p>
-            </FadeUp>
-            <FadeUp delay={0.16}>
-              <p className="t-body mb-8">
-                단순히 화면을 만드는 것에 그치지 않습니다.
-                엑셀로 관리되던 KPI를 실시간 대시보드로 전환해 매출을 27% 끌어올렸고,
-                주요 화면의 LCP를 4.2s → 2.1s로 단축했습니다.
-              </p>
-            </FadeUp>
-            <FadeUp delay={0.2}>
-              <div className="flex flex-wrap gap-2">
-                {["주도적 문제해결", "데이터 드리븐", "팀 친화적", "이타성 91점"].map((v) => (
-                  <span key={v} className="badge">{v}</span>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-
-          {/* 오른쪽 — 숫자 카드 */}
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { value: "−2s", label: "LCP 단축", sub: "4.2s → 2.1s", color: "#4f46e5", bg: "#eef2ff" },
-              { value: "+27%", label: "매출 기여", sub: "KPI 대시보드", color: "#10b981", bg: "#ecfdf5" },
-              { value: "98점", label: "Lighthouse", sub: "Performance", color: "#f59e0b", bg: "#fffbeb" },
-              { value: "5년", label: "실무 경력", sub: "2020 — 현재", color: "#6366f1", bg: "#eef2ff" },
-            ].map((s, i) => (
-              <FadeUp key={s.label} delay={i * 0.08}>
-                <div
-                  className="rounded-2xl p-6 border border-[#e5e8eb] hover:shadow-md transition-shadow"
-                  style={{ background: s.bg }}
-                >
-                  <div
-                    className="text-3xl font-extrabold tracking-[-0.03em] mb-1"
-                    style={{ color: s.color }}
-                  >
-                    {s.value}
-                  </div>
-                  <div className="text-sm font-semibold text-[#111827]">{s.label}</div>
-                  <div className="text-xs text-[#9ca3af] mt-0.5">{s.sub}</div>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0),rgba(245,246,248,0.88)_76%)]" />
                 </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </div>
 
-      {/* 스킬 섹션 */}
-      <div id="skills" className="bg-[#f7f8fa] border-y border-[#e5e8eb]">
-        <div className="container py-16 md:py-20">
-          <FadeUp>
-            <p className="t-label mb-3">Skills</p>
-            <h2 className="t-section text-[#111827] mb-12">사용하는 기술</h2>
-          </FadeUp>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {SKILL_GROUPS.map((g, i) => (
-              <FadeUp key={g.category} delay={i * 0.08}>
-                <div className="card p-6 h-full">
-                  <span className="text-2xl mb-3 block">{g.icon}</span>
-                  <h3 className="font-bold text-[#111827] mb-4">{g.category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {g.skills.map((s) => (
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#111111]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-[#6b7684]">
+                    {item.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {item.tags.map((tag) => (
                       <span
-                        key={s}
-                        className="px-2.5 py-1 rounded-lg bg-[#f7f8fa] border border-[#e5e8eb] text-[#374151] text-xs font-medium"
+                        key={tag}
+                        className="rounded-full border border-[#d9e1ec] bg-[#f8fafc] px-3 py-1.5 text-xs font-semibold text-[#4e5968]"
                       >
-                        {s}
+                        {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* 경력 타임라인 */}
-      <div className="container py-16 md:py-20">
-        <FadeUp>
-          <p className="t-label mb-3">Experience</p>
-          <h2 className="t-section text-[#111827] mb-12">경력</h2>
-        </FadeUp>
-        <div className="flex flex-col gap-0">
-          {TIMELINE.map((item, i) => (
-            <FadeUp key={item.period} delay={i * 0.08}>
-              <div className="flex gap-6 py-7 border-b border-[#e5e8eb] group">
-                {/* 컬러 바 */}
-                <div
-                  className="w-1 rounded-full shrink-0 mt-1 opacity-30 group-hover:opacity-100 transition-opacity"
-                  style={{ background: item.color, minHeight: "100%" }}
-                />
-                <div className="flex-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
-                    <div>
-                      <span className="font-bold text-[#111827]">{item.role}</span>
-                      <span className="text-[#9ca3af] mx-2">@</span>
-                      <span className="text-[#374151] font-medium">{item.place}</span>
-                    </div>
-                    <span className="t-label shrink-0">{item.period}</span>
-                  </div>
-                  <p className="text-sm text-[#6b7280] leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
+              </article>
             </FadeUp>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function MockVisual({ type }: { type: string }) {
+  if (type === "frontend") {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="grid h-24 w-24 place-items-center rounded-[28px] bg-white shadow-[0_14px_34px_rgba(25,31,40,0.12)]"
+        >
+          <span className="text-5xl text-[#00d8ff]">⚛</span>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 7, 0] }}
+          transition={{
+            duration: 3.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.2,
+          }}
+          className="absolute bottom-10 left-20 grid h-14 w-14 place-items-center rounded-xl bg-[#f7df1e] text-xl font-black text-[#111111] shadow-md"
+        >
+          JS
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, -6, 0] }}
+          transition={{
+            duration: 3.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.4,
+          }}
+          className="absolute bottom-10 left-40 grid h-14 w-14 place-items-center rounded-xl bg-[#3178c6] text-xl font-black text-white shadow-md"
+        >
+          TS
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{
+            duration: 3.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.3,
+          }}
+          className="absolute bottom-10 right-24 grid h-14 w-14 place-items-center rounded-xl bg-[#111111] text-lg font-black text-white shadow-md"
+        >
+          N
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (type === "performance") {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center gap-3 px-8">
+        <MetricCard title="FCP" value="0.59s" color="#2663f2" />
+        <MetricCard title="LCP" value="1.81s" color="#03b26c" />
+        <MetricCard title="INP" value="64ms" color="#2663f2" />
+      </div>
+    );
+  }
+
+  if (type === "data") {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-[260px] rounded-2xl border border-[#e5e8eb] bg-white p-4 shadow-[0_16px_40px_rgba(25,31,40,0.1)]">
+          <div className="mb-4 flex items-center justify-between">
+            <p className="text-xs font-bold text-[#8b95a1]">Daily Report</p>
+            <span className="rounded-full bg-[#e7f8f0] px-2 py-1 text-[10px] font-bold text-[#03b26c]">
+              +27%
+            </span>
+          </div>
+
+          <ChartLine color="#2663f2" />
+          <ChartLine color="#03b26c" delay={0.2} />
+          <ChartLine color="#ff8a00" delay={0.4} />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="relative h-[190px] w-[300px]">
+        <motion.div
+          animate={{ rotate: [-4, -2, -4], y: [0, -4, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-0 top-4 h-28 w-56 rounded-2xl border border-[#e5e8eb] bg-white p-4 shadow-[0_14px_34px_rgba(25,31,40,0.1)]"
+        >
+          <p className="text-xs font-bold text-[#111111]">Notion 업무 정리</p>
+          <div className="mt-4 space-y-2">
+            <div className="h-2 w-36 rounded-full bg-[#e5e8eb]" />
+            <div className="h-2 w-28 rounded-full bg-[#e5e8eb]" />
+            <div className="h-2 w-40 rounded-full bg-[#e5e8eb]" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ rotate: [5, 2, 5], y: [0, 5, 0] }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-2 right-0 h-32 w-52 rounded-2xl border border-[#e5e8eb] bg-white p-4 shadow-[0_14px_34px_rgba(25,31,40,0.1)]"
+        >
+          <p className="text-xs font-bold text-[#2663f2]">Jira</p>
+          <div className="mt-4 space-y-2">
+            <div className="h-2 w-32 rounded-full bg-[#dbeafe]" />
+            <div className="h-2 w-24 rounded-full bg-[#dbeafe]" />
+            <div className="h-2 w-36 rounded-full bg-[#dbeafe]" />
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({
+  title,
+  value,
+  color,
+}: {
+  title: string;
+  value: string;
+  color: string;
+}) {
+  return (
+    <motion.div
+      animate={{ y: [0, -6, 0] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      className="w-28 rounded-2xl border border-[#e5e8eb] bg-white p-4 shadow-[0_14px_34px_rgba(25,31,40,0.1)]"
+    >
+      <p className="text-xs text-[#6b7684]">{title}</p>
+      <p className="mt-2 text-lg font-black" style={{ color }}>
+        {value}
+      </p>
+      <div className="mt-3 h-1 rounded-full bg-[#e5e8eb]">
+        <motion.div
+          initial={{ width: "0%" }}
+          whileInView={{ width: "78%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease }}
+          className="h-full rounded-full"
+          style={{ backgroundColor: color }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+function ChartLine({
+  color,
+  delay = 0,
+}: {
+  color: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ width: "20%" }}
+      whileInView={{ width: "100%" }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.9, delay, ease }}
+      className="mb-3 h-2 rounded-full"
+      style={{ backgroundColor: color }}
+    />
   );
 }

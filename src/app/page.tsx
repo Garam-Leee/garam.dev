@@ -1,8 +1,10 @@
-import Nav from "@/components/ui/Nav";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Footer from "@/components/sections/Footer";
 import LenisProvider from "@/components/providers/LenisProvider";
+import About from "@/components/sections/About";
+import Experience from "@/components/sections/Experience";
+import Hero from "@/components/sections/Hero";
+import Projects from "@/components/sections/Projects";
+import TechStack from "@/components/sections/TechStack";
+import Nav from "@/components/ui/Nav";
 
 export default function Home() {
   return (
@@ -11,7 +13,9 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Footer />
+        <TechStack />
+        <Experience />
+        <Projects />
       </main>
     </LenisProvider>
   );
