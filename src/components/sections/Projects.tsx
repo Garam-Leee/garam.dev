@@ -2,6 +2,7 @@
 
 import { projects } from "@/lib/portfolio";
 import { cn } from "@/lib/utils";
+import { SECTION_KICKER } from "@/lib/section-styles";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, X } from "lucide-react";
@@ -22,7 +23,7 @@ export default function Projects() {
     >
       <div className="relative mx-auto max-w-[1180px]">
         <header className="mx-auto mb-12 max-w-[760px] text-center">
-          <GlassChip className="mx-auto px-3 py-1.5 text-[13px] font-bold text-[#3182f6]">
+          <GlassChip className={`mx-auto px-3 py-1.5 ${SECTION_KICKER}`}>
             Projects
           </GlassChip>
 

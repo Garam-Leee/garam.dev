@@ -1,12 +1,17 @@
 "use client";
 
 import { GlassChip, GlassIcon, GlassPanel } from "@/components/ui/Glass";
+import {
+  SECTION_KICKER,
+  SECTION_TITLE,
+  SECTION_DESC,
+  SECTION_MAX_WIDTH,
+} from "@/lib/section-styles";
 import { motion, useInView } from "framer-motion";
 import { BarChart3, Code2, Gauge, MessagesSquare } from "lucide-react";
 import { useRef } from "react";
 
 const ease = [0.4, 0, 0.2, 1] as const;
-const SECTION_MAX_WIDTH = "max-w-[1080px]";
 
 function FadeUp({
   children,
@@ -76,17 +81,15 @@ export default function About() {
     >
       <div className={`mx-auto ${SECTION_MAX_WIDTH}`}>
         <FadeUp className="mx-auto max-w-2xl text-center">
-          <p className="text-[13px] font-bold leading-5 text-[#3182f6]">
-            핵심 역량
-          </p>
+          <p className={SECTION_KICKER}>핵심 역량</p>
 
-          <h2 className="mt-3 text-[clamp(1.75rem,6.8vw,2.65rem)] font-bold leading-[1.18] tracking-[-0.035em] text-[#191f28]">
+          <h2 className={`mt-3 ${SECTION_TITLE}`}>
             서비스를 이해하고,
             <br />
             사용자 경험을 개선합니다.
           </h2>
 
-          <p className="mt-4 text-[15px] font-normal leading-7 text-[#6b7684] sm:text-[16px]">
+          <p className={SECTION_DESC}>
             기능 구현에 머물지 않고 성능, 데이터, 협업 흐름까지 함께 개선하는
             프론트엔드 개발을 지향합니다.
           </p>

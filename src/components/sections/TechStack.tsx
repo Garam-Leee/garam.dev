@@ -2,6 +2,10 @@
 
 import { GlassPanel, glassStyles } from "@/components/ui/Glass";
 import { cn } from "@/lib/utils";
+import {
+  SECTION_KICKER,
+  SECTION_TITLE,
+} from "@/lib/section-styles";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -130,11 +134,9 @@ export default function TechStack() {
       transition={{ duration: 0.35, ease }}
     >
       <div className="mx-auto max-w-[1024px] text-center">
-        <p className="text-[13px] font-bold leading-5 text-[#3182f6]">
-          기술 스택 및 도구
-        </p>
+        <p className={SECTION_KICKER}>기술 스택 및 도구</p>
 
-        <h2 className="mx-auto mt-3 max-w-[720px] text-[clamp(1.8rem,7vw,2.6rem)] font-bold leading-[1.18] tracking-[-0.04em] text-[#191f28]">
+        <h2 className={`mx-auto mt-3 max-w-[720px] ${SECTION_TITLE}`}>
           아래의 기술을 사용할 수 있습니다.
         </h2>
 

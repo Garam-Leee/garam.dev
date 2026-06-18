@@ -28,8 +28,33 @@ export default function LenisProvider({
 
     const rafId = requestAnimationFrame(raf);
 
+    // Handle hash link clicks
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+
+      if (anchor && anchor.hash) {
+        const href = anchor.getAttribute("href");
+        if (href?.startsWith("#")) {
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          if (targetElement && targetElement instanceof HTMLElement) {
+            lenis.scrollTo(targetElement, {
+              offset: -80, // Offset for fixed header
+              duration: 1.2,
+            });
+            // Update URL without jumping
+            history.pushState(null, "", href);
+          }
+        }
+      }
+    };
+
+    document.addEventListener("click", handleAnchorClick);
+
     return () => {
       cancelAnimationFrame(rafId);
+      document.removeEventListener("click", handleAnchorClick);
       lenis.destroy();
     };
   }, []);
