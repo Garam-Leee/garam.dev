@@ -3,8 +3,8 @@ export const profile = {
   initials: "GR",
   role: "Product Engineer",
   location: "Seoul, South Korea",
-  email: "hello@garam.dev",
-  bookingUrl: "mailto:hello@garam.dev",
+  email: "leegaram6245@naver.com",
+  bookingUrl: "mailto:leegaram6245@naver.com",
   resumeUrl: "/resume.pdf",
   githubUrl: "https://github.com/Garam-Leee",
   linkedinUrl: "https://www.linkedin.com/in/lucylee0806",
@@ -57,7 +57,7 @@ export const chatAnswers: Record<
   },
 
   tools: {
-    text: "React, Next.js, TypeScript를 중심으로 개발합니다. 상태와 데이터 패칭에는 SWR, React Query를 사용했고, 스타일링에는 Emotion, Tailwind CSS를 활용했습니다. Datadog, Elastic, GA4, SQL을 통해 서비스 지표 분석과 성능 모니터링도 수행했습니다.",
+    text: "React, Next.js, TypeScript를 중심으로 개발합니다. 상태와 데이터 패칭에는 SWR, Zustand를 사용했고, 스타일링에는 Emotion, Tailwind CSS를 활용했습니다. Datadog, Elastic, GA4, SQL을 통해 서비스 지표 분석과 성능 모니터링도 수행했습니다.",
   },
 
   chat: {
@@ -138,7 +138,7 @@ export const experiences = [
     ],
   },
   {
-    company: "(주)재담미디어",
+    company: "(주)바로에이아이",
     role: "SW 개발 및 엔지니어링팀 / Private Cloud 대시보드 개발",
     period: "2021.03 ~ 2021.08",
     summary:

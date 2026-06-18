@@ -10,12 +10,19 @@ export default function Home() {
   return (
     <LenisProvider>
       <Nav />
-      <main>
-        <Hero />
-        <About />
-        <TechStack />
-        <Experience />
-        <Projects />
+      <main className="glass-paint-stage relative overflow-hidden bg-[#f8fbff]">
+        <div className="glass-paint-wash" />
+        <div className="glass-paint-veil" />
+        <div className="glass-paint-sheen" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.36)_0%,rgba(255,255,255,0.08)_32%,rgba(255,255,255,0.42)_100%)] backdrop-blur-[2px]" />
+
+        <div className="relative">
+          <Hero />
+          <About />
+          <TechStack />
+          <Experience />
+          <Projects />
+        </div>
       </main>
     </LenisProvider>
   );
