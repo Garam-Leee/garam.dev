@@ -8,8 +8,8 @@
 
 | Link | URL |
 |--------|--------|
-| Portfolio | [https://your-domain.com](https://garam-dev.vercel.app/) |
-| GitHub | [https://github.com/your-id](https://github.com/Garam-Leee) |
+| Portfolio | [https://garam-dev.vercel.app/](https://garam-dev.vercel.app/) |
+| GitHub | [https://github.com/Garam-Leee](https://github.com/Garam-Leee) |
 
 ## Tech Stack
 
