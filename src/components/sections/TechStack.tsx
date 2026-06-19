@@ -1,11 +1,11 @@
 "use client";
 
 import { GlassPanel, glassStyles } from "@/components/ui/Glass";
-import { cn } from "@/lib/utils";
 import {
   SECTION_KICKER,
   SECTION_TITLE,
 } from "@/lib/section-styles";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
 

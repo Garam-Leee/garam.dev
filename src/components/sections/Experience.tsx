@@ -2,12 +2,8 @@
 
 import { GlassChip, GlassPanel, glassStyles } from "@/components/ui/Glass";
 import { experiences } from "@/lib/portfolio";
+import { SECTION_KICKER, SECTION_TITLE_LARGE } from "@/lib/section-styles";
 import { cn } from "@/lib/utils";
-import {
-  SECTION_KICKER,
-  SECTION_TITLE_LARGE,
-  SECTION_DESC,
-} from "@/lib/section-styles";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -30,13 +26,13 @@ export default function Experience() {
     >
       <div className="relative mx-auto max-w-[960px]">
         <header className="mx-auto mb-14 max-w-[720px] text-center sm:mb-16">
-          <p className={SECTION_KICKER}>경력사항</p>
+          <p className={SECTION_KICKER}>경력</p>
 
           <h2 className={`mt-3 ${SECTION_TITLE_LARGE}`}>
-            문제를 발견하고,
+            서비스를 만들고,
             <br />
-            제품 경험으로 바꿔왔습니다.
-          </h2> 
+            개선해온 과정입니다.
+          </h2>
         </header>
 
         <div className="relative">

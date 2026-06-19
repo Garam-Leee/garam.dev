@@ -2,10 +2,10 @@
 
 import { GlassChip, GlassIcon, GlassPanel } from "@/components/ui/Glass";
 import {
-  SECTION_KICKER,
-  SECTION_TITLE,
   SECTION_DESC,
+  SECTION_KICKER,
   SECTION_MAX_WIDTH,
+  SECTION_TITLE,
 } from "@/lib/section-styles";
 import { motion, useInView } from "framer-motion";
 import { BarChart3, Code2, Gauge, MessagesSquare } from "lucide-react";
@@ -40,36 +40,36 @@ function FadeUp({
 
 const strengths = [
   {
-    title: "모던 프론트엔드 개발",
+    title: "프론트엔드 제품 개발",
     description:
-      "React, Next.js, TypeScript 기반으로 사용자 서비스와 운영 시스템을 개발하고 유지보수했습니다.",
+      "React, Next.js, TypeScript 기반으로 사용자 서비스와 운영 도구를 개발하며 실제 서비스 흐름에 맞는 화면 구조를 설계했습니다.",
     icon: Code2,
     metric: "React / Next.js",
     tags: ["React", "Next.js", "TypeScript"],
   },
   {
-    title: "서비스 개선 및 최적화",
+    title: "성능 개선과 운영 안정화",
     description:
-      "이미지 최적화, API 호출 구조 개선, 캐싱 전략 적용으로 초기 로딩 시간을 약 2초 단축했습니다.",
+      "API 호출 구조, 캐싱 전략, 이미지 최적화를 개선해 초기 로딩 시간을 줄이고 운영 중 발생하는 사용자 불편을 줄였습니다.",
     icon: Gauge,
-    metric: "초기 로딩 -2.0s",
-    tags: ["Performance", "Lazy Loading", "Caching"],
+    metric: "Performance",
+    tags: ["Caching", "Lazy Loading", "WebP"],
   },
   {
-    title: "데이터 기반 의사결정",
+    title: "데이터 기반 서비스 개선",
     description:
-      "GA4, Datadog, Elastic, SQL 데이터를 활용해 콘텐츠 편성, 추천 영역, 광고 배치 전략을 개선했습니다.",
+      "GA4, Datadog, Elastic, SQL 데이터를 바탕으로 콘텐츠 노출, 광고 배치, 사용자 흐름 개선 과제를 도출했습니다.",
     icon: BarChart3,
-    metric: "GA4 / SQL",
+    metric: "Data Driven",
     tags: ["GA4", "Datadog", "Elastic", "SQL"],
   },
   {
-    title: "커뮤니케이션 및 협업",
+    title: "협업과 구조화",
     description:
-      "기획, 디자인, 운영 조직과 협업하며 사용자 문의와 운영 이슈를 개발 과제로 연결했습니다.",
+      "기획, 디자인, 운영, 백엔드와 협업하며 요구사항을 화면과 기능으로 정리하고 공통 컴포넌트와 개발 규칙을 개선했습니다.",
     icon: MessagesSquare,
-    metric: "Cross-functional",
-    tags: ["Notion", "Jira", "Code Review"],
+    metric: "Collaboration",
+    tags: ["Storybook", "Notion", "Code Review"],
   },
 ];
 
@@ -86,12 +86,12 @@ export default function About() {
           <h2 className={`mt-3 ${SECTION_TITLE}`}>
             서비스를 이해하고,
             <br />
-            사용자 경험을 개선합니다.
+            필요한 구조를 만듭니다.
           </h2>
 
           <p className={SECTION_DESC}>
-            기능 구현에 머물지 않고 성능, 데이터, 협업 흐름까지 함께 개선하는
-            프론트엔드 개발을 지향합니다.
+            사용자 경험, 운영 효율, 성능, 데이터 흐름을 함께 고려하며
+            프론트엔드 관점에서 제품을 개선해왔습니다.
           </p>
         </FadeUp>
 
