@@ -1,0 +1,132 @@
+/* ── 마크다운 렌더링 스타일 (벨로그 스타일) ── */
+
+.prose {
+  color: #111827;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  max-width: none;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.prose h1 { font-size: 2rem; margin: 2.5rem 0 1rem; }
+.prose h2 { font-size: 1.5rem; margin: 2.5rem 0 0.875rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e8eb; }
+.prose h3 { font-size: 1.2rem; margin: 2rem 0 0.75rem; }
+.prose h4 { font-size: 1rem; margin: 1.5rem 0 0.5rem; }
+
+.prose p {
+  margin: 1.25rem 0;
+  color: #374151;
+}
+
+.prose a {
+  color: #4f46e5;
+  text-decoration: underline;
+  text-decoration-color: #c7d2fe;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.prose a:hover { color: #4338ca; text-decoration-color: #4338ca; }
+
+.prose strong { font-weight: 700; color: #111827; }
+.prose em { font-style: italic; color: #374151; }
+
+/* ── 인라인 코드 ── */
+.prose code:not(pre code) {
+  background: #f3f4f6;
+  color: #4f46e5;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  font-size: 0.875em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+}
+
+/* ── 코드 블록 ── */
+.prose pre {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* ── 인용구 ── */
+.prose blockquote {
+  border-left: 3px solid #4f46e5;
+  background: #eef2ff;
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5rem 0;
+  color: #374151;
+  font-style: normal;
+}
+
+/* ── 목록 ── */
+.prose ul, .prose ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+.prose li {
+  margin: 0.5rem 0;
+  color: #374151;
+}
+.prose ul > li { list-style-type: disc; }
+.prose ol > li { list-style-type: decimal; }
+
+/* ── 구분선 ── */
+.prose hr {
+  border: none;
+  border-top: 2px solid #e5e8eb;
+  margin: 2.5rem 0;
+}
+
+/* ── 테이블 ── */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+.prose th {
+  background: #f7f8fa;
+  font-weight: 700;
+  color: #111827;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #e5e8eb;
+}
+.prose td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e8eb;
+  color: #374151;
+}
+.prose tr:nth-child(even) td { background: #fafafa; }
+
+/* ── 이미지 ── */
+.prose img {
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  max-width: 100%;
+  border: 1px solid #e5e8eb;
+}
