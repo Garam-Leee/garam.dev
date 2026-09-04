@@ -1,132 +1,171 @@
-/* ── 마크다운 렌더링 스타일 (벨로그 스타일) ── */
-
 .prose {
-  color: #111827;
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  max-width: none;
+  padding: 56px 0;
+  color: #333d4b;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: -0.015em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4 {
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+.prose > *:last-child {
+  margin-bottom: 0;
+}
+
+.prose h2 {
+  margin-top: 64px;
+  margin-bottom: 18px;
+  color: #191f28;
+  font-size: 28px;
   font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: #111827;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  scroll-margin-top: 96px;
 }
 
-.prose h1 { font-size: 2rem; margin: 2.5rem 0 1rem; }
-.prose h2 { font-size: 1.5rem; margin: 2.5rem 0 0.875rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e8eb; }
-.prose h3 { font-size: 1.2rem; margin: 2rem 0 0.75rem; }
-.prose h4 { font-size: 1rem; margin: 1.5rem 0 0.5rem; }
+.prose h3 {
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: #191f28;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  scroll-margin-top: 96px;
+}
 
 .prose p {
-  margin: 1.25rem 0;
-  color: #374151;
+  margin: 18px 0;
+}
+
+.prose strong {
+  color: #191f28;
+  font-weight: 700;
 }
 
 .prose a {
-  color: #4f46e5;
+  color: #2272eb;
+  font-weight: 600;
   text-decoration: underline;
-  text-decoration-color: #c7d2fe;
-  text-underline-offset: 3px;
-  transition: color 0.15s;
+  text-underline-offset: 4px;
 }
-.prose a:hover { color: #4338ca; text-decoration-color: #4338ca; }
 
-.prose strong { font-weight: 700; color: #111827; }
-.prose em { font-style: italic; color: #374151; }
+.prose ul,
+.prose ol {
+  margin: 18px 0 24px;
+  padding-left: 1.4em;
+}
 
-/* ── 인라인 코드 ── */
-.prose code:not(pre code) {
-  background: #f3f4f6;
-  color: #4f46e5;
-  padding: 0.15em 0.4em;
-  border-radius: 6px;
-  font-size: 0.875em;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin: 8px 0;
+  padding-left: 4px;
+}
+
+.prose li::marker {
+  color: #8b95a1;
+}
+
+.prose blockquote {
+  margin: 32px 0;
+  border-left: 4px solid #3182f6;
+  border-radius: 0 12px 12px 0;
+  background: #f9fafb;
+  padding: 18px 22px;
+  color: #4e5968;
   font-weight: 500;
 }
 
-/* ── 코드 블록 ── */
+.prose blockquote p {
+  margin: 0;
+}
+
+.prose hr {
+  margin: 48px 0;
+  border: 0;
+  border-top: 1px solid #e5e8eb;
+}
+
+.prose code {
+  border-radius: 6px;
+  background: #f2f4f6;
+  padding: 2px 6px;
+  color: #333d4b;
+  font-size: 0.88em;
+  font-family: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
 .prose pre {
-  background: #111827;
-  color: #e5e7eb;
-  padding: 1.25rem 1.5rem;
-  border-radius: 12px;
+  margin: 28px 0;
   overflow-x: auto;
-  margin: 1.75rem 0;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  border: 1px solid #e5e8eb;
+  border-radius: 16px;
+  background: #191f28;
+  padding: 20px;
+  color: #f9fafb;
+  font-size: 14px;
+  line-height: 1.75;
 }
 
 .prose pre code {
-  background: none;
-  color: inherit;
+  background: transparent;
   padding: 0;
+  color: inherit;
   font-size: inherit;
-  font-family: inherit;
 }
 
-/* ── 인용구 ── */
-.prose blockquote {
-  border-left: 3px solid #4f46e5;
-  background: #eef2ff;
-  padding: 1rem 1.25rem;
-  border-radius: 0 8px 8px 0;
-  margin: 1.5rem 0;
-  color: #374151;
-  font-style: normal;
-}
-
-/* ── 목록 ── */
-.prose ul, .prose ol {
-  padding-left: 1.5rem;
-  margin: 1rem 0;
-}
-.prose li {
-  margin: 0.5rem 0;
-  color: #374151;
-}
-.prose ul > li { list-style-type: disc; }
-.prose ol > li { list-style-type: decimal; }
-
-/* ── 구분선 ── */
-.prose hr {
-  border: none;
-  border-top: 2px solid #e5e8eb;
-  margin: 2.5rem 0;
-}
-
-/* ── 테이블 ── */
 .prose table {
   width: 100%;
+  margin: 32px 0;
   border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.9375rem;
+  font-size: 15px;
 }
-.prose th {
-  background: #f7f8fa;
-  font-weight: 700;
-  color: #111827;
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border: 1px solid #e5e8eb;
-}
-.prose td {
-  padding: 0.75rem 1rem;
-  border: 1px solid #e5e8eb;
-  color: #374151;
-}
-.prose tr:nth-child(even) td { background: #fafafa; }
 
-/* ── 이미지 ── */
+.prose th,
+.prose td {
+  border-bottom: 1px solid #e5e8eb;
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.prose th {
+  color: #191f28;
+  font-weight: 700;
+  background: #f9fafb;
+}
+
 .prose img {
-  border-radius: 12px;
-  margin: 1.5rem 0;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 32px 0;
+  border-radius: 16px;
   border: 1px solid #e5e8eb;
+}
+
+@media (max-width: 768px) {
+  .prose {
+    padding: 40px 0;
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .prose h2 {
+    margin-top: 48px;
+    font-size: 24px;
+  }
+
+  .prose h3 {
+    font-size: 20px;
+  }
 }

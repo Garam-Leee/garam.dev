@@ -1,11 +1,21 @@
-import Nav from "@/components/ui/Nav";
+ 
+import PostsHeader from "@/components/posts/PostsHeader";
 import LenisProvider from "@/components/providers/LenisProvider";
+import { getAllPosts } from "@/lib/posts";
 
-export default function PostsLayout({ children }: { children: React.ReactNode }) {
+export default function PostsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const posts = getAllPosts();
+
   return (
     <LenisProvider>
-      <Nav />
-      <main className="pt-[60px]">{children}</main>
+      <div className="min-h-screen bg-white text-[#191f28]">
+        <PostsHeader postsCount={posts.length} />
+        <main className="pt-14">{children}</main>
+      </div>
     </LenisProvider>
   );
 }

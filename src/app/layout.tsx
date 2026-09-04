@@ -1,28 +1,41 @@
-import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "이가람 — Frontend Engineer",
-    template: "%s | 이가람",
+    default: "Garam Lee — Product Engineer",
+    template: "%s | Garam Lee",
   },
   description:
-    "UX를 데이터로 증명하는 5년 차 프론트엔드 엔지니어 이가람입니다. Next.js, TypeScript, 성능 최적화, GA4 데이터 분석을 전문으로 합니다.",
-  keywords: ["프론트엔드", "포트폴리오", "Next.js", "TypeScript", "React", "성능 최적화"],
-  authors: [{ name: "이가람", url: "https://garam.dev" }],
-  creator: "이가람",
+    "사용자 경험과 비즈니스 가치를 함께 고민하는 Product Engineer 이가람의 포트폴리오입니다. 프론트엔드 개발, 데이터 기반 서비스 개선, 성능 최적화 경험을 담고 있습니다.",
+  keywords: [
+    "Garam Lee",
+    "이가람",
+    "Product Engineer",
+    "Frontend Developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Web Performance",
+    "Data Driven",
+    "Portfolio",
+  ],
+  authors: [{ name: "Garam Lee", url: "https://garam.dev" }],
+  creator: "Garam Lee",
   openGraph: {
     type: "website",
     locale: "ko_KR",
     url: "https://garam.dev",
-    title: "이가람 — Frontend Engineer",
-    description: "UX를 데이터로 증명하는 5년 차 프론트엔드 엔지니어",
+    title: "Garam Lee — Product Engineer",
+    description:
+      "데이터 기반 의사결정과 사용자 경험 개선을 통해 서비스 성장을 만드는 프론트엔드 개발자 포트폴리오.",
     siteName: "garam.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "이가람 — Frontend Engineer",
-    description: "UX를 데이터로 증명하는 5년 차 프론트엔드 엔지니어",
+    title: "Garam Lee — Product Engineer",
+    description:
+      "서비스 성장과 사용자 경험을 고민하는 프론트엔드 개발자 포트폴리오.",
   },
   robots: {
     index: true,
@@ -31,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f4f0ff",
   width: "device-width",
   initialScale: 1,
 };
@@ -44,7 +57,6 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        {/* Pretendard 폰트 */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"

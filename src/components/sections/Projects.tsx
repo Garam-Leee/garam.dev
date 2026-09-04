@@ -1,273 +1,317 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import TextReveal from "@/components/ui/TextReveal";
+import { projects } from "@/lib/portfolio";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  tags: string[];
-  metrics: { label: string; value: string }[];
-  year: string;
-  link?: string;
-  github?: string;
-  featured?: boolean;
+type Project = (typeof projects)[number];
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+function useLockBodyScroll(enabled: boolean) {
+  useEffect(() => {
+    if (!enabled) return;
+
+    const bodyOverflow = document.body.style.overflow;
+    const htmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = bodyOverflow;
+      document.documentElement.style.overflow = htmlOverflow;
+    };
+  }, [enabled]);
 }
 
-// TODO: 실제 프로젝트 데이터로 교체
-const PROJECTS: Project[] = [
-  {
-    id: "kpi-dashboard",
-    title: "실시간 KPI 대시보드",
-    description: "운영자 엑셀 → 실시간 시각화로 전환, 매출 27% 기여",
-    longDescription:
-      "GA4, Datadog, SQL 데이터를 연동해 운영팀이 엑셀로 관리하던 KPI를 실시간 인터랙티브 대시보드로 시각화했습니다. Canvas API 기반 차트 렌더링으로 수만 건 데이터를 매끄럽게 처리합니다.",
-    tags: ["Next.js", "TypeScript", "Canvas API", "GA4", "SQL"],
-    metrics: [
-      { label: "매출 증가", value: "+27%" },
-      { label: "운영 시간 단축", value: "−4h/day" },
-    ],
-    year: "2024",
-    featured: true,
-  },
-  {
-    id: "perf-optimization",
-    title: "Core Web Vitals 최적화",
-    description: "주요 화면 LCP 2초 단축, Lighthouse 98점",
-    longDescription:
-      "네트워크 분석, 번들 최적화, 이미지 최적화, 코드 스플리팅을 통해 주요 랜딩 페이지의 LCP를 4.2s → 2.1s로 단축했습니다. SWR 캐싱 전략으로 API 비용도 절감했습니다.",
-    tags: ["Next.js", "SWR", "Bundle Analysis", "Image Optimization"],
-    metrics: [
-      { label: "LCP 개선", value: "−2.1s" },
-      { label: "Lighthouse", value: "98점" },
-    ],
-    year: "2024",
-    featured: true,
-  },
-  {
-    id: "design-system",
-    title: "Atomic Design System",
-    description: "컴포넌트 시스템 구축 및 온보딩 가이드 제작",
-    longDescription:
-      "Atomic Design 방법론을 도입해 재사용 가능한 컴포넌트 라이브러리를 구축했습니다. 신규 입사자 온보딩 가이드를 함께 작성해 팀 생산성을 향상시켰습니다.",
-    tags: ["React", "Storybook", "TypeScript", "Atomic Design"],
-    metrics: [
-      { label: "컴포넌트 재사용률", value: "78%" },
-      { label: "온보딩 시간 단축", value: "−3days" },
-    ],
-    year: "2023",
-  },
-];
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-interface ProjectCardProps {
-  project: Project;
-  onClick: (id: string) => void;
-  isSelected: boolean;
-  index: number;
-}
+  useLockBodyScroll(Boolean(selectedProject));
 
-function ProjectCard({ project, onClick, isSelected: _isSelected, index }: ProjectCardProps) {
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedProject(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedProject]);
+
   return (
-    <motion.article
-      layoutId={`project-${project.id}`}
-      onClick={() => onClick(project.id)}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.19, 1, 0.22, 1] }}
-      whileHover={{ y: -4 }}
-      className="group relative border border-[#1a1a1a] rounded-2xl p-6 md:p-8 cursor-pointer bg-[#0c0c0c] hover:border-[#2a2a2a] transition-colors duration-300 overflow-hidden"
-    >
-      {/* 호버 그라데이션 */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: "radial-gradient(circle at 50% 0%, rgba(232, 255, 71, 0.04) 0%, transparent 70%)"
-        }}
+    <section id="projects" className="bg-white px-5 py-24 sm:px-8 md:px-12">
+      <div className="mx-auto max-w-[1180px]">
+        <header className="mx-auto mb-12 max-w-[760px] text-center">
+          <p className="text-[13px] font-bold text-[#3182f6]">Projects</p>
+
+          <h2 className="mt-3 text-[34px] font-bold leading-[1.18] tracking-[-0.04em] text-[#191f28] md:text-[48px]">
+            서비스를 이해하고, 데이터를 보고,
+            <br className="hidden sm:block" />
+            사용자 경험을 개선합니다.
+          </h2>
+        </header>
+
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <li key={project.title}>
+              <ProjectCard
+                project={project}
+                index={index}
+                onClick={() => setSelectedProject(project)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
       />
-
-      {/* 헤더 */}
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          {project.featured && (
-            <span className="inline-block text-[10px] font-mono tracking-[0.15em] text-[#e8ff47] mb-2">
-              FEATURED
-            </span>
-          )}
-          <h3 className="text-lg font-semibold text-[#f0f0f0]">{project.title}</h3>
-        </div>
-        <span className="text-xs text-[#444] font-mono">{project.year}</span>
-      </div>
-
-      <p className="text-sm text-[#888] mb-6 leading-relaxed">{project.description}</p>
-
-      {/* 메트릭 배지 */}
-      <div className="flex gap-3 mb-6">
-        {project.metrics.map((m) => (
-          <div key={m.label} className="flex flex-col">
-            <span className="text-base font-semibold text-[#e8ff47]">{m.value}</span>
-            <span className="text-[10px] text-[#555]">{m.label}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* 태그 */}
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="px-2.5 py-1 text-[11px] rounded-full border border-[#1e1e1e] text-[#555] font-mono"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* 화살표 */}
-      <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <span className="text-[#e8ff47] text-lg">→</span>
-      </div>
-    </motion.article>
+    </section>
   );
 }
 
-// 프로젝트 상세 모달 — Framer Motion layoutId Shared Element
-function ProjectDetail({
+function ProjectCard({
+  project,
+  index,
+  onClick,
+}: {
+  project: Project;
+  index: number;
+  onClick: () => void;
+}) {
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      whileHover={{ y: -5 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ duration: 0.35, delay: index * 0.035, ease }}
+      className="group flex h-full min-h-[280px] w-full flex-col rounded-[20px] border border-[#e5e8eb] bg-white p-5 text-left shadow-[0px_1px_3px_rgba(0,0,0,0.04)] transition-all hover:border-[#3182f6] hover:shadow-[0px_4px_12px_rgba(0,0,0,0.10)] focus:outline-none focus:ring-4 focus:ring-[#3182f6]/20"
+    >
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <span className="">
+         
+        </span>
+
+        <span className="text-right text-[12px] font-semibold leading-[1.4] text-[#8b95a1]">
+          {project.period}
+        </span>
+      </div>
+
+      <h3 className="text-[22px] font-bold leading-[1.28] tracking-[-0.035em] text-[#191f28] transition-colors group-hover:text-[#3182f6]">
+        {project.title}
+      </h3>
+
+      <p className="mt-3 line-clamp-3 text-[14px] leading-[1.75] text-[#6b7684]">
+        {project.description}
+      </p>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {project.tools.slice(0, 3).map((tool) => (
+          <span
+            key={tool}
+            className="rounded-full bg-[#f2f4f6] px-2.5 py-1 text-[12px] font-semibold text-[#4e5968]"
+          >
+            {tool}
+          </span>
+        ))}
+
+        {project.tools.length > 3 && (
+          <span className="rounded-full bg-[#f2f4f6] px-2.5 py-1 text-[12px] font-semibold text-[#8b95a1]">
+            +{project.tools.length - 3}
+          </span>
+        )}
+      </div>
+
+      <div className="mt-auto flex items-center justify-between border-t border-[#f2f4f6] pt-5">
+        <span className="text-[13px] font-bold text-[#8b95a1] transition-colors group-hover:text-[#3182f6]">
+          자세히 보기
+        </span>
+
+        <span className="grid h-8 w-8 place-items-center rounded-full bg-[#3182f6] text-[15px] font-bold text-white transition-transform group-hover:translate-x-1">
+          →
+        </span>
+      </div>
+    </motion.button>
+  );
+}
+
+function ProjectModal({
   project,
   onClose,
 }: {
-  project: Project;
+  project: Project | null;
   onClose: () => void;
 }) {
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-        onClick={onClose}
-      >
-        <div className="absolute inset-0 bg-[#080808]/90" />
-
+      {project && (
         <motion.div
-          layoutId={`project-${project.id}`}
-          onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-2xl bg-[#0c0c0c] border border-[#222] rounded-2xl p-8 md:p-12 overflow-y-auto max-h-[90vh]"
+          className="fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-[#191f28]/45 p-4 backdrop-blur-[2px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <button
+            type="button"
+            aria-label="프로젝트 상세 닫기"
+            className="absolute inset-0 cursor-default"
             onClick={onClose}
-            className="absolute top-6 right-6 text-[#444] hover:text-[#f0f0f0] transition-colors text-xl"
+          />
+
+          <motion.article
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.99 }}
+            transition={{ duration: 0.25, ease }}
+            className="relative z-10 flex max-h-[calc(100dvh-32px)] w-full max-w-[760px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0px_8px_24px_rgba(0,0,0,0.16)]"
           >
-            ✕
-          </button>
-
-          <span className="text-[10px] font-mono tracking-[0.15em] text-[#e8ff47]">
-            {project.year}
-          </span>
-          <h2 className="text-2xl font-semibold text-[#f0f0f0] mt-2 mb-4">{project.title}</h2>
-
-          <p className="text-[#888] leading-relaxed mb-8">{project.longDescription}</p>
-
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            {project.metrics.map((m) => (
-              <div key={m.label} className="p-4 border border-[#1a1a1a] rounded-xl">
-                <div className="text-2xl font-bold text-[#e8ff47]">{m.value}</div>
-                <div className="text-xs text-[#555] mt-1">{m.label}</div>
+            <header className="flex shrink-0 items-center justify-between border-b border-[#e5e8eb] bg-white px-5 py-4 sm:px-7">
+              <div className="min-w-0">
+                <p className="text-[12px] font-bold text-[#3182f6]">
+                  Project
+                </p>
+                <p className="mt-0.5 truncate text-[13px] font-semibold text-[#8b95a1]">
+                  {project.period}
+                </p>
               </div>
-            ))}
-          </div>
 
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1.5 text-xs rounded-full border border-[#222] text-[#666] font-mono"
+              <button
+                type="button"
+                onClick={onClose}
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[24px] font-light text-[#8b95a1] transition hover:bg-[#f2f4f6] hover:text-[#191f28] focus:outline-none focus:ring-4 focus:ring-[#3182f6]/20"
+                aria-label="프로젝트 상세 닫기"
               >
-                {tag}
-              </span>
-            ))}
-          </div>
+                ×
+              </button>
+            </header>
 
-          <div className="flex gap-3">
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-[#e8ff47] text-[#080808] text-sm font-semibold rounded-full hover:opacity-80 transition-opacity"
+            <div
+              className="min-h-0 flex-1 overflow-y-scroll overscroll-contain px-5 py-7 sm:px-7 md:px-9"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              <div className="mb-6 flex flex-wrap gap-2">
+                {project.tools.map((tool) => (
+                  <span
+                    key={tool}
+                    className="rounded-full bg-[#e8f3ff] px-3 py-1 text-[13px] font-semibold text-[#2272eb]"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+
+              <h3
+                id="project-modal-title"
+                className="text-[30px] font-bold leading-[1.2] tracking-[-0.045em] text-[#191f28] md:text-[42px]"
               >
-                라이브 보기 ↗
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 border border-[#333] text-[#888] text-sm rounded-full hover:border-[#555] transition-colors"
-              >
-                GitHub ↗
-              </a>
-            )}
-          </div>
+                {project.title}
+              </h3>
+
+              <p className="mt-5 text-[16px] leading-[1.85] text-[#4e5968]">
+                {project.summary}
+              </p>
+
+              <dl className="mt-8 grid gap-4 rounded-2xl bg-[#f9fafb] p-5 sm:grid-cols-2">
+                <Info label="역할" value={project.role} />
+                <Info label="참여" value={project.team} />
+                <Info label="기간" value={project.period} />
+
+                <div>
+                  <dt className="text-[12px] font-bold text-[#8b95a1]">
+                    링크
+                  </dt>
+                  <dd className="mt-2 flex flex-wrap gap-2">
+                    {project.relatedLinks.map((link) =>
+                      "href" in link && link.href ? (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-full bg-[#3182f6] px-3 py-1.5 text-[13px] font-bold text-white transition hover:bg-[#2272eb]"
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <span
+                          key={link.label}
+                          className="rounded-full bg-[#f2f4f6] px-3 py-1.5 text-[13px] font-bold text-[#6b7684]"
+                        >
+                          {link.label}
+                        </span>
+                      )
+                    )}
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="mt-8 grid gap-4 md:grid-cols-2">
+                <SummaryCard title="문제" content={project.problem} />
+                <SummaryCard title="결과" content={project.result} />
+              </div>
+
+              <section className="mt-10">
+                <h4 className="text-[20px] font-bold tracking-[-0.03em] text-[#191f28]">
+                  상세 내용
+                </h4>
+
+                <div className="mt-5 space-y-4">
+                  {project.detailSections.map((section) => (
+                    <section
+                      key={section.title}
+                      className="rounded-2xl border border-[#e5e8eb] bg-white p-5"
+                    >
+                      <h5 className="text-[16px] font-bold text-[#191f28]">
+                        {section.title}
+                      </h5>
+
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-[1.8] text-[#4e5968]">
+                        {section.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </motion.article>
         </motion.div>
-      </motion.div>
+      )}
     </AnimatePresence>
   );
 }
 
-export default function Projects() {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const selectedProject = PROJECTS.find((p) => p.id === selectedId);
-
+function Info({ label, value }: { label: string; value: string }) {
   return (
-    <section id="projects" className="py-32 md:py-40">
-      <div className="container-main">
-        {/* 섹션 헤더 */}
-        <div className="flex items-end justify-between mb-16">
-          <div>
-            <p className="text-xs font-mono text-[#444] tracking-[0.2em] mb-4">02 — PROJECTS</p>
-            <TextReveal
-              text="결과로 말하는 프로젝트"
-              className="text-heading text-[#f0f0f0]"
-            />
-          </div>
-          <a
-            href="https://github.com/garamdev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block text-sm text-[#555] hover:text-[#888] transition-colors"
-          >
-            GitHub에서 더 보기 →
-          </a>
-        </div>
+    <div>
+      <dt className="text-[12px] font-bold text-[#8b95a1]">{label}</dt>
+      <dd className="mt-1 text-[14px] font-semibold leading-[1.55] text-[#333d4b]">
+        {value}
+      </dd>
+    </div>
+  );
+}
 
-        {/* 프로젝트 그리드 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {PROJECTS.map((project, i) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onClick={setSelectedId}
-              isSelected={selectedId === project.id}
-              index={i}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* 상세 모달 */}
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectDetail
-            project={selectedProject}
-            onClose={() => setSelectedId(null)}
-          />
-        )}
-      </AnimatePresence>
-    </section>
+function SummaryCard({ title, content }: { title: string; content: string }) {
+  return (
+    <div className="rounded-2xl border border-[#e5e8eb] bg-white p-5">
+      <p className="text-[13px] font-bold text-[#3182f6]">{title}</p>
+      <p className="mt-2 text-[15px] leading-[1.75] text-[#4e5968]">
+        {content}
+      </p>
+    </div>
   );
 }
