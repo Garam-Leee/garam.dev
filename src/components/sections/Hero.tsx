@@ -6,7 +6,10 @@ import {
   profile,
   quickQuestions,
 } from "@/lib/portfolio";
+import { cn } from "@/lib/utils";
+import { glassStyles } from "@/components/ui/Glass";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Send } from "lucide-react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 type Message = {
@@ -18,9 +21,23 @@ type Message = {
   external?: boolean;
 };
 
-const ease = [0.16, 1, 0.3, 1] as const;
-const CONTENT_MAX_WIDTH = "max-w-[1024px]";
+const ease = [0.4, 0, 0.2, 1] as const;
+const CONTENT_MAX_WIDTH = "max-w-[1080px]";
 const CHAT_MAX_WIDTH = "max-w-3xl";
+const assistantBubbleClass = cn(
+  glassStyles.panel,
+  "max-w-[82%] rounded-[16px] px-5 py-4 text-left text-[15px] font-normal leading-7 text-[#333d4b] sm:max-w-[720px] sm:px-6"
+);
+const userBubbleClass =
+  "max-w-[82%] rounded-[16px] border border-white/16 bg-[#191f28]/88 px-5 py-3 text-[15px] font-normal leading-7 text-white shadow-[0px_8px_24px_rgba(25,31,40,0.18)] backdrop-blur-xl sm:max-w-[70%]";
+const questionButtonClass = cn(
+  glassStyles.chip,
+  "group gap-1.5 whitespace-nowrap px-3.5 py-2 text-[13px] font-semibold text-[#4e5968] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#3182f6]/28 hover:bg-white/62 hover:text-[#2272eb] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_12px_26px_rgba(25,31,40,0.08)] focus:outline-none focus:ring-2 focus:ring-[#3182f6] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
+);
+const chatInputShellClass = cn(
+  glassStyles.panel,
+  "flex min-w-0 items-center gap-1.5 rounded-[14px] px-3 py-2.5 transition duration-150 focus-within:border-[#3182f6]/34 focus-within:bg-white/62 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.94),0_16px_38px_rgba(25,31,40,0.09)] sm:gap-2 sm:rounded-[16px] sm:px-4 sm:py-3"
+);
 
 function detectIntent(question: string): ChatIntent {
   const value = question.toLowerCase();
@@ -110,7 +127,8 @@ export default function Hero() {
 
   const chatRef = useRef<HTMLDivElement>(null);
   const messageId = useRef(1);
-  const typingTimerRef = useRef<number | null>(null);
+  const typingRafRef = useRef<number | null>(null);
+  const typingDelayRef = useRef<number | null>(null);
 
   useEffect(() => {
     chatRef.current?.scrollTo({
@@ -121,19 +139,33 @@ export default function Hero() {
 
   useEffect(() => {
     return () => {
-      if (typingTimerRef.current) {
-        window.clearInterval(typingTimerRef.current);
+      if (typingRafRef.current) {
+        window.cancelAnimationFrame(typingRafRef.current);
+      }
+
+      if (typingDelayRef.current) {
+        window.clearTimeout(typingDelayRef.current);
       }
     };
   }, []);
+
+  function stopTypingAnimation() {
+    if (typingRafRef.current) {
+      window.cancelAnimationFrame(typingRafRef.current);
+      typingRafRef.current = null;
+    }
+
+    if (typingDelayRef.current) {
+      window.clearTimeout(typingDelayRef.current);
+      typingDelayRef.current = null;
+    }
+  }
 
   function answerQuestion(question: string, intent = detectIntent(question)) {
     const trimmed = question.trim();
     if (!trimmed || loading) return;
 
-    if (typingTimerRef.current) {
-      window.clearInterval(typingTimerRef.current);
-    }
+    stopTypingAnimation();
 
     setHasStarted(true);
     setTypingText("");
@@ -151,18 +183,20 @@ export default function Hero() {
 
     const answer = chatAnswers[intent] ?? chatAnswers.fallback;
 
-    window.setTimeout(() => {
-      let index = 0;
+    typingDelayRef.current = window.setTimeout(() => {
+      const startedAt = performance.now();
+      const charsPerSecond = 72;
 
-      typingTimerRef.current = window.setInterval(() => {
-        index += 1;
-        setTypingText(answer.text.slice(0, index));
+      function typeFrame(now: number) {
+        const elapsed = now - startedAt;
+        const nextIndex = Math.min(
+          answer.text.length,
+          Math.floor((elapsed / 1000) * charsPerSecond)
+        );
 
-        if (index >= answer.text.length) {
-          if (typingTimerRef.current) {
-            window.clearInterval(typingTimerRef.current);
-          }
+        setTypingText(answer.text.slice(0, nextIndex));
 
+        if (nextIndex >= answer.text.length) {
           setMessages((current) => [
             ...current,
             {
@@ -177,9 +211,16 @@ export default function Hero() {
 
           setTypingText("");
           setLoading(false);
+          typingRafRef.current = null;
+          typingDelayRef.current = null;
+          return;
         }
-      }, 15);
-    }, 240);
+
+        typingRafRef.current = window.requestAnimationFrame(typeFrame);
+      }
+
+      typingRafRef.current = window.requestAnimationFrame(typeFrame);
+    }, 250);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -188,8 +229,8 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-[linear-gradient(135deg,#f3edff_0%,#dff1ff_52%,#ffffff_100%)] px-4 pt-28 sm:px-6 sm:pt-36 lg:px-8">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_24%_54%,rgba(180,140,255,0.22),transparent_30%),radial-gradient(circle_at_72%_24%,rgba(115,190,255,0.22),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0)_0%,#ffffff_96%)]" />
+    <section className="relative isolate min-h-screen overflow-hidden bg-transparent px-4 pt-28 font-['Toss_Product_Sans','Tossface','SF_Pro_KR','SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Basier_Square','Apple_SD_Gothic_Neo',Roboto,'Noto_Sans_KR',sans-serif] sm:px-6 sm:pt-36 lg:px-8">
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,rgba(255,255,255,0.24),rgba(248,252,255,0.18)_46%,rgba(255,255,255,0.26))]" />
 
       <div
         className={`mx-auto flex min-h-[calc(100vh-7rem)] w-full ${CONTENT_MAX_WIDTH} flex-col`}
@@ -198,7 +239,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease }}
+            transition={{ duration: 0.35, ease }}
             className="flex flex-1 flex-col items-center justify-center pb-16"
           >
             <HeroTitle />
@@ -218,12 +259,12 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.42, ease }}
+            transition={{ duration: 0.25, ease }}
             className="flex flex-1 flex-col items-center justify-center pb-14"
           >
             <div
               ref={chatRef}
-              className={`mb-4 max-h-[52vh] w-full ${CONTENT_MAX_WIDTH} space-y-6 overflow-y-auto px-1 py-2 [scrollbar-width:thin] [scrollbar-color:#e5e8eb_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#e5e8eb] hover:[&::-webkit-scrollbar-thumb]:bg-[#d1d6db]`}
+              className={`mb-4 max-h-[52vh] w-full ${CONTENT_MAX_WIDTH} space-y-6 overflow-y-auto px-1 py-2 [scrollbar-width:thin] [scrollbar-color:#e5e8eb_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#e5e8eb] hover:[&::-webkit-scrollbar-thumb]:bg-[#b0b8c1]`}
             >
               <AnimatePresence initial={false}>
                 {messages.map((message) => (
@@ -255,20 +296,22 @@ function HeroTitle() {
   return (
     <div className={`w-full ${CONTENT_MAX_WIDTH}`}>
       <div className="flex items-start gap-3.5 sm:gap-4">
-        <Avatar size="lg" />
+        <div className="hidden sm:block">
+          <Avatar size="lg" />
+        </div>
 
-        <h1 className="text-left text-[clamp(1.95rem,4vw,3.65rem)] font-semibold leading-[1.08] tracking-[-0.055em] text-[#111111]">
+        <h1 className="min-w-0 max-w-full text-left text-[clamp(2rem,8.5vw,3.65rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[#191f28] break-words">
           <span>I&apos;m </span>
           <span className="relative inline-block px-1.5">
-            <span className="absolute inset-0 border-l-2 border-r-2 border-[#2663f2]/45 bg-[#2663f2]/10" />
-            <span className="absolute left-0 top-0 h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2663f2]" />
-            <span className="absolute bottom-0 right-0 h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 rounded-full bg-[#2663f2]" />
+            <span className="absolute inset-0 border-l-2 border-r-2 border-[#3182f6]/45 bg-[#3182f6]/10" />
+            <span className="absolute left-0 top-0 h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#3182f6]" />
+            <span className="absolute bottom-0 right-0 h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 rounded-full bg-[#3182f6]" />
             <span className="relative">{profile.name}</span>
           </span>
           <span> — based in Seoul.</span>
           <br />
           <span>I build product experiences,&nbsp;</span>
-          <span className="inline-block whitespace-nowrap font-serif italic tracking-[-0.03em]">
+          <span className="inline whitespace-normal font-serif italic tracking-[-0.03em]">
             end to end.
           </span>
         </h1>
@@ -276,7 +319,6 @@ function HeroTitle() {
     </div>
   );
 }
-
 function Avatar({ size = "md" }: { size?: "md" | "lg" }) {
   const sizeClass =
     size === "lg"
@@ -286,7 +328,7 @@ function Avatar({ size = "md" }: { size?: "md" | "lg" }) {
   return (
     <span className="relative shrink-0">
       <span
-        className={`grid ${sizeClass} place-items-center overflow-hidden rounded-full bg-[#111111] text-[11px] font-bold text-white shadow-md ring-2 ring-white`}
+        className={`grid ${sizeClass} place-items-center overflow-hidden rounded-full bg-[#191f28] text-[11px] font-bold text-white shadow-[0px_1px_3px_rgba(0,0,0,0.06)] ring-2 ring-white`}
       >
         {profile.initials}
       </span>
@@ -303,7 +345,7 @@ function MessageBubble({ message }: { message: Message }) {
       initial={{ opacity: 0, y: 8, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.26, ease }}
+      transition={{ duration: 0.25, ease }}
       className={isUser ? "flex justify-end" : "flex items-start gap-3.5 sm:gap-4"}
     >
       {!isUser && <Avatar />}
@@ -311,8 +353,8 @@ function MessageBubble({ message }: { message: Message }) {
       <div
         className={
           isUser
-            ? "max-w-[70%] rounded-[16px] bg-[#111111] px-5 py-3 text-[15px] leading-7 text-white shadow-[0_10px_28px_rgba(25,31,40,0.15)]"
-            : "max-w-[720px] rounded-[16px] border border-[#d5d9df] bg-white px-5 py-4 text-left text-[15px] leading-7 text-[#333d4b] shadow-[0_10px_28px_rgba(25,31,40,0.075)] sm:px-6"
+            ? userBubbleClass
+            : assistantBubbleClass
         }
       >
         <p className="whitespace-pre-line break-keep">{message.text}</p>
@@ -323,11 +365,12 @@ function MessageBubble({ message }: { message: Message }) {
             onClick={() => openTarget(message.actionHref ?? "#", message.external)}
             className={
               isUser
-                ? "mt-3 rounded-full bg-white px-3.5 py-1.5 text-xs font-bold text-[#111111]"
-                : "mt-3 rounded-full bg-[#111111] px-3.5 py-1.5 text-xs font-bold text-white transition hover:bg-[#333d4b]"
+                ? "mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/50 bg-white/74 px-3.5 py-1.5 text-xs font-semibold text-[#2272eb] shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] backdrop-blur-xl transition hover:bg-white/88"
+                : "mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-[#191f28]/86 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_6px_16px_rgba(25,31,40,0.16)] backdrop-blur-xl transition hover:bg-[#333d4b]/90"
             }
           >
-            {message.actionLabel} ↗
+            <span>{message.actionLabel}</span>
+            <ArrowUpRight size={14} strokeWidth={2.2} />
           </button>
         )}
       </div>
@@ -340,16 +383,16 @@ function TypingBubble({ text }: { text: string }) {
     <motion.div
       initial={{ opacity: 0, y: 8, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.24, ease }}
+      transition={{ duration: 0.25, ease }}
       className="flex items-start gap-3.5 sm:gap-4"
     >
       <Avatar />
 
-      <div className="max-w-[720px] rounded-[16px] border border-[#d5d9df] bg-white px-5 py-4 text-left text-[15px] leading-7 text-[#333d4b] shadow-[0_10px_28px_rgba(25,31,40,0.075)] sm:px-6">
+      <div className={assistantBubbleClass}>
         {text ? (
           <p className="whitespace-pre-line break-keep">
             {text}
-            <span className="ml-1 inline-block h-4 w-[2px] translate-y-0.5 animate-pulse bg-[#333d4b]" />
+            <span className="ml-1 inline-block h-4 w-[2px] translate-y-0.5 animate-pulse bg-[#3182f6]" />
           </p>
         ) : (
           <div className="flex items-center gap-1.5 py-1.5">
@@ -375,7 +418,7 @@ function QuestionButtons({
 
   return (
     <div className="mb-4 w-full">
-      <div className="-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 sm:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-wrap justify-start gap-2 sm:hidden">
         {quickQuestions.map((question) => (
           <QuestionButton
             key={question.intent}
@@ -434,20 +477,24 @@ function QuestionButton({
         type="button"
         onClick={() => onAsk(question.label, question.intent)}
         disabled={disabled}
-        className="group inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[#111111]/20 bg-white px-3.5 py-2 text-[13px] font-medium text-[#111111] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#111111] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#2663f2] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
+        className={questionButtonClass}
       >
         <span>{question.label}</span>
 
         {isWork && (
-          <span className="text-[#6b7280] transition-colors group-hover:text-[#111111]">
-            ↓
-          </span>
+          <ArrowDown
+            size={15}
+            strokeWidth={2.2}
+            className="text-[#8b95a1] transition-colors group-hover:text-[#2272eb]"
+          />
         )}
 
         {isExternal && (
-          <span className="text-[#6b7280] transition-colors group-hover:text-[#111111]">
-            ↗
-          </span>
+          <ArrowUpRight
+            size={15}
+            strokeWidth={2.2}
+            className="text-[#8b95a1] transition-colors group-hover:text-[#2272eb]"
+          />
         )}
       </button>
     </div>
@@ -466,9 +513,9 @@ function ChatInput({
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }) {
   return (
-    <form onSubmit={onSubmit} className="w-full">
-      <div className="flex items-center gap-2 rounded-2xl border border-[#d5d9df] bg-white/85 px-4 py-3 shadow-[0_10px_28px_rgba(25,31,40,0.075)] backdrop-blur-md transition focus-within:border-[#111111] focus-within:shadow-[0_14px_36px_rgba(25,31,40,0.1)]">
-        <span className="select-none font-mono text-[13px] text-[#8b95a1]">
+    <form onSubmit={onSubmit} className="w-full min-w-0">
+      <div className={chatInputShellClass}>
+        <span className="shrink-0 select-none font-mono text-[12px] text-[#8b95a1] sm:text-[13px]">
           ›_
         </span>
 
@@ -478,16 +525,16 @@ function ChatInput({
           placeholder="ask Garam anything..."
           aria-label="Ask Garam a question"
           disabled={loading}
-          className="min-w-0 flex-1 bg-transparent text-[15px] text-[#191f28] outline-none placeholder:text-[#8b95a1]/70 disabled:cursor-not-allowed"
+          className="min-w-0 flex-1 truncate bg-transparent text-[14px] font-normal leading-[20px] text-[#333d4b] outline-none placeholder:text-[#b0b8c1] disabled:cursor-not-allowed sm:text-[15px] sm:leading-[22px]"
         />
 
         <button
           type="submit"
           disabled={!input.trim() || loading}
           aria-label="Send"
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#111111] text-base font-bold text-white transition hover:bg-[#2663f2] disabled:cursor-not-allowed disabled:opacity-30"
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#3182f6] text-white transition duration-150 hover:bg-[#2272eb] disabled:cursor-not-allowed disabled:bg-[#e5e8eb] disabled:text-[#b0b8c1] sm:h-8 sm:w-8"
         >
-          →
+          <Send size={16} strokeWidth={2.4} className="sm:h-[17px] sm:w-[17px]" />
         </button>
       </div>
     </form>
@@ -496,11 +543,11 @@ function ChatInput({
 
 function FooterNote() {
   return (
-    <p className="mx-auto mt-3 w-full max-w-3xl text-center text-[11px] leading-5 text-[#6b7684]">
+    <p className="mx-auto mt-3 w-full max-w-3xl text-center text-[11px] font-normal leading-5 text-[#6b7684]">
       미리 준비된 답변을 기반으로 응답합니다. 자세한 이야기는{" "}
       <a
         href={`mailto:${profile.email}`}
-        className="underline-offset-2 transition hover:text-[#111111] hover:underline"
+        className="font-semibold text-[#2272eb] underline-offset-2 transition hover:underline"
       >
         {profile.email}
       </a>

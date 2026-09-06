@@ -1,5 +1,7 @@
 "use client";
 
+import { GlassPanel, glassStyles } from "@/components/ui/Glass";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -12,6 +14,7 @@ type TechItem = {
   fallback?: string;
 };
 
+const ease = [0.4, 0, 0.2, 1] as const;
 const iconBase = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
 const categories: { key: Category; label: string }[] = [
@@ -42,7 +45,6 @@ const techItems: TechItem[] = [
     category: "frontend",
     icon: `${iconBase}/nextjs/nextjs-original.svg`,
   },
-
   {
     name: "SWR",
     category: "library",
@@ -77,8 +79,7 @@ const techItems: TechItem[] = [
     name: "React Hook Form",
     category: "library",
     fallback: "RHF",
-  }, 
-
+  },
   {
     name: "GitHub",
     category: "deploy",
@@ -93,7 +94,7 @@ const techItems: TechItem[] = [
     name: "AWS",
     category: "deploy",
     icon: `${iconBase}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
-  }, 
+  },
   {
     name: "Datadog",
     category: "deploy",
@@ -104,7 +105,6 @@ const techItems: TechItem[] = [
     category: "deploy",
     icon: `${iconBase}/elasticsearch/elasticsearch-original.svg`,
   },
-
   {
     name: "Figma",
     category: "design",
@@ -121,18 +121,24 @@ export default function TechStack() {
   const [active, setActive] = useState<Category | null>(null);
 
   return (
-    <section
+    <motion.section
       id="skills"
-      className="relative overflow-hidden bg-white px-4 py-24 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-transparent px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.35, ease }}
     >
       <div className="mx-auto max-w-[1024px] text-center">
-        <p className="text-sm font-bold text-[#2663f2]">기술 스택 및 도구</p>
+        <p className="text-[13px] font-bold leading-5 text-[#3182f6]">
+          기술 스택 및 도구
+        </p>
 
-        <h2 className="mt-3 text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold tracking-[-0.04em] text-[#111111]">
+        <h2 className="mx-auto mt-3 max-w-[720px] text-[clamp(1.8rem,7vw,2.6rem)] font-bold leading-[1.18] tracking-[-0.04em] text-[#191f28]">
           아래의 기술을 사용할 수 있습니다.
         </h2>
 
-        <div className="mx-auto mt-10 inline-flex rounded-full bg-[#f2f4f7] p-1">
+        <GlassPanel className="mx-auto mt-8 flex w-fit max-w-full flex-wrap justify-center gap-1.5 rounded-[20px] p-1.5 sm:mt-10 sm:inline-flex sm:flex-nowrap sm:rounded-full sm:p-1">
           {categories.map((category) => {
             const isActive = active === category.key;
 
@@ -146,38 +152,38 @@ export default function TechStack() {
                   )
                 }
                 className={[
-                  "relative rounded-full px-4 py-2 text-sm font-bold transition",
+                  "relative h-8 rounded-full px-3 text-[12px] font-bold transition sm:h-auto sm:px-4 sm:py-2 sm:text-sm",
                   isActive
-                    ? "text-[#111111]"
-                    : "text-[#9aa4b2] hover:text-[#4e5968]",
+                    ? "text-[#191f28]"
+                    : "text-[#8b95a1] hover:text-[#4e5968]",
                 ].join(" ")}
               >
                 {isActive && (
                   <motion.span
                     layoutId="active-tech-tab"
-                    className="absolute inset-0 rounded-full border border-[#2663f2] bg-white shadow-sm"
-                    transition={{ duration: 0.28 }}
+                    className={cn(glassStyles.chip, "absolute inset-0")}
+                    transition={{ duration: 0.25, ease }}
                   />
                 )}
                 <span className="relative z-10">{category.label}</span>
               </button>
             );
           })}
-        </div>
+        </GlassPanel>
 
-        <div className="relative mx-auto mt-12 min-h-[320px] max-w-[720px]">
-          <div className="absolute inset-0 -z-0 blur-2xl">
-            <div className="grid grid-cols-5 gap-6 opacity-25">
+        <div className="relative mx-auto mt-10 min-h-[250px] max-w-[720px] sm:mt-12 sm:min-h-[320px]">
+          <div className="absolute inset-0 -z-0 overflow-hidden blur-2xl">
+            <div className="mx-auto grid max-w-fit grid-cols-4 gap-4 opacity-25 sm:grid-cols-5 sm:gap-6">
               {techItems.map((item, index) => (
                 <div
                   key={`${item.name}-ghost-${index}`}
-                  className="h-14 w-14 rounded-2xl bg-[linear-gradient(135deg,#f3edff,#dff1ff,#fff7cc)]"
+                  className="h-12 w-12 rounded-2xl bg-[linear-gradient(135deg,#ffffff,#f8fbff,#f3f6fa)] sm:h-14 sm:w-14"
                 />
               ))}
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto grid max-w-fit grid-cols-5 justify-items-center gap-4">
+          <div className="relative z-10 mx-auto grid max-w-fit grid-cols-4 justify-items-center gap-3 sm:grid-cols-5 sm:gap-4">
             {techItems.map((item, index) => {
               const isDimmed = active !== null && active !== item.category;
 
@@ -186,44 +192,43 @@ export default function TechStack() {
                   key={item.name}
                   initial={{ opacity: 0, scale: 0.86, y: 10 }}
                   animate={{
-                    opacity: isDimmed ? 0.16 : 1,
+                    opacity: isDimmed ? 0.14 : 1,
                     scale: 1,
                     y: 0,
-                    filter: isDimmed ? "blur(8px)" : "blur(0px)",
+                    filter: isDimmed ? "blur(6px)" : "blur(0px)",
                   }}
                   transition={{
-                    duration: 0.28,
-                    delay: index * 0.025,
+                    duration: 0.25,
+                    delay: index * 0.02,
+                    ease,
                   }}
                   className="group relative"
                 >
                   <div
-                    className={[
-                      "grid h-14 w-14 place-items-center rounded-xl bg-white shadow-[0_8px_22px_rgba(25,31,40,0.12)] ring-1 ring-[#e5e8eb] transition",
+                    className={cn(
+                      glassStyles.panelInteractive,
+                      "grid h-12 w-12 place-items-center rounded-xl transition sm:h-14 sm:w-14",
                       isDimmed
                         ? "pointer-events-none"
-                        : "group-hover:-translate-y-1 group-hover:shadow-[0_14px_30px_rgba(25,31,40,0.16)]",
-                    ].join(" ")}
+                        : "group-hover:-translate-y-1"
+                    )}
                   >
                     {item.icon ? (
-                      <img
-                        src={item.icon}
-                        alt={item.name}
-                        className="h-8 w-8 object-contain"
-                        loading="lazy"
-                        onError={(event) => {
-                          event.currentTarget.style.display = "none";
-                        }}
+                      <span
+                        aria-label={item.name}
+                        role="img"
+                        className="h-7 w-7 bg-contain bg-center bg-no-repeat sm:h-8 sm:w-8"
+                        style={{ backgroundImage: `url(${item.icon})` }}
                       />
                     ) : (
-                      <span className="text-sm font-black tracking-[-0.03em] text-[#111111]">
+                      <span className="text-[12px] font-black tracking-[-0.03em] text-[#191f28] sm:text-sm">
                         {item.fallback}
                       </span>
                     )}
                   </div>
 
                   {!isDimmed && (
-                    <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#111111] px-2.5 py-1 text-xs font-semibold text-white opacity-0 shadow-md transition group-hover:opacity-100">
+                    <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#191f28] px-2.5 py-1 text-xs font-semibold text-white opacity-0 shadow-[0px_2px_8px_rgba(0,0,0,0.08)] transition group-hover:opacity-100 sm:block">
                       {item.name}
                     </span>
                   )}
@@ -233,6 +238,6 @@ export default function TechStack() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
