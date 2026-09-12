@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-
 export const metadata: Metadata = {
   title: {
     default: "Garam Lee — Product Engineer",
@@ -56,6 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
+      <SpeedInsights />
       <head>
         <link
           rel="stylesheet"
