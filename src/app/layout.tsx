@@ -1,41 +1,44 @@
 import "@/styles/globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
+
 export const metadata: Metadata = {
   title: {
-    default: "Garam Lee — Product Engineer",
+    default: "Garam Lee — Product Frontend Engineer",
     template: "%s | Garam Lee",
   },
   description:
-    "사용자 경험과 비즈니스 가치를 함께 고민하는 Product Engineer 이가람의 포트폴리오입니다. 프론트엔드 개발, 데이터 기반 서비스 개선, 성능 최적화 경험을 담고 있습니다.",
+    "서비스 성장과 사용자 경험 개선을 함께 고민하는 Product Frontend Engineer 이가람의 포트폴리오입니다. React, Next.js, TypeScript 기반 프론트엔드 개발과 데이터 기반 서비스 개선, 성능 최적화 경험을 담고 있습니다.",
   keywords: [
     "Garam Lee",
     "이가람",
-    "Product Engineer",
+    "Product Frontend Engineer",
+    "Frontend Engineer",
     "Frontend Developer",
     "React",
     "Next.js",
     "TypeScript",
     "Web Performance",
-    "Data Driven",
+    "Data Driven UX",
+    "Design System",
     "Portfolio",
   ],
-  authors: [{ name: "Garam Lee", url: "https://garam.dev" }],
+  authors: [{ name: "Garam Lee", url: "https://garam-dev.vercel.app" }],
   creator: "Garam Lee",
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://garam.dev",
-    title: "Garam Lee — Product Engineer",
+    url: "https://garam-dev.vercel.app",
+    title: "Garam Lee — Product Frontend Engineer",
     description:
-      "데이터 기반 의사결정과 사용자 경험 개선을 통해 서비스 성장을 만드는 프론트엔드 개발자 포트폴리오.",
-    siteName: "garam.dev",
+      "React, Next.js, TypeScript 기반으로 서비스 성장과 사용자 경험 개선을 만들어가는 프론트엔드 엔지니어 포트폴리오.",
+    siteName: "Garam Lee Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Garam Lee — Product Engineer",
+    title: "Garam Lee — Product Frontend Engineer",
     description:
-      "서비스 성장과 사용자 경험을 고민하는 프론트엔드 개발자 포트폴리오.",
+      "서비스 성장, 사용자 경험, 성능 최적화를 고민하는 프론트엔드 엔지니어 포트폴리오.",
   },
   robots: {
     index: true,
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f0ff",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -56,14 +59,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <SpeedInsights />
       <head>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

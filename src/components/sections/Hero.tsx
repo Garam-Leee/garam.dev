@@ -6,8 +6,6 @@ import {
   profile,
   quickQuestions,
 } from "@/lib/portfolio";
-import { cn } from "@/lib/utils";
-import { glassStyles } from "@/components/ui/Glass";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Send } from "lucide-react";
 import { FormEvent, useEffect, useRef, useState } from "react";
@@ -24,20 +22,18 @@ type Message = {
 const ease = [0.4, 0, 0.2, 1] as const;
 const CONTENT_MAX_WIDTH = "max-w-[1080px]";
 const CHAT_MAX_WIDTH = "max-w-3xl";
-const assistantBubbleClass = cn(
-  glassStyles.panel,
-  "max-w-[82%] rounded-[16px] px-5 py-4 text-left text-[15px] font-normal leading-7 text-[#333d4b] sm:max-w-[720px] sm:px-6"
-);
+
+const assistantBubbleClass =
+  "max-w-[82%] rounded-[18px] border border-[#e5e8eb]/70 bg-white/58 px-5 py-4 text-left text-[15px] font-normal leading-7 text-[#333d4b] backdrop-blur-2xl sm:max-w-[720px] sm:px-6";
+
 const userBubbleClass =
-  "max-w-[82%] rounded-[16px] border border-white/16 bg-[#191f28]/88 px-5 py-3 text-[15px] font-normal leading-7 text-white shadow-[0px_8px_24px_rgba(25,31,40,0.18)] backdrop-blur-xl sm:max-w-[70%]";
-const questionButtonClass = cn(
-  glassStyles.chip,
-  "group gap-1.5 whitespace-nowrap px-3.5 py-2 text-[13px] font-semibold text-[#4e5968] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#3182f6]/28 hover:bg-white/62 hover:text-[#2272eb] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_12px_26px_rgba(25,31,40,0.08)] focus:outline-none focus:ring-2 focus:ring-[#3182f6] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
-);
-const chatInputShellClass = cn(
-  glassStyles.panel,
-  "flex min-w-0 items-center gap-1.5 rounded-[14px] px-3 py-2.5 transition duration-150 focus-within:border-[#3182f6]/34 focus-within:bg-white/62 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.94),0_16px_38px_rgba(25,31,40,0.09)] sm:gap-2 sm:rounded-[16px] sm:px-4 sm:py-3"
-);
+  "max-w-[82%] rounded-[18px] border border-[#191f28]/8 bg-[#191f28]/86 px-5 py-3 text-[15px] font-normal leading-7 text-white shadow-[0_10px_28px_rgba(25,31,40,0.12)] backdrop-blur-xl sm:max-w-[70%]";
+
+const questionButtonClass =
+  "group inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[#e5e8eb]/70 bg-white/48 px-3.5 py-2 text-[13px] font-semibold text-[#4e5968] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_6px_18px_rgba(25,31,40,0.045)] backdrop-blur-xl transition-all duration-150 hover:-translate-y-0.5 hover:border-[#3182f6]/24 hover:bg-white/72 hover:text-[#2272eb] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_10px_24px_rgba(25,31,40,0.07)] focus:outline-none focus:ring-2 focus:ring-[#3182f6]/30 disabled:cursor-not-allowed disabled:opacity-40";
+
+const chatInputShellClass =
+  "flex min-w-0 items-center gap-1.5 rounded-[18px] border border-[#e5e8eb]/72 bg-white/54 px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_12px_30px_rgba(25,31,40,0.06)] backdrop-blur-2xl transition duration-150 focus-within:border-[#3182f6]/30 focus-within:bg-white/70 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.96),0_14px_34px_rgba(25,31,40,0.075)] sm:gap-2 sm:px-4 sm:py-3";
 
 function detectIntent(question: string): ChatIntent {
   const value = question.toLowerCase();
@@ -229,7 +225,7 @@ export default function Hero() {
   }
 
   return (
-    <section 
+    <section
       id="hero"
       className="relative isolate min-h-screen overflow-hidden bg-transparent px-4 pt-28 font-['Toss_Product_Sans','Tossface','SF_Pro_KR','SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Basier_Square','Apple_SD_Gothic_Neo',Roboto,'Noto_Sans_KR',sans-serif] sm:px-6 sm:pt-36 lg:px-8"
     >
@@ -266,9 +262,9 @@ export default function Hero() {
             className="flex flex-1 flex-col items-center justify-center pb-14"
           >
             <div
-              ref={chatRef}
-              className={`mb-4 max-h-[52vh] w-full ${CONTENT_MAX_WIDTH} space-y-6 overflow-y-auto px-1 py-2 [scrollbar-width:thin] [scrollbar-color:#e5e8eb_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#e5e8eb] hover:[&::-webkit-scrollbar-thumb]:bg-[#b0b8c1]`}
-            >
+  ref={chatRef}
+  className={`mb-4 max-h-[52vh] w-full ${CONTENT_MAX_WIDTH} space-y-5 overflow-y-auto px-1 py-2`}
+>
               <AnimatePresence initial={false}>
                 {messages.map((message) => (
                   <MessageBubble key={message.id} message={message} />
@@ -322,6 +318,7 @@ function HeroTitle() {
     </div>
   );
 }
+
 function Avatar({ size = "md" }: { size?: "md" | "lg" }) {
   const sizeClass =
     size === "lg"
@@ -349,23 +346,21 @@ function MessageBubble({ message }: { message: Message }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -6 }}
       transition={{ duration: 0.25, ease }}
-      className={isUser ? "flex justify-end" : "flex items-start gap-3.5 sm:gap-4"}
+      className={
+        isUser ? "flex justify-end" : "flex items-start gap-3.5 sm:gap-4"
+      }
     >
       {!isUser && <Avatar />}
 
-      <div
-        className={
-          isUser
-            ? userBubbleClass
-            : assistantBubbleClass
-        }
-      >
+      <div className={isUser ? userBubbleClass : assistantBubbleClass}>
         <p className="whitespace-pre-line break-keep">{message.text}</p>
 
         {message.actionHref && message.actionLabel && (
           <button
             type="button"
-            onClick={() => openTarget(message.actionHref ?? "#", message.external)}
+            onClick={() =>
+              openTarget(message.actionHref ?? "#", message.external)
+            }
             className={
               isUser
                 ? "mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/50 bg-white/74 px-3.5 py-1.5 text-xs font-semibold text-[#2272eb] shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] backdrop-blur-xl transition hover:bg-white/88"
@@ -475,7 +470,7 @@ function QuestionButton({
     question.intent === "linkedin";
 
   return (
-    <div className="snap-start shrink-0">
+    <div className="shrink-0 snap-start">
       <button
         type="button"
         onClick={() => onAsk(question.label, question.intent)}
@@ -537,7 +532,11 @@ function ChatInput({
           aria-label="Send"
           className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#3182f6] text-white transition duration-150 hover:bg-[#2272eb] disabled:cursor-not-allowed disabled:bg-[#e5e8eb] disabled:text-[#b0b8c1] sm:h-8 sm:w-8"
         >
-          <Send size={16} strokeWidth={2.4} className="sm:h-[17px] sm:w-[17px]" />
+          <Send
+            size={16}
+            strokeWidth={2.4}
+            className="sm:h-[17px] sm:w-[17px]"
+          />
         </button>
       </div>
     </form>

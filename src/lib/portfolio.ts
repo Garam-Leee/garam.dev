@@ -1,7 +1,7 @@
 export const profile = {
   name: "Garam Lee",
   initials: "GR",
-  role: "Product Engineer",
+  role: "Product Frontend Engineer",
   location: "Seoul, South Korea",
   email: "leegaram6245@naver.com",
   bookingUrl: "mailto:leegaram6245@naver.com",
@@ -16,7 +16,7 @@ export const navLinks = [
   { label: "소개", href: "#about" },
   { label: "경력", href: "#experience" },
   { label: "프로젝트", href: "#projects" },
-  { label: "이력서", href: profile.resumeUrl, external: true },
+  { label: "Resume", href: profile.resumeUrl, external: true },
   { label: "GitHub", href: profile.githubUrl, external: true },
   { label: "LinkedIn", href: profile.linkedinUrl, external: true },
   { label: "기술 블로그", href: profile.writingsUrl },
@@ -44,46 +44,46 @@ export const chatAnswers: Record<
   }
 > = {
   developer: {
-    text: "저는 사용자 경험과 비즈니스 가치를 함께 고민하는 프론트엔드 개발자입니다. 콘텐츠 플랫폼, 헬스케어 플랫폼, ERP 시스템 등 다양한 서비스를 개발하며 성능 최적화, 데이터 분석, 서비스 성장 경험을 쌓아왔습니다.",
+    text: "프론트엔드 개발을 중심으로 사용자 경험과 비즈니스 가치를 함께 고민합니다. 웹툰 플랫폼, 헬스케어 서비스, 운영 도구를 개발하며 성능 최적화, 데이터 기반 개선, 디자인 시스템 구축 경험을 쌓아왔습니다.",
   },
 
   work: {
-    text: "웹툰 플랫폼 쇼츠, 비대면 진료 플랫폼 올라케어, 건축 ERP, Private Cloud 대시보드 등 다양한 서비스의 개발과 운영을 경험했습니다. 단순 구현보다 사용자 문제를 해결하고 서비스 성장을 만드는 데 집중해왔습니다.",
+    text: "콘텐츠 플랫폼, 결제 시스템, 운영 백오피스, KPI 대시보드, 헬스케어 서비스 등 다양한 제품을 개발했습니다. 단순 기능 구현보다 사용자의 문제를 해결하고 서비스 성장을 만드는 과정에 집중합니다.",
     actionLabel: "프로젝트 보기",
     actionHref: "#projects",
   },
 
   growth: {
-    text: "서비스 로그, 사용자 행동 데이터, 광고 클릭 데이터, KPI 지표를 분석해 개선 과제를 발굴합니다. 콘텐츠 편성, 추천 영역, 광고 배치 전략을 개선해 서비스 매출 약 27% 증가에 기여했고, 이미지·API·캐싱 최적화로 초기 로딩 시간을 약 2초 단축한 경험이 있습니다.",
+    text: "Datadog, Elastic, GA4, SQL 등을 활용해 사용자 행동과 서비스 지표를 분석합니다. 데이터 기반으로 개선 과제를 도출하고 콘텐츠 노출, 광고 영역, 사용자 흐름을 개선해 실제 매출 성장과 성능 개선으로 연결한 경험이 있습니다.",
   },
 
   tools: {
-    text: "React, Next.js, TypeScript를 중심으로 개발합니다. 상태와 데이터 패칭에는 SWR, Zustand를 사용했고, 스타일링에는 Emotion, Tailwind CSS를 활용했습니다. Datadog, Elastic, GA4, SQL을 통해 서비스 지표 분석과 성능 모니터링도 수행했습니다.",
+    text: "React, Next.js, TypeScript를 중심으로 개발하며 SWR, Zustand, Storybook을 활용해 유지보수 가능한 구조를 만듭니다. 성능 최적화와 운영 효율을 고려한 아키텍처 설계에도 관심이 많습니다.",
   },
 
   chat: {
-    text: "새로운 기회, 프로젝트, 기술 이야기 모두 환영합니다. 편하게 연락 주세요.",
+    text: "서비스 개발, 프론트엔드 아키텍처, 데이터 기반 개선, 협업 문화에 대한 이야기를 좋아합니다. 편하게 연락 주세요.",
     actionLabel: "메일 보내기",
     actionHref: `mailto:${profile.email}`,
     external: true,
   },
 
   resume: {
-    text: "이력서에서 프로젝트 경험과 기술 역량을 자세히 확인하실 수 있습니다.",
+    text: "경력 기술서와 주요 프로젝트 경험, 기술 역량을 확인할 수 있습니다.",
     actionLabel: "이력서 보기",
     actionHref: profile.resumeUrl,
     external: true,
   },
 
   linkedin: {
-    text: "LinkedIn에서 경력 이력과 프로젝트 경험을 더 자세히 확인하실 수 있습니다.",
+    text: "경력 이력과 프로젝트 경험을 LinkedIn에서도 확인할 수 있습니다.",
     actionLabel: "LinkedIn 보기",
     actionHref: profile.linkedinUrl,
     external: true,
   },
 
   fallback: {
-    text: "아직 준비되지 않은 질문입니다. 프로젝트 경험, 서비스 개선, 기술 스택, 이력서에 대해 물어보시거나 이메일로 연락 주세요.",
+    text: "프로젝트 경험, 기술 스택, 서비스 개선 사례, 데이터 분석 경험에 대해 질문해보세요.",
     actionLabel: "메일 보내기",
     actionHref: `mailto:${profile.email}`,
     external: true,
@@ -94,9 +94,9 @@ export const experiences = [
   {
     company: "(주)재담미디어",
     role: "전략사업본부 플랫폼팀 / Frontend Part Lead",
-    period: "2023.01 ~ Present",
+    period: "2023.06 ~ Present",
     summary:
-      "웹툰 플랫폼의 사용자 서비스, 결제 시스템, 운영 백오피스, 파트너 연동 서비스를 개발하며 프론트엔드 아키텍처와 공통 UI 체계를 구축했습니다.",
+      "웹툰 플랫폼의 사용자 서비스, 결제 시스템, 운영 백오피스, KPI 대시보드를 개발하며 프론트엔드 아키텍처와 공통 UI 체계를 구축했습니다.",
     tools: [
       "Next.js",
       "React",
@@ -112,21 +112,22 @@ export const experiences = [
     ],
     accent: "#3182f6",
     highlights: [
-      "웹툰 구독권, 이용권, 회차별 대여권 구매를 포함한 결제 플로우를 설계하고 구현했습니다.",
-      "모노레포 기반으로 작가 정산, 작품 관리, 개인 작가, 오픈마켓 운영 어드민을 구축했습니다.",
-      "Storybook 기반 디자인 시스템을 구축해 공통 UI와 인터랙션 패턴을 표준화했습니다.",
-      "LG U+ 등 외부 파트너 인증키 기반 계정 연동 서비스를 개발했습니다.",
-      "Datadog, Elastic, GA4, SQL 데이터를 활용해 사용자 행동과 서비스 지표를 분석했습니다.",
-      "API 구조 개선과 캐싱 전략 적용을 통해 초기 로딩 성능과 사용자 경험을 개선했습니다.",
+      "웹툰 플랫폼 사용자 서비스와 주요 사용자 접점 화면을 개발하고 운영했습니다.",
+      "구독권, 이용권, 회차별 대여권 구매를 포함한 결제 플로우를 설계하고 구현했습니다.",
+      "Atomic Design과 Storybook 기반 공통 컴포넌트 체계를 구축해 UI 일관성과 유지보수성을 높였습니다.",
+      "Datadog, WATAP, Elastic, GA4, SQL 데이터를 활용해 KPI 대시보드와 일일 리포트 체계를 구축했습니다.",
+      "광고 클릭 데이터와 콘텐츠 소비 패턴을 분석해 콘텐츠 편성, 광고 배치, 추천 영역 개선에 참여했습니다.",
+      "API 호출 구조, 캐싱 전략, Lazy Loading, WebP 전환을 통해 주요 화면 초기 로딩 시간을 약 2초 단축했습니다.",
+      "공통 컴포넌트 가이드와 개발 규칙을 정리해 신규 입사자 온보딩과 협업 생산성 향상에 기여했습니다.",
     ],
   },
 
   {
     company: "주식회사 블루앤트",
-    role: "Frontend Developer / Healthcare Platform",
-    period: "2021.11 ~ 2022.11",
+    role: "Development Unit / Frontend Developer",
+    period: "2022.05 ~ 2023.06",
     summary:
-      "비대면 진료, 심리상담, 병원·약국 플랫폼의 프론트엔드 아키텍처를 설계하고 공통 컴포넌트 및 운영 시스템 구축을 담당했습니다.",
+      "비대면 진료 플랫폼, 심리상담 서비스, 병원·상담사·운영 어드민을 개발하며 헬스케어 서비스의 사용자 흐름과 운영 시스템을 구축했습니다.",
     tools: [
       "Next.js",
       "React",
@@ -134,82 +135,92 @@ export const experiences = [
       "Storybook",
       "SWR",
       "React Hook Form",
+      "Agora",
       "Spring Boot",
     ],
     accent: "#2F80ED",
     highlights: [
-      "심리상담 서비스 모바일 웹뷰와 내부 운영 백오피스를 개발했습니다.",
-      "병원·약국 서비스의 프론트엔드 아키텍처와 공통 컴포넌트를 구축했습니다.",
-      "TypeScript, Storybook, 함수 레벨 테스트를 도입해 프론트엔드 개발 표준화를 진행했습니다.",
-      "SWR 기반 데이터 패칭 구조를 설계해 API 상태 관리와 전역 데이터 흐름을 정리했습니다.",
-      "이미지 최적화와 렌더링 개선을 통해 모바일 환경의 성능을 향상시켰습니다.",
+      "React, TypeScript 기반 비대면 진료 플랫폼의 진료 예약, 병원 조회, 후기 작성 등 핵심 사용자 여정을 구현했습니다.",
+      "SWR 기반 캐싱과 재검증 전략을 적용해 API 요청 효율과 화면 응답성을 개선했습니다.",
+      "Agora 기반 실시간 음성·영상 상담 기능을 개발하고 연결 상태, 권한, 예외 흐름을 처리했습니다.",
+      "병원, 상담사, 파트너사, 운영자를 위한 관리자 시스템과 역할 기반 권한 관리 기능을 개발했습니다.",
+      "React Hook Form 기반 검증 로직과 예외 처리를 적용해 운영 데이터의 정합성과 안정성을 높였습니다.",
+      "이미지·폰트 최적화와 데이터 전송량 개선을 통해 모바일 환경의 로딩 성능을 개선했습니다.",
     ],
   },
 
   {
-    company: "(주)하이컴텍",
-    role: "Frontend Developer / Construction ERP",
-    period: "2021.09 ~ 2022.02",
+    company: "주식회사 하이컴텍",
+    role: "개발부 / Frontend Developer",
+    period: "2022.02 ~ 2022.05",
     summary:
-      "건축 ERP 시스템의 자재, 견적, 프로젝트 관리 기능과 Canvas 기반 도면 편집 화면을 개발했습니다.",
+      "삼익가구 건축 ERP 시스템의 자재, 견적, 프로젝트 관리 기능과 Canvas 기반 도면 편집 화면을 개발했습니다.",
     tools: ["React", "JavaScript", "Canvas"],
     accent: "#111111",
     highlights: [
-      "자재 관리, 견적 관리, 프로젝트 관리 기능을 React 기반으로 개발했습니다.",
-      "입력 데이터 검증과 예외 처리 로직을 구현해 업무 데이터의 정합성을 높였습니다.",
-      "Canvas 기반 도면 화면에서 좌표 계산 및 드래그 앤 드롭 기능을 구현했습니다.",
-      "실무 운영 요구사항을 반영해 ERP 사용성과 관리 효율을 개선했습니다.",
+      "React 기반 건축 ERP 시스템의 자재 관리, 견적 관리, 프로젝트 관리 기능을 개발했습니다.",
+      "사용자 입력 데이터의 정합성을 확보하기 위한 Validation과 예외 처리 로직을 구현했습니다.",
+      "Canvas 기반 건축 도면 화면에서 드래그 앤 드롭과 좌표 계산 로직을 구현해 창호 배치 기능을 개발했습니다.",
+      "복잡한 입력 조건과 예외 상황을 고려한 검증 로직을 적용해 운영 안정성을 높였습니다.",
+      "현업 운영 요구사항을 반영해 기능 개선과 UI 고도화를 수행했습니다.",
     ],
   },
 
   {
     company: "(주)바로에이아이",
-    role: "Frontend Developer / Private Cloud Platform",
-    period: "2021.03 ~ 2021.08",
+    role: "SW 개발 및 엔지니어링 / Frontend & UI Developer",
+    period: "2021.07 ~ 2022.01",
     summary:
-      "Private Cloud 운영 대시보드의 공통 UI 체계 구축과 화면 성능 개선, 협업 프로세스 정립을 담당했습니다.",
+      "Private Cloud 운영 대시보드 화면을 개발하고, 초기 조직에서 공통 UI 체계와 협업 프로세스 정립에 참여했습니다.",
     tools: ["React", "TypeScript", "GitHub", "Notion"],
     accent: "#7B61FF",
     highlights: [
-      "공통 UI 컴포넌트를 설계해 재사용성과 유지보수성을 고려한 개발 환경을 구축했습니다.",
-      "API 중복 호출 제거와 리스트 렌더링 최적화를 통해 화면 응답 성능을 개선했습니다.",
-      "Notion 기반 업무 관리 체계와 코드 리뷰 프로세스를 제안하고 도입했습니다.",
-      "협업 과정의 가시성을 높이고 반복 업무를 줄이는 개발 문화를 만드는 데 기여했습니다.",
+      "React 기반 Private Cloud 운영 대시보드 화면을 개발하고 유지보수했습니다.",
+      "공통 UI 컴포넌트 구조를 설계해 퍼블리싱과 화면 개발 생산성을 높였습니다.",
+      "기획, 개발, 운영 조직 간 요구사항 정리와 화면 정책 수립을 지원했습니다.",
+      "Notion 기반 업무 관리 체계와 문서화를 도입해 업무 히스토리와 의사결정 과정의 가시성을 확보했습니다.",
+      "코드 리뷰 문화 도입을 제안하고 정착시키며 팀 내 개발 품질 기준 수립에 기여했습니다.",
     ],
   },
 ];
 
 export const projects = [
   {
-    title: "쇼츠 웹툰 대여권 결제 시스템",
-    description: "회차별 대여권 구매를 지원하는 웹툰 결제 플로우 구축",
+    title: "쇼츠 웹툰 서비스",
+    description: "구독형 웹툰 서비스 사용자 화면과 웹뷰 구조 개발",
     problem:
-      "기존 구독권과 이용권 중심의 결제 구조 외에, 사용자가 원하는 작품의 특정 회차를 개별로 구매할 수 있는 대여권 결제 흐름이 필요했습니다.",
+      "구독형 웹툰 서비스를 앱과 웹에서 함께 사용할 수 있도록 사용자 화면, 웹뷰, 반응형 웹앱 구조를 설계하고 개발해야 했습니다.",
     result:
-      "회차별 대여권 구매 플로우를 설계하고 결제 상태, 실패 케이스, 사용자 피드백을 정리해 웹툰 콘텐츠 소비 방식 확장에 기여했습니다.",
-    role: "프론트엔드 개발, 결제 플로우 설계, 예외 상태 처리",
-    tools: ["Next.js", "React", "TypeScript", "SWR", "Zustand", "REST API"],
+      "Next.js 기반 웹툰 서비스의 핵심 사용자 화면과 웹뷰 구조를 구축하고, 디바이스별 반응형 레이아웃을 적용해 서비스 오픈과 운영에 기여했습니다.",
+    role: "프론트엔드 개발, 웹뷰 설계, 반응형 UI 개발, 서비스 운영",
+    tools: ["Next.js", "React", "TypeScript", "Storybook", "SWR"],
     accent: "#3182F6",
     team: "PM, Design, FE, BE 협업",
-    period: "2025.03 ~ Present",
-    relatedLinks: [{ label: "내부 서비스" }],
+    period: "2023.06 ~ 2024.12",
+    relatedLinks: [
+      { label: "Shortz", href: "https://www.shortz.net" },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.jaedam.shortz",
+      },
+    ],
     summary:
-      "구독과 이용권 외에 회차별 대여권을 구매할 수 있는 결제 모듈을 개발하며, 결제 과정에서 발생하는 다양한 상태와 예외 흐름을 사용자 경험 중심으로 정리했습니다.",
+      "구독형 웹툰 서비스의 핵심 사용자 경험과 콘텐츠 소비 흐름을 개발하며 서비스 오픈부터 운영까지 담당했습니다.",
     detailSections: [
       {
-        title: "결제 플로우 설계",
+        title: "사용자 서비스 개발",
         items: [
-          "작품, 회차, 보유 이용권, 대여권 구매 가능 여부를 기준으로 사용자 결제 진입 조건을 정리했습니다.",
-          "구매 전 확인, 결제 진행, 성공, 실패, 중복 요청 방지 등 결제 단계별 화면 상태를 분리했습니다.",
-          "API 응답에 따른 오류 메시지와 사용자 피드백을 명확히 전달할 수 있도록 공통 처리 흐름을 구성했습니다.",
+          "작품 목록, 작품 상세, 회차 탐색, 웹툰 뷰어 등 주요 사용자 접점 화면을 개발했습니다.",
+          "앱 웹뷰와 모바일 웹 환경을 함께 고려해 디바이스별 레이아웃과 인터랙션을 구성했습니다.",
+          "사용자 문의와 운영 이슈를 바탕으로 탐색 흐름, 상태 UI, 피드백 방식을 지속적으로 개선했습니다.",
         ],
       },
       {
-        title: "운영 안정성 개선",
+        title: "공통 UI와 운영 기반",
         items: [
-          "결제 실패와 예외 케이스를 화면 상태로 분리해 운영 중 이슈를 빠르게 파악할 수 있도록 구성했습니다.",
-          "반복되는 confirm, alert, loading 패턴을 공통 UI로 연결해 결제 화면의 일관성을 높였습니다.",
-          "결제 흐름 확장에 대비해 구독권, 이용권, 대여권 조건을 분리 가능한 구조로 정리했습니다.",
+          "Storybook 기반 공통 컴포넌트를 구성해 프로젝트 단위 UI 재사용성을 높였습니다.",
+          "반복되는 상태 UI와 피드백 패턴을 공통화해 화면 개발 속도와 유지보수성을 개선했습니다.",
+          "초기 프로젝트 단계에서 페이지 구조와 컴포넌트 경계를 정리해 이후 기능 확장의 기반을 마련했습니다.",
         ],
       },
     ],
@@ -259,41 +270,76 @@ export const projects = [
   },
 
   {
-    title: "쇼츠 웹툰 서비스",
-    description: "구독형 웹툰 서비스 사용자 화면과 웹뷰 구조 개발",
+    title: "KPI 대시보드",
+    description: "데이터 기반 서비스 개선을 위한 운영 대시보드 구축",
     problem:
-      "구독형 웹툰 서비스를 앱과 웹에서 함께 사용할 수 있도록 사용자 화면, 웹뷰, 반응형 웹앱 구조를 설계하고 개발해야 했습니다.",
+      "운영자가 엑셀로 관리하던 매출, 광고 클릭, 로그인 사용자, 트래픽 데이터를 더 빠르게 확인하고 의사결정에 활용할 수 있어야 했습니다.",
     result:
-      "Next.js 기반 웹툰 서비스의 주요 사용자 화면과 웹뷰 구조를 구축하고, 디바이스별 반응형 레이아웃을 적용해 서비스 오픈에 기여했습니다.",
-    role: "프론트엔드 개발, 웹뷰 설계, 반응형 UI 개발",
-    tools: ["Next.js", "React", "TypeScript", "Storybook", "SWR"],
-    accent: "#FF6B35",
-    team: "PM, Design, FE, BE 협업",
-    period: "2023.01 ~ 2024.12",
-    relatedLinks: [
-      { label: "Shortz", href: "https://www.shortz.net" },
-      {
-        label: "Google Play",
-        href: "https://play.google.com/store/apps/details?id=com.jaedam.shortz",
-      },
-    ],
+      "Datadog, WATAP, Elastic, GA4, SQL 데이터를 활용해 KPI 대시보드와 일일 리포트 체계를 만들고 데이터 기반 서비스 개선 루프를 구축했습니다.",
+    role: "데이터 시각화, KPI 분석, 서비스 개선, 대시보드 개발",
+    tools: ["Next.js", "TypeScript", "SWR", "GA4", "SQL", "Datadog", "Elastic"],
+    accent: "#03B26C",
+    team: "플랫폼팀, 운영, 마케팅 협업",
+    period: "2025.01 ~ 2025.06",
+    relatedLinks: [{ label: "내부 운영 대시보드" }],
     summary:
-      "구독형 웹툰 서비스의 사용자 화면과 웹뷰 구조를 개발하며 앱과 웹에서 이어지는 콘텐츠 탐색 경험을 구축했습니다.",
+      "흩어져 있던 운영 지표를 웹 대시보드로 전환하고, 데이터 기반으로 콘텐츠 노출과 광고 배치, 사용자 흐름을 개선할 수 있는 기반을 만들었습니다.",
     detailSections: [
       {
-        title: "사용자 서비스 개발",
+        title: "지표 수집과 대시보드 화면 구성",
         items: [
-          "작품 목록, 작품 상세, 회차 탐색, 웹툰 뷰어 등 주요 사용자 접점 화면을 개발했습니다.",
-          "앱 웹뷰와 모바일 웹 환경을 함께 고려해 디바이스별 레이아웃과 인터랙션을 구성했습니다.",
-          "서비스 오픈 일정에 맞춰 사용자 화면과 운영 도구의 주요 기능을 개발했습니다.",
+          "로그인 사용자, 광고 클릭, 매출, 트래픽 데이터를 기준으로 운영자가 매일 확인해야 할 지표를 정리했습니다.",
+          "SWR 기반 데이터 캐싱과 재검증 전략을 적용해 대시보드 조회 효율을 개선했습니다.",
+          "데이터의 로딩, 실패, 빈 상태를 분리해 운영자가 지표 신뢰도를 파악하기 쉽게 구성했습니다.",
         ],
       },
       {
-        title: "공통 UI와 확장 기반",
+        title: "데이터 기반 서비스 개선",
         items: [
-          "Storybook 기반 공통 컴포넌트를 구성해 프로젝트 단위 UI 재사용성을 높였습니다.",
-          "반복되는 상태 UI와 피드백 패턴을 공통화해 화면 개발 속도와 유지보수성을 개선했습니다.",
-          "초기 프로젝트 단계에서 페이지 구조와 컴포넌트 경계를 정리해 이후 기능 확장의 기반을 마련했습니다.",
+          "광고 클릭 데이터와 콘텐츠 소비 패턴을 분석해 광고 배치, 콘텐츠 편성, 추천 영역 개선에 참여했습니다.",
+          "일일 리포트 체계를 구축해 기획, 운영, 마케팅 조직이 같은 지표를 기준으로 논의할 수 있게 했습니다.",
+          "데이터 기반 서비스 개선 프로젝트를 통해 서비스 매출 약 27% 증가에 기여했습니다.",
+          "Datadog RUM 도입 검토와 POC를 주도해 사용자 행동 기반 성능 분석 환경을 점검했습니다.",
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "쇼츠 웹툰 대여권 결제 시스템",
+    description: "회차별 대여권 구매를 지원하는 웹툰 결제 플로우 구축",
+    problem:
+      "기존 구독권과 이용권 중심의 결제 구조 외에, 사용자가 원하는 작품의 특정 회차를 개별로 구매할 수 있는 대여권 결제 흐름이 필요했습니다.",
+    result:
+      "회차별 대여권 구매 플로우를 설계하고 결제 상태, 실패 케이스, 사용자 피드백을 정리해 웹툰 콘텐츠 소비 방식 확장에 기여했습니다.",
+    role: "프론트엔드 개발, 결제 플로우 설계, 예외 상태 처리",
+    tools: ["Next.js", "React", "TypeScript", "SWR", "Zustand", "REST API"],
+    accent: "#3182F6",
+    team: "PM, Design, FE, BE 협업",
+    period: "2025.03 ~ Present",
+    relatedLinks: [
+      {
+        label: "쇼츠 웹툰",
+        href: "https://www.shortz.net/",
+      },
+    ],
+    summary:
+      "기존 구독 모델 외에 회차 단위 구매 모델을 도입해 콘텐츠 소비 방식을 확장하고, 결제 과정의 다양한 상태와 예외 흐름을 사용자 경험 중심으로 정리했습니다.",
+    detailSections: [
+      {
+        title: "결제 플로우 설계",
+        items: [
+          "작품, 회차, 보유 이용권, 대여권 구매 가능 여부를 기준으로 사용자 결제 진입 조건을 정리했습니다.",
+          "구매 전 확인, 결제 진행, 성공, 실패, 중복 요청 방지 등 결제 단계별 화면 상태를 분리했습니다.",
+          "API 응답에 따른 오류 메시지와 사용자 피드백을 명확히 전달할 수 있도록 공통 처리 흐름을 구성했습니다.",
+        ],
+      },
+      {
+        title: "운영 안정성 개선",
+        items: [
+          "결제 실패와 예외 케이스를 화면 상태로 분리해 운영 중 이슈를 빠르게 파악할 수 있도록 구성했습니다.",
+          "반복되는 confirm, alert, loading 패턴을 공통 UI로 연결해 결제 화면의 일관성을 높였습니다.",
+          "결제 흐름 확장에 대비해 구독권, 이용권, 대여권 조건을 분리 가능한 구조로 정리했습니다.",
         ],
       },
     ],
@@ -409,8 +455,10 @@ export const projects = [
     ],
     accent: "#03B26C",
     team: "PM, Design, FE, BE 협업",
-    period: "2021.11 ~ 2022.11",
-    relatedLinks: [{ label: "KB 올라케어", href: "https://m.kbollacare.com/" }],
+    period: "2022.05 ~ 2023.06",
+    relatedLinks: [
+      { label: "KB 올라케어", href: "https://m.kbollacare.com/counsel" },
+    ],
     summary:
       "올라케어 병원·약국 서비스의 프론트엔드 구조를 React와 Next.js 기반으로 분리하고 공통 컴포넌트와 데이터 패칭 기준을 정리했습니다.",
     detailSections: [
@@ -435,82 +483,46 @@ export const projects = [
 
   {
     title: "심리상담 서비스",
-    description: "심리상담 모바일 웹뷰와 내부 운영 백오피스 개발",
+    description: "실시간 음성·영상 상담 기능을 포함한 심리상담 서비스 구축",
     problem:
-      "심리상담 서비스에서 사용자용 모바일 웹뷰와 상담 운영을 위한 내부 백오피스가 필요했습니다.",
+      "심리상담 서비스에서 사용자용 모바일 웹뷰, 실시간 상담 기능, 상담 운영을 위한 내부 백오피스가 필요했습니다.",
     result:
-      "상담 신청과 운영 관리 흐름을 위한 모바일 웹뷰 및 내부 백오피스를 개발하고, 상태 UI와 데이터 흐름을 정리했습니다.",
-    role: "프론트엔드 개발, 모바일 웹뷰 개발, 운영 백오피스 개발",
-    tools: ["React", "TypeScript", "SWR", "React Hook Form"],
+      "상담 신청부터 실시간 상담 진행, 운영 관리까지 이어지는 모바일 웹뷰와 내부 백오피스를 개발하고, 연결 상태와 예외 흐름을 정리했습니다.",
+    role: "프론트엔드 개발, 모바일 웹뷰 개발, 실시간 상담 기능 개발, 운영 백오피스 개발",
+    tools: ["React", "TypeScript", "SWR", "React Hook Form", "Agora"],
     accent: "#7B61FF",
     team: "PM, Design, FE, BE 협업",
-    period: "2021.11 ~ 2022.11",
+    period: "2022.05 ~ 2023.06",
     relatedLinks: [{ label: "내부 서비스" }],
     summary:
-      "심리상담 서비스의 모바일 웹뷰와 내부 운영 백오피스를 개발하며 사용자 신청 흐름과 상담 운영 관리 화면을 구축했습니다.",
+      "심리상담 서비스의 모바일 웹뷰와 실시간 음성·영상 상담 기능, 내부 운영 백오피스를 개발하며 신규 서비스 런칭과 안정화에 참여했습니다.",
     detailSections: [
       {
-        title: "모바일 웹뷰 개발",
+        title: "모바일 웹뷰와 상담 흐름",
         items: [
-          "모바일 환경에 맞춘 상담 신청과 상담 정보 확인 흐름을 개발했습니다.",
-          "화면 전환, 입력 상태, 오류 안내 등 모바일 웹뷰에서 필요한 사용자 피드백을 정리했습니다.",
+          "모바일 환경에 맞춘 상담 신청, 상담사 탐색, 후기 작성 등 핵심 사용자 흐름을 개발했습니다.",
+          "상담 상태, 입력 상태, 오류 안내 등 모바일 웹뷰에서 필요한 사용자 피드백을 정리했습니다.",
           "상담 서비스 이용 과정에서 필요한 데이터 조회와 상태 처리를 구현했습니다.",
         ],
       },
       {
-        title: "운영 백오피스 구축",
+        title: "실시간 상담과 운영 백오피스",
         items: [
+          "Agora 기반 실시간 음성·영상 상담 기능을 개발했습니다.",
+          "상담 연결 상태, 권한 처리, 예외 상황 등 실시간 서비스 특성을 고려한 화면 흐름을 구성했습니다.",
           "상담 데이터와 운영 정보를 관리할 수 있는 내부 백오피스 화면을 개발했습니다.",
-          "폼 입력, 유효성 검증, 데이터 수정 이후 재조회 흐름을 정리했습니다.",
-          "운영자가 서비스 상태를 안정적으로 확인할 수 있도록 로딩, 빈 상태, 에러 상태를 구분했습니다.",
         ],
       },
     ],
   },
 
   {
-    title: "Storybook 디자인 시스템",
-    description:
-      "공통 UI 컴포넌트를 문서화하고 테스트할 수 있는 Storybook 환경",
-    problem:
-      "공통 컴포넌트가 실제 화면 안에서만 확인되면 props 조합이나 예외 상태를 빠르게 비교하기 어렵고, 재사용 기준도 흐려질 수 있었습니다.",
-    result:
-      "Figma 기준의 디자인 요소와 공통 UI 컴포넌트를 Storybook에서 독립적으로 확인할 수 있도록 정리해 화면 개발 전 UI 단위를 빠르게 검증할 수 있는 기반을 만들었습니다.",
-    role: "디자인 시스템 구축, Storybook 문서화, 공통 컴포넌트 개발",
-    tools: ["Storybook", "React", "TypeScript", "MUI", "Emotion"],
-    accent: "#A234C7",
-    team: "1명",
-    period: "2023.12 ~",
-    relatedLinks: [{ label: "Static Storybook" }],
-    summary:
-      "반복적으로 사용되는 UI 컴포넌트를 Storybook에서 독립적으로 확인하고 문서화할 수 있도록 디자인 시스템 기반을 구축했습니다.",
-    detailSections: [
-      {
-        title: "컴포넌트 문서화",
-        items: [
-          "Figma 등 디자인 산출물에 정의된 색상, 타이포그래피, 간격 기준을 컴포넌트 구현과 Storybook 문서화 기준으로 삼았습니다.",
-          "공통 UI 컴포넌트를 atoms, molecules 등 역할과 조합 수준에 따라 분류했습니다.",
-          "컴포넌트별 props 설명과 기본 args를 정리해 사용 방식을 문서로 확인할 수 있게 했습니다.",
-        ],
-      },
-      {
-        title: "UI 검증 환경",
-        items: [
-          "버튼, 텍스트, 모달, 피드백 UI 등 반복 사용되는 컴포넌트를 독립 실행 가능한 stories로 구성했습니다.",
-          "컴포넌트의 상태와 변형을 화면 개발 흐름과 분리해 빠르게 확인할 수 있도록 했습니다.",
-          "정적 Storybook 결과물을 포트폴리오 프로젝트 링크로 노출할 수 있도록 구성했습니다.",
-        ],
-      },
-    ],
-  },
-
-  {
-    title: "포트폴리오 사이트 개발",
-    description: "Next.js App Router 기반 SSG 웹사이트 제작",
+    title: "포트폴리오 사이트",
+    description: "Next.js App Router 기반 콘텐츠 중심 SSG 웹사이트 제작",
     problem:
       "프로젝트와 경력 데이터를 분리해 관리하면서, 빠르게 로딩되고 유지보수하기 쉬운 개인 포트폴리오 사이트가 필요했습니다.",
     result:
-      "Next.js App Router, Tailwind CSS, Framer Motion, Vercel 배포를 사용해 반응형 SSG 포트폴리오를 구축했습니다.",
+      "Next.js App Router, Tailwind CSS, Framer Motion, Markdown 기반 콘텐츠 구조, Vercel 배포를 사용해 반응형 SSG 포트폴리오를 구축했습니다.",
     role: "기획, 디자인, 프론트엔드 개발, 배포",
     tools: [
       "Figma",
@@ -519,16 +531,18 @@ export const projects = [
       "Next.js",
       "Tailwind CSS",
       "Framer Motion",
+      "Markdown",
+      "Vercel",
     ],
     accent: "#3182F6",
     team: "1명",
     period: "2023.12 ~",
     relatedLinks: [
-      { label: "사이트", href: "https://garam.dev" },
+      { label: "사이트", href: "https://garam-dev.vercel.app" },
       { label: "GitHub", href: "https://github.com/Garam-Leee" },
     ],
     summary:
-      "데이터를 분리해 관리하고 빌드 시점에 렌더링하는 SSG 방식의 포트폴리오 사이트를 제작했습니다.",
+      "프로젝트, 경력, 블로그 데이터를 분리해 관리하고 빌드 시점에 렌더링하는 SSG 방식의 포트폴리오 사이트를 제작했습니다.",
     detailSections: [
       {
         title: "Next.js App Router와 데이터 구조",
@@ -539,19 +553,22 @@ export const projects = [
         ],
       },
       {
-        title: "반응형 UI, 애니메이션, 운영",
+        title: "반응형 UI, SEO, 운영",
         items: [
           "Tailwind CSS로 375px부터 데스크톱까지 반응형 레이아웃을 구성했습니다.",
           "Framer Motion을 활용해 섹션 진입, 카드 인터랙션, 모달 전환 애니메이션을 구현했습니다.",
+          "Next.js Metadata API를 활용해 SEO, Open Graph, Twitter Card 정보를 구성했습니다.",
           "Vercel CI/CD를 통해 main push 시 자동 배포되도록 운영했습니다.",
         ],
       },
     ],
   },
 ];
+
 export const strengths = [
-  "사용자 경험과 비즈니스 목표를 함께 고려하며 문제를 해결합니다.",
-  "데이터 기반 의사결정을 통해 서비스 개선 방향을 도출합니다.",
-  "성능 최적화와 유지보수성을 고려해 프론트엔드 구조를 개선합니다.",
-  "기획, 디자인, 운영 조직과 긴밀하게 협업하며 서비스를 성장시킵니다.",
+  "비즈니스 목표와 사용자 경험 사이의 균형점을 찾고 제품 관점에서 문제를 해결합니다.",
+  "데이터 분석과 사용자 행동 기반 의사결정으로 서비스 성장 기회를 발견합니다.",
+  "모노레포, 디자인 시스템, 공통 UI 체계를 통해 확장 가능한 프론트엔드 환경을 구축합니다.",
+  "결제, 운영 도구, B2B 연동 등 복잡한 도메인을 안정적인 사용자 경험으로 연결합니다.",
+  "배포 이후에도 성능, 사용성, 운영 효율을 지속적으로 개선합니다.",
 ];

@@ -1,13 +1,13 @@
 "use client";
 
+import { GlassChip, GlassPanel, glassStyles } from "@/components/ui/Glass";
 import { projects } from "@/lib/portfolio";
-import { cn } from "@/lib/utils";
 import { SECTION_KICKER } from "@/lib/section-styles";
+import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, X } from "lucide-react";
 import { useState } from "react";
-import { GlassChip, GlassPanel, glassStyles } from "@/components/ui/Glass";
 
 type Project = (typeof projects)[number];
 
@@ -28,9 +28,7 @@ export default function Projects() {
           </GlassChip>
 
           <h2 className="mt-3 text-[34px] font-bold leading-[1.18] tracking-[-0.04em] text-[#191f28] md:text-[48px]">
-            서비스를 이해하고, 데이터를 보고,
-            <br className="hidden sm:block" />
-            사용자 경험을 개선합니다.
+          문제를 정의하고, 구현하고, 운영하며 개선했던 경험을 정리했습니다.
           </h2>
         </header>
 
