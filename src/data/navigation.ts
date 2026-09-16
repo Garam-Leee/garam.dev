@@ -5,7 +5,7 @@ export const navLinks = [
   { label: "소개", href: "#about" },
   { label: "경력", href: "#experience" },
   { label: "프로젝트", href: "#projects" },
-  { label: "Resume", href: profile.resumeUrl, external: true },
+  { label: "Resume", href: profile.resumeUrl, external: true, download: "이가람-Product-Frontend-Engineer.pdf" },
   { label: "GitHub", href: profile.githubUrl, external: true },
   { label: "LinkedIn", href: profile.linkedinUrl, external: true },
   { label: "기술 블로그", href: profile.writingsUrl },
