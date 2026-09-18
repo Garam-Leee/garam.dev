@@ -4,7 +4,6 @@ import { Avatar } from "./HeroTitle";
 import {
   assistantBubbleClass,
   ease,
-  openTarget,
   userBubbleClass,
 } from "./hero-utils";
 import type { Message } from "./useHeroChat";
@@ -28,11 +27,11 @@ export function MessageBubble({ message }: { message: Message }) {
         <p className="whitespace-pre-line break-keep">{message.text}</p>
 
         {message.actionHref && message.actionLabel && (
-          <button
-            type="button"
-            onClick={() =>
-              openTarget(message.actionHref ?? "#", message.external)
-            }
+          <a
+            href={message.actionHref}
+            target={message.external ? "_blank" : undefined}
+            rel={message.external ? "noopener noreferrer" : undefined}
+            download={message.download}
             className={
               isUser
                 ? "mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/50 bg-white/74 px-3.5 py-1.5 text-xs font-semibold text-[#2272eb] shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] backdrop-blur-xl transition hover:bg-white/88"
@@ -41,7 +40,7 @@ export function MessageBubble({ message }: { message: Message }) {
           >
             <span>{message.actionLabel}</span>
             <ArrowUpRight size={14} strokeWidth={2.2} />
-          </button>
+          </a>
         )}
       </div>
     </motion.div>

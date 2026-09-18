@@ -69,6 +69,7 @@ export default function Nav() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
+                download={"download" in link ? link.download : undefined}
                 className="inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-[13px] font-semibold text-[#4e5968] transition hover:bg-[#f2f4f6] hover:text-[#191f28] focus:outline-none focus:ring-4 focus:ring-[#3182f6]/15"
               >
                 <span>{link.label}</span>
@@ -150,6 +151,7 @@ export default function Nav() {
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
+                      download={"download" in link ? link.download : undefined}
                       onClick={() => setIsOpen(false)}
                       className="group flex min-h-12 items-center justify-between rounded-[18px] px-4 py-3 text-[15px] font-bold tracking-[-0.02em] text-[#191f28] transition hover:bg-[#f2f4f6] focus:outline-none focus:ring-4 focus:ring-[#3182f6]/15"
                     >

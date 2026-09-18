@@ -9,6 +9,7 @@ export type Message = {
   actionLabel?: string;
   actionHref?: string;
   external?: boolean;
+  download?: string;
 };
 
 export function useHeroChat() {
@@ -102,6 +103,7 @@ export function useHeroChat() {
               actionLabel: answer.actionLabel,
               actionHref: answer.actionHref,
               external: answer.external,
+              download: answer.download,
             },
           ]);
 

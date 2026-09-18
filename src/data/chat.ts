@@ -19,6 +19,7 @@ export const chatAnswers: Record<
     actionLabel?: string;
     actionHref?: string;
     external?: boolean;
+    download?: string;
   }
 > = {
   developer: {
@@ -51,6 +52,7 @@ export const chatAnswers: Record<
     actionLabel: "이력서 보기",
     actionHref: profile.resumeUrl,
     external: true,
+    download: "garam-lee-product-frontend-engineer.pdf",
   },
 
   linkedin: {

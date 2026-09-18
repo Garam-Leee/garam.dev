@@ -5,7 +5,7 @@ export const profile = {
   location: "Seoul, South Korea",
   email: "leegaram6245@naver.com",
   bookingUrl: "mailto:leegaram6245@naver.com",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/documents/garam-lee-product-frontend-engineer.pdf",
   githubUrl: "https://github.com/Garam-Leee",
   linkedinUrl: "https://www.linkedin.com/in/lucylee0806",
   writingsUrl: "/posts",
