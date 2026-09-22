@@ -1,4 +1,5 @@
 import { chatAnswers, type ChatIntent } from "@/lib/portfolio";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useEffect, useRef, useState } from "react";
 import { detectIntent } from "./hero-utils";
 
@@ -13,6 +14,7 @@ export type Message = {
 };
 
 export function useHeroChat() {
+  const reducedMotion = useReducedMotion();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,9 +29,9 @@ export function useHeroChat() {
   useEffect(() => {
     chatRef.current?.scrollTo({
       top: chatRef.current.scrollHeight,
-      behavior: "smooth",
+      behavior: reducedMotion ? "instant" : "smooth",
     });
-  }, [messages.length, typingText, loading]);
+  }, [messages.length, typingText, loading, reducedMotion]);
 
   useEffect(() => {
     return () => {
@@ -80,11 +82,36 @@ export function useHeroChat() {
 
     const answer = chatAnswers[intent] ?? chatAnswers.fallback;
 
+    function finishAnswer() {
+      setMessages((current) => [
+        ...current,
+        {
+          id: messageId.current++,
+          role: "assistant",
+          ...answer,
+        },
+      ]);
+      setTypingText("");
+      setLoading(false);
+      typingRafRef.current = null;
+      typingDelayRef.current = null;
+    }
+
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionPreference.matches) {
+      finishAnswer();
+      return;
+    }
+
     typingDelayRef.current = window.setTimeout(() => {
       const startedAt = performance.now();
       const charsPerSecond = 72;
 
       function typeFrame(now: number) {
+        if (motionPreference.matches) {
+          finishAnswer();
+          return;
+        }
         const elapsed = now - startedAt;
         const nextIndex = Math.min(
           answer.text.length,
@@ -94,23 +121,7 @@ export function useHeroChat() {
         setTypingText(answer.text.slice(0, nextIndex));
 
         if (nextIndex >= answer.text.length) {
-          setMessages((current) => [
-            ...current,
-            {
-              id: messageId.current++,
-              role: "assistant",
-              text: answer.text,
-              actionLabel: answer.actionLabel,
-              actionHref: answer.actionHref,
-              external: answer.external,
-              download: answer.download,
-            },
-          ]);
-
-          setTypingText("");
-          setLoading(false);
-          typingRafRef.current = null;
-          typingDelayRef.current = null;
+          finishAnswer();
           return;
         }
 
