@@ -77,7 +77,8 @@ export async function getPost(slug: string): Promise<Post | null> {
     .use(remarkGfm)
     .use(remarkBreaks)
     .use(remarkHtml, {
-      sanitize: false,
+      // Keep Markdown-generated markup; omit raw HTML and unsafe URL protocols.
+      sanitize: true,
     })
     .process(content);
 
