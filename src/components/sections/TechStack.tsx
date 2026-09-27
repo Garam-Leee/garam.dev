@@ -1,5 +1,6 @@
 "use client";
 
+import { categories, techItems, type Category } from "@/data/tech-stack";
 import { GlassPanel, glassStyles } from "@/components/ui/Glass";
 import {
   SECTION_KICKER,
@@ -9,117 +10,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-type Category = "frontend" | "library" | "deploy" | "design";
-
-type TechItem = {
-  name: string;
-  category: Category;
-  icon?: string;
-  fallback?: string;
-};
-
 const ease = [0.4, 0, 0.2, 1] as const;
-const iconBase = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
-
-const categories: { key: Category; label: string }[] = [
-  { key: "frontend", label: "프론트엔드" },
-  { key: "library", label: "라이브러리" },
-  { key: "deploy", label: "환경 및 배포" },
-  { key: "design", label: "디자인" },
-];
-
-const techItems: TechItem[] = [
-  {
-    name: "JavaScript",
-    category: "frontend",
-    icon: `${iconBase}/javascript/javascript-original.svg`,
-  },
-  {
-    name: "TypeScript",
-    category: "frontend",
-    icon: `${iconBase}/typescript/typescript-original.svg`,
-  },
-  {
-    name: "React",
-    category: "frontend",
-    icon: `${iconBase}/react/react-original.svg`,
-  },
-  {
-    name: "Next.js",
-    category: "frontend",
-    icon: `${iconBase}/nextjs/nextjs-original.svg`,
-  },
-  {
-    name: "SWR",
-    category: "library",
-    fallback: "SWR",
-  },
-  {
-    name: "React Query",
-    category: "library",
-    fallback: "RQ",
-  },
-  {
-    name: "Emotion",
-    category: "library",
-    fallback: "EM",
-  },
-  {
-    name: "Styled Components",
-    category: "library",
-    icon: "/icons/styled-components.png",
-  },
-  {
-    name: "Tailwind CSS",
-    category: "library",
-    icon: `${iconBase}/tailwindcss/tailwindcss-original.svg`,
-  },
-  {
-    name: "Zustand",
-    category: "library",
-    icon: "/icons/zustand.png",
-  },
-  {
-    name: "React Hook Form",
-    category: "library",
-    fallback: "RHF",
-  },
-  {
-    name: "GitHub",
-    category: "deploy",
-    icon: `${iconBase}/github/github-original.svg`,
-  },
-  {
-    name: "Vercel",
-    category: "deploy",
-    icon: `${iconBase}/vercel/vercel-original.svg`,
-  },
-  {
-    name: "AWS",
-    category: "deploy",
-    icon: `${iconBase}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
-  },
-  {
-    name: "Datadog",
-    category: "deploy",
-    fallback: "DD",
-  },
-  {
-    name: "Elastic",
-    category: "deploy",
-    icon: `${iconBase}/elasticsearch/elasticsearch-original.svg`,
-  },
-  {
-    name: "Figma",
-    category: "design",
-    icon: `${iconBase}/figma/figma-original.svg`,
-  },
-  {
-    name: "Notion",
-    category: "design",
-    icon: `${iconBase}/notion/notion-original.svg`,
-  },
-];
 
 export default function TechStack() {
   const [active, setActive] = useState<Category | null>(null);
