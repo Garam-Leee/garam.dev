@@ -1,5 +1,7 @@
 "use client";
 
+import { ease } from "@/lib/motion";
+
 import { navLinks, profile } from "@/lib/portfolio";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,7 +9,6 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const ease = [0.4, 0, 0.2, 1] as const;
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);

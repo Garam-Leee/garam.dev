@@ -1,5 +1,7 @@
 "use client";
 
+import { ease } from "@/lib/motion";
+
 import { GlassChip, GlassPanel, glassStyles } from "@/components/ui/Glass";
 import { experiences } from "@/lib/portfolio";
 import { SECTION_KICKER, SECTION_TITLE_LARGE } from "@/lib/section-styles";
@@ -10,7 +12,6 @@ import { useState } from "react";
 
 type Experience = (typeof experiences)[number];
 
-const ease = [0.4, 0, 0.2, 1] as const;
 
 export default function Experience() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

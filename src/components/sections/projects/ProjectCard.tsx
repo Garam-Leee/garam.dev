@@ -1,10 +1,11 @@
+
+import { ease } from "@/lib/motion";
 import { GlassChip, glassStyles } from "@/components/ui/Glass";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "./Projects";
 
-const ease = [0.4, 0, 0.2, 1] as const;
 
 export function ProjectCard({
   project,

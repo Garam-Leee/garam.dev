@@ -1,5 +1,7 @@
 "use client";
 
+import { ease } from "@/lib/motion";
+
 import { categories, techItems, type Category } from "@/data/tech-stack";
 import { GlassPanel, glassStyles } from "@/components/ui/Glass";
 import {
@@ -10,7 +12,6 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const ease = [0.4, 0, 0.2, 1] as const;
 
 export default function TechStack() {
   const [active, setActive] = useState<Category | null>(null);
