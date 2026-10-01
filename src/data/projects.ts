@@ -1,4 +1,6 @@
-export const projects = [
+import type { Project } from "@/types/project";
+
+export const projects: Project[] = [
   {
     title: "쇼츠 웹툰 서비스",
     description: "구독형 웹툰 서비스 사용자 화면과 웹뷰 구조 개발",
