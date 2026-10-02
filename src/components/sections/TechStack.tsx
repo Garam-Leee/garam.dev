@@ -2,7 +2,7 @@
 
 import { ease } from "@/lib/motion";
 
-import { categories, techItems, type Category } from "@/data/tech-stack";
+import { categories, techItems, type Category, type TechItem } from "@/data/tech-stack";
 import { GlassPanel, glassStyles } from "@/components/ui/Glass";
 import {
   SECTION_KICKER,
@@ -11,6 +11,33 @@ import {
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
+
+function TechIcon({ name, icon, fallback }: TechItem) {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <span
+      role="img"
+      aria-label={name}
+      className="grid h-7 w-7 place-items-center text-[12px] font-black tracking-[-0.03em] text-heading sm:h-8 sm:w-8 sm:text-sm"
+    >
+      {icon && !failed ? (
+        <Image
+          src={icon}
+          alt=""
+          width={32}
+          height={32}
+          unoptimized
+          className="h-full w-full object-contain"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        fallback ?? name.slice(0, 2).toUpperCase()
+      )}
+    </span>
+  );
+}
 
 
 export default function TechStack() {
@@ -107,18 +134,7 @@ export default function TechStack() {
                         : "group-hover:-translate-y-1"
                     )}
                   >
-                    {item.icon ? (
-                      <span
-                        aria-label={item.name}
-                        role="img"
-                        className="h-7 w-7 bg-contain bg-center bg-no-repeat sm:h-8 sm:w-8"
-                        style={{ backgroundImage: `url(${item.icon})` }}
-                      />
-                    ) : (
-                      <span className="text-[12px] font-black tracking-[-0.03em] text-[#191f28] sm:text-sm">
-                        {item.fallback}
-                      </span>
-                    )}
+                    <TechIcon {...item} />
                   </div>
 
                   {!isDimmed && (
