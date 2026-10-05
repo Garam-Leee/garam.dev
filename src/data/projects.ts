@@ -2,6 +2,7 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    slug: "shortz",
     title: "쇼츠 웹툰 서비스",
     description: "구독형 웹툰 서비스 사용자 화면과 웹뷰 구조 개발",
     problem:
@@ -43,6 +44,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "admin-suite",
     title: "모노레포 어드민 스위트",
     description: "작가 정산, 작품 관리, 오픈마켓 운영 어드민 구축",
     problem:
@@ -86,6 +88,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "kpi-dashboard",
     title: "KPI 대시보드",
     description: "데이터 기반 서비스 개선을 위한 운영 대시보드 구축",
     problem:
@@ -122,6 +125,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "shortz-payments",
     title: "쇼츠 웹툰 대여권 결제 시스템",
     description: "회차별 대여권 구매를 지원하는 웹툰 결제 플로우 구축",
     problem:
@@ -162,6 +166,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "webtoon-run",
     title: "웹툰런 공모전 플랫폼",
     description: "전국 대학생 웹툰 경연 플랫폼 개발 및 운영",
     problem:
@@ -209,6 +214,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "jaedam-website",
     title: "재담미디어 공식 홈페이지",
     description: "콘텐츠 중심 기업 홈페이지 단독 개발",
     problem:
@@ -254,6 +260,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "ollacare",
     title: "올라케어 병원·약국 플랫폼",
     description: "헬스케어 서비스 프론트엔드 구조 분리 및 주요 화면 개발",
     problem:
@@ -298,6 +305,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "counseling",
     title: "심리상담 서비스",
     description: "실시간 음성·영상 상담 기능을 포함한 심리상담 서비스 구축",
     problem:
@@ -333,6 +341,7 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "portfolio",
     title: "포트폴리오 사이트",
     description: "Next.js App Router 기반 콘텐츠 중심 SSG 웹사이트 제작",
     problem:
