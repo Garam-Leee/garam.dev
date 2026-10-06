@@ -7,9 +7,17 @@ import { useState } from "react";
 import type { Project } from "@/types/project";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
+import { filterProjects } from "@/lib/project-filters";
+
+const domains = [...new Set(projects.map((project) => project.domain))];
+const tools = [...new Set(projects.flatMap((project) => project.tools))].sort();
+const filterClass = "mt-2 w-full rounded-xl border border-border bg-white px-3 py-2 text-sm text-heading";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [domain, setDomain] = useState("");
+  const [tool, setTool] = useState("");
+  const visibleProjects = filterProjects(projects, { domain, tool });
 
   return (
     <section
@@ -27,9 +35,33 @@ export default function Projects() {
           </h2>
         </header>
 
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <li key={project.title}>
+        <div className="mb-6 flex flex-wrap items-end gap-4">
+          <label htmlFor="project-domain" className="min-w-[160px] flex-1 text-sm font-semibold text-body">
+            도메인
+            <select id="project-domain" value={domain} onChange={(event) => setDomain(event.target.value)} className={filterClass}>
+              <option value="">전체 도메인</option>
+              {domains.map((value) => <option key={value} value={value}>{value}</option>)}
+            </select>
+          </label>
+          <label htmlFor="project-tool" className="min-w-[160px] flex-1 text-sm font-semibold text-body">
+            기술
+            <select id="project-tool" value={tool} onChange={(event) => setTool(event.target.value)} className={filterClass}>
+              <option value="">전체 기술</option>
+              {tools.map((value) => <option key={value} value={value}>{value}</option>)}
+            </select>
+          </label>
+          {(domain || tool) && (
+            <button type="button" onClick={() => { setDomain(""); setTool(""); }} className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-blue">
+              필터 초기화
+            </button>
+          )}
+        </div>
+        <p role="status" className="mb-4 text-sm text-body">{visibleProjects.length}개의 프로젝트 · 대표 프로젝트 우선</p>
+
+        {visibleProjects.length > 0 ? (
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {visibleProjects.map((project, index) => (
+            <li key={project.slug}>
               <ProjectCard
                 project={project}
                 index={index}
@@ -38,6 +70,11 @@ export default function Projects() {
             </li>
           ))}
         </ul>
+        ) : (
+          <p className="rounded-2xl border border-border bg-white p-8 text-center text-body">
+            조건에 맞는 프로젝트가 없습니다. 필터를 초기화해 전체 프로젝트를 확인해 주세요.
+          </p>
+        )}
       </div>
 
       <ProjectModal
