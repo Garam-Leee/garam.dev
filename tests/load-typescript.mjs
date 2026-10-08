@@ -19,6 +19,8 @@ export function loadTypeScript(file, mocks = {}) {
     exports,
     process,
     console,
+    URL,
+    URLSearchParams,
     require: (name) => mocks[name] ?? require(name),
   }, { filename: file });
   return exports;
