@@ -1,4 +1,4 @@
-import type { ChatIntent } from "@/lib/portfolio";
+export { detectIntent } from "@/lib/chat-intent";
 
 export { ease } from "@/lib/motion";
 export { CONTENT_MAX_WIDTH } from "@/lib/section-styles";
@@ -15,68 +15,6 @@ export const questionButtonClass =
 
 export const chatInputShellClass =
   "flex min-w-0 items-center gap-1.5 rounded-[18px] border border-[#e5e8eb]/72 bg-white/54 px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_12px_30px_rgba(25,31,40,0.06)] backdrop-blur-2xl transition duration-150 focus-within:border-[#3182f6]/30 focus-within:bg-white/70 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.96),0_14px_34px_rgba(25,31,40,0.075)] sm:gap-2 sm:px-4 sm:py-3";
-
-export function detectIntent(question: string): ChatIntent {
-  const value = question.toLowerCase();
-
-  if (
-    value.includes("프로젝트") ||
-    value.includes("서비스") ||
-    value.includes("work") ||
-    value.includes("project")
-  ) {
-    return "work";
-  }
-
-  if (
-    value.includes("개선") ||
-    value.includes("성과") ||
-    value.includes("growth") ||
-    value.includes("impact")
-  ) {
-    return "growth";
-  }
-
-  if (
-    value.includes("기술") ||
-    value.includes("스택") ||
-    value.includes("react") ||
-    value.includes("next")
-  ) {
-    return "tools";
-  }
-
-  if (
-    value.includes("개발자") ||
-    value.includes("소개") ||
-    value.includes("about")
-  ) {
-    return "developer";
-  }
-
-  if (
-    value.includes("연락") ||
-    value.includes("메일") ||
-    value.includes("chat") ||
-    value.includes("contact")
-  ) {
-    return "chat";
-  }
-
-  if (
-    value.includes("resume") ||
-    value.includes("이력서") ||
-    value.includes("cv")
-  ) {
-    return "resume";
-  }
-
-  if (value.includes("linkedin")) {
-    return "linkedin";
-  }
-
-  return "fallback";
-}
 
 export function openTarget(href: string, external?: boolean) {
   if (href.startsWith("#")) {
