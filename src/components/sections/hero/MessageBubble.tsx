@@ -24,7 +24,10 @@ export function MessageBubble({ message }: { message: Message }) {
       {!isUser && <Avatar />}
 
       <div className={isUser ? userBubbleClass : assistantBubbleClass}>
-        <p className="whitespace-pre-line break-keep">{message.text}</p>
+        <p className="whitespace-pre-line break-keep">
+          <span className="sr-only">{isUser ? "나" : "가람"}: </span>
+          {message.text}
+        </p>
 
         {message.actionHref && message.actionLabel && (
           <a
@@ -50,6 +53,7 @@ export function MessageBubble({ message }: { message: Message }) {
 export function TypingBubble({ text }: { text: string }) {
   return (
     <motion.div
+      aria-hidden="true"
       initial={{ opacity: 0, y: 8, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.25, ease }}

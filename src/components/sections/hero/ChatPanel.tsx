@@ -29,40 +29,26 @@ export function ChatPanel({
 }: ChatPanelProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onAsk(input);
-  }
-
-  if (variant === "initial") {
-    return (
-      <div className={`mt-12 w-full ${CHAT_MAX_WIDTH}`}>
-        <QuestionButtons onAsk={onAsk} disabled={loading} />
-        <ChatInput
-          input={input}
-          loading={loading}
-          onChange={onInputChange}
-          onSubmit={handleSubmit}
-        />
-        <FooterNote />
-      </div>
-    );
+    if (!loading && input.trim()) onAsk(input);
   }
 
   return (
-    <>
+    <div className={`w-full ${variant === "initial" ? `mt-12 ${CHAT_MAX_WIDTH}` : CONTENT_MAX_WIDTH}`}>
       <div
         ref={chatRef}
+        hidden={variant === "initial"}
+        role="region"
+        aria-label="가람과의 대화 내역"
+        aria-live="off"
+        tabIndex={0}
         className={`mb-4 max-h-[52vh] w-full ${CONTENT_MAX_WIDTH} space-y-5 overflow-y-auto px-1 py-2`}
       >
         <AnimatePresence initial={false}>
-          {messages.map((message) => (
-            <MessageBubble key={message.id} message={message} />
-          ))}
+          {messages.map((message) => <MessageBubble key={message.id} message={message} />)}
         </AnimatePresence>
-
         {loading && <TypingBubble text={typingText} />}
       </div>
-
-      <div className={`w-full ${CHAT_MAX_WIDTH}`}>
+      <div className={`mx-auto w-full ${CHAT_MAX_WIDTH}`}>
         <QuestionButtons onAsk={onAsk} disabled={loading} />
         <ChatInput
           input={input}
@@ -72,6 +58,6 @@ export function ChatPanel({
         />
         <FooterNote />
       </div>
-    </>
+    </div>
   );
 }

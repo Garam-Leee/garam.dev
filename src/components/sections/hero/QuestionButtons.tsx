@@ -74,9 +74,9 @@ function QuestionButton({
     <div className="shrink-0 snap-start">
       <button
         type="button"
-        onClick={() => onAsk(question.label, question.intent)}
-        disabled={disabled}
-        className={questionButtonClass}
+        onClick={() => { if (!disabled) onAsk(question.label, question.intent); }}
+        aria-disabled={disabled}
+        className={`${questionButtonClass} aria-disabled:cursor-not-allowed aria-disabled:opacity-40`}
       >
         <span>{question.label}</span>
 
@@ -114,7 +114,7 @@ export function ChatInput({
   return (
     <form onSubmit={onSubmit} className="w-full min-w-0">
       <div className={chatInputShellClass}>
-        <span className="shrink-0 select-none font-mono text-[12px] text-[#8b95a1] sm:text-[13px]">
+        <span aria-hidden="true" className="shrink-0 select-none font-mono text-[12px] text-[#8b95a1] sm:text-[13px]">
           ›_
         </span>
 
@@ -122,16 +122,17 @@ export function ChatInput({
           value={input}
           onChange={(event) => onChange(event.target.value)}
           placeholder="ask Garam anything..."
-          aria-label="Ask Garam a question"
-          disabled={loading}
+          aria-label="가람에게 질문하기"
+          readOnly={loading}
+          aria-describedby="chat-help"
           className="min-w-0 flex-1 truncate bg-transparent text-[14px] font-normal leading-[20px] text-[#333d4b] outline-none placeholder:text-[#b0b8c1] disabled:cursor-not-allowed sm:text-[15px] sm:leading-[22px]"
         />
 
         <button
           type="submit"
-          disabled={!input.trim() || loading}
-          aria-label="Send"
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#3182f6] text-white transition duration-150 hover:bg-[#2272eb] disabled:cursor-not-allowed disabled:bg-[#e5e8eb] disabled:text-[#b0b8c1] sm:h-8 sm:w-8"
+          aria-disabled={!input.trim() || loading}
+          aria-label="질문 보내기"
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#3182f6] text-white transition duration-150 hover:bg-[#2272eb] aria-disabled:cursor-not-allowed aria-disabled:bg-[#e5e8eb] aria-disabled:text-[#b0b8c1] sm:h-8 sm:w-8"
         >
           <Send
             size={16}
@@ -146,7 +147,7 @@ export function ChatInput({
 
 export function FooterNote() {
   return (
-    <p className="mx-auto mt-3 w-full max-w-3xl text-center text-[11px] font-normal leading-5 text-[#6b7684]">
+    <p id="chat-help" className="mx-auto mt-3 w-full max-w-3xl text-center text-[11px] font-normal leading-5 text-[#6b7684]">
       미리 준비된 답변을 기반으로 응답합니다. 자세한 이야기는{" "}
       <a
         href={`mailto:${profile.email}`}
