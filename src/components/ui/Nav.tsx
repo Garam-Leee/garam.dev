@@ -4,10 +4,11 @@ import { ease } from "@/lib/motion";
 
 import { navLinks, profile } from "@/lib/portfolio";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 
 
 export default function Nav() {
@@ -24,28 +25,14 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    if (!isOpen) return;
-
-    const scrollY = window.scrollY;
-
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-
-    return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      window.scrollTo(0, scrollY);
-    };
-  }, [isOpen]);
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = () => { if (desktop.matches) setIsOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   return (
-    <>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <header className="fixed inset-x-0 top-0 z-50">
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-8 lg:px-10">
           <Link
@@ -79,9 +66,9 @@ export default function Nav() {
             ))}
           </nav>
 
+          <Dialog.Trigger asChild>
           <button
             type="button"
-            onClick={() => setIsOpen((value) => !value)}
             className={cn(
               "relative grid h-10 w-10 place-items-center rounded-full border backdrop-blur-xl transition md:hidden",
               isOpen
@@ -109,70 +96,39 @@ export default function Nav() {
               />
             </span>
           </button>
+          </Dialog.Trigger>
         </div>
       </header>
 
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.button
-              type="button"
-              aria-label="메뉴 닫기"
-              className="fixed inset-0 z-40 bg-[#191f28]/18 backdrop-blur-[2px] md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease }}
-              onClick={() => setIsOpen(false)}
-            />
-
-            <motion.div
-              key="mobile-menu"
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.24, ease }}
-              className="fixed inset-x-4 top-[72px] z-50 overflow-hidden rounded-[24px] border border-white/80 bg-white/88 shadow-[0px_24px_80px_rgba(25,31,40,0.18)] backdrop-blur-2xl md:hidden"
-            >
-              <div className="pointer-events-none absolute inset-x-3 top-2 h-16 rounded-[20px] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),transparent)]" />
-
-              <nav className="relative p-2">
-                {navLinks.map((link, index) => (
-                  <motion.div
-                    key={link.label}
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: index * 0.035,
-                      duration: 0.22,
-                      ease,
-                    }}
-                  >
-                    <Link
-                      href={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      download={"download" in link ? link.download : undefined}
-                      onClick={() => setIsOpen(false)}
-                      className="group flex min-h-12 items-center justify-between rounded-[18px] px-4 py-3 text-[15px] font-bold tracking-[-0.02em] text-[#191f28] transition hover:bg-[#f2f4f6] focus:outline-none focus:ring-4 focus:ring-[#3182f6]/15"
-                    >
-                      <span>{link.label}</span>
-
-                      {link.external ? (
-                        <span className="grid h-8 w-8 place-items-center rounded-full bg-[#f2f4f6] text-[#8b95a1] transition group-hover:bg-[#e8f3ff] group-hover:text-[#3182f6]">
-                          <ArrowUpRight size={15} strokeWidth={2.3} />
-                        </span>
-                      ) : (
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#e5e8eb] transition group-hover:bg-[#3182f6]" />
-                      )}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-[#191f28]/18 backdrop-blur-[2px] md:hidden" />
+        <Dialog.Content
+          data-lenis-prevent
+          className="fixed inset-x-4 top-20 z-[70] max-h-[calc(100dvh-100px)] overflow-y-auto rounded-[24px] border border-white/80 bg-white/95 p-3 shadow-[0_24px_80px_rgba(25,31,40,0.18)] backdrop-blur-2xl md:hidden"
+        >
+          <Dialog.Title className="sr-only">사이트 메뉴</Dialog.Title>
+          <Dialog.Description className="sr-only">포트폴리오 섹션과 외부 프로필로 이동합니다.</Dialog.Description>
+          <div className="flex justify-end">
+            <Dialog.Close className="rounded-full px-4 py-2 text-sm font-semibold text-body">메뉴 닫기</Dialog.Close>
+          </div>
+          <nav aria-label="모바일 주 메뉴">
+            {navLinks.map((link) => (
+              <Dialog.Close asChild key={link.label}>
+                <Link
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  download={"download" in link ? link.download : undefined}
+                  className="flex min-h-12 items-center justify-between rounded-[18px] px-4 py-3 text-[15px] font-bold text-heading transition hover:bg-[#f2f4f6]"
+                >
+                  {link.label}
+                  {link.external && <ArrowUpRight size={15} aria-hidden="true" />}
+                </Link>
+              </Dialog.Close>
+            ))}
+          </nav>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
