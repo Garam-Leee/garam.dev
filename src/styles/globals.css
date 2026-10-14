@@ -121,6 +121,15 @@ a {
   isolation: isolate;
 }
 
+.glass-paint-background {
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(100svh, 1100px);
+  overflow: hidden;
+  contain: paint;
+}
+
 .glass-paint-wash,
 .glass-paint-veil,
 .glass-paint-sheen {
@@ -237,5 +246,16 @@ a {
   .glass-paint-veil,
   .glass-paint-sheen {
     animation: none !important;
+  }
+}
+
+/* Keep mobile decoration static and avoid large blurred animation layers. */
+@media (max-width: 767px) {
+  .glass-paint-wash,
+  .glass-paint-veil,
+  .glass-paint-sheen {
+    animation: none;
+    filter: none;
+    will-change: auto;
   }
 }

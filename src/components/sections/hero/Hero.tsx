@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ChatPanel } from "./ChatPanel";
 import { HeroTitle } from "./HeroTitle";
-import { CONTENT_MAX_WIDTH, ease } from "./hero-utils";
+import { CONTENT_MAX_WIDTH } from "./hero-utils";
 import { useHeroChat } from "./useHeroChat";
 import { chatAnnouncement } from "@/lib/chat-announcement";
 
@@ -32,10 +31,7 @@ export default function Hero() {
       <div
         className={`mx-auto flex min-h-[calc(100vh-7rem)] w-full ${CONTENT_MAX_WIDTH} flex-col`}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease }}
+        <div
           className={`flex flex-1 flex-col items-center justify-center ${hasStarted ? "pb-14" : "pb-16"}`}
         >
           <div className={hasStarted ? "sr-only" : "w-full"}>
@@ -51,7 +47,7 @@ export default function Hero() {
             typingText={typingText}
             variant={hasStarted ? "active" : "initial"}
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

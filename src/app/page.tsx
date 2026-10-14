@@ -12,10 +12,11 @@ export default function Home() {
     <LenisProvider>
       <Nav />
       <main className="glass-paint-stage relative overflow-hidden bg-[#f8fbff]">
-        <div className="glass-paint-wash" />
-        <div className="glass-paint-veil" />
-        <div className="glass-paint-sheen" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.36)_0%,rgba(255,255,255,0.08)_32%,rgba(255,255,255,0.42)_100%)] backdrop-blur-[2px]" />
+        <div className="glass-paint-background" aria-hidden="true">
+          <div className="glass-paint-wash" />
+          <div className="glass-paint-veil" />
+          <div className="glass-paint-sheen" />
+        </div>
 
         <div className="relative">
           <Hero />

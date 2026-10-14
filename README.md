@@ -97,3 +97,7 @@ npm run build
 ```
 
 GitHub Actions는 push와 pull request마다 Node.js 22에서 의존성을 설치하고 위 검증을 실행합니다.
+
+사이트 주소는 `NEXT_PUBLIC_SITE_URL`로 지정합니다. canonical, 공유 이미지 URL, sitemap과 robots가 같은 주소를 사용합니다. 미설정 시 `https://garam-dev.vercel.app`을 사용합니다.
+
+모바일 성능 반복 측정은 `npm run audit:performance -- http://localhost:3107 candidate 3`으로 실행합니다. Chrome과 Node.js 22.19 이상이 필요하며, 측정 조건과 한계는 [성능 기록](docs/performance.md)에 정리했습니다.
