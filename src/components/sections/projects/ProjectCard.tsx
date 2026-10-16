@@ -38,13 +38,15 @@ export function ProjectCard({
           {project.featured ? `대표 · ${project.domain}` : project.domain}
         </span>
         <GlassChip className="px-2.5 py-1 text-right text-[12px] font-semibold leading-[1.4] text-[#8b95a1]">
+          {project.periodLabel && <span className="mr-1">{project.periodLabel}</span>}
           {project.period}
         </GlassChip>
       </div>
 
-      <h3 className="relative text-[22px] font-bold leading-[1.28] tracking-[-0.035em] text-[#191f28] transition-colors group-hover:text-[#3182f6]">
+      <h3 className="relative break-keep text-[22px] font-bold leading-[1.28] tracking-[-0.035em] text-[#191f28] transition-colors group-hover:text-[#3182f6]">
         {project.title}
       </h3>
+      {project.company && <p className="relative mt-2 text-xs font-semibold text-body">{project.company}</p>}
 
       <p className="relative mt-3 line-clamp-3 text-[14px] leading-[1.75] text-[#6b7684]">
         {project.description}

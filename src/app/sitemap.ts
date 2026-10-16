@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/data/projects";
+import { careerProjects as projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/site";
 

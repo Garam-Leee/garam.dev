@@ -1,7 +1,7 @@
 "use client";
 
 import { GlassChip } from "@/components/ui/Glass";
-import { projects } from "@/lib/portfolio";
+import { careerProjects as projects } from "@/data/projects";
 import { SECTION_KICKER } from "@/lib/section-styles";
 import { useState } from "react";
 import type { Project } from "@/types/project";
@@ -27,12 +27,13 @@ export default function Projects() {
       <div className="relative mx-auto max-w-[1180px]">
         <header className="mx-auto mb-12 max-w-[760px] text-center">
           <GlassChip className={`mx-auto px-3 py-1.5 ${SECTION_KICKER}`}>
-            Projects
+            기술 사례
           </GlassChip>
 
           <h2 className="mt-3 text-[34px] font-bold leading-[1.18] tracking-[-0.04em] text-[#191f28] md:text-[48px]">
-          문제를 정의하고, 구현하고, 운영하며 개선했던 경험을 정리했습니다.
+            경력에서 마주한 기술 과제와 해결 과정
           </h2>
+          <p className="mt-4 text-[15px] leading-7 text-body">구조 설계, 데이터 흐름, 성능과 운영 안정성에 기여한 내용을 정리했습니다.</p>
         </header>
 
         <div className="mb-6 flex flex-wrap items-end gap-4">

@@ -1,34 +1,48 @@
-export const strengths = [
+type Strength = { title: string; description: string; icon: "Code2" | "Gauge" | "MessagesSquare" | "BarChart3"; metric: string; tags: string[] };
+
+export const strengths: Strength[] = [
   {
-    title: "프론트엔드 제품 개발",
-    description:
-      "React, Next.js, TypeScript 기반으로 사용자 서비스와 운영 도구를 개발하며 실제 서비스 흐름에 맞는 화면 구조를 설계했습니다.",
-    icon: "Code2" as const,
-    metric: "React / Next.js",
-    tags: ["React", "Next.js", "TypeScript"],
+    "title": "공통 구조와 개발 환경 설계",
+    "description": "웹툰 플랫폼 초기 멤버로 Atomic Design·모노레포 공통 컴포넌트를 구축했습니다. Storybook 문서화와 Next.js 보일러플레이트·ESLint 규칙으로 팀의 구현 기준을 정리했습니다.",
+    "icon": "Code2",
+    "metric": "Architecture",
+    "tags": [
+      "Atomic Design",
+      "Monorepo",
+      "Storybook"
+    ]
   },
   {
-    title: "성능 개선과 운영 안정화",
-    description:
-      "API 호출 구조, 캐싱 전략, 이미지 최적화를 개선해 초기 로딩 시간을 줄이고 운영 중 발생하는 사용자 불편을 줄였습니다.",
-    icon: "Gauge" as const,
-    metric: "Performance",
-    tags: ["Caching", "Lazy Loading", "WebP"],
+    "title": "렌더링과 데이터 요청 최적화",
+    "description": "SSR 적용, API 도메인 분리와 SWR 캐싱·재검증으로 데이터 흐름을 개선했습니다. 중복 요청 제거와 데이터 관리 구조 개선으로 주요 화면 초기 로딩을 약 2초 단축했습니다.",
+    "icon": "Gauge",
+    "metric": "Performance",
+    "tags": [
+      "SSR / SSG",
+      "SWR",
+      "API 최적화"
+    ]
   },
   {
-    title: "데이터 기반 서비스 개선",
-    description:
-      "GA4, Datadog, Elastic, SQL 데이터를 바탕으로 콘텐츠 노출, 광고 배치, 사용자 흐름 개선 과제를 도출했습니다.",
-    icon: "BarChart3" as const,
-    metric: "Data Driven",
-    tags: ["GA4", "Datadog", "Elastic", "SQL"],
+    "title": "연결·권한·입력의 예외 처리",
+    "description": "Agora SDK 실시간 상담의 권한·재연결·네트워크 오류를 처리했습니다. 관리자 접근 정책과 폼 검증, Canvas 배치 검증으로 운영 데이터와 화면 상태의 안정성을 높였습니다.",
+    "icon": "MessagesSquare",
+    "metric": "Reliability",
+    "tags": [
+      "Agora SDK",
+      "React Hook Form",
+      "Canvas"
+    ]
   },
   {
-    title: "협업과 구조화",
-    description:
-      "기획, 디자인, 운영, 백엔드와 협업하며 요구사항을 화면과 기능으로 정리하고 공통 컴포넌트와 개발 규칙을 개선했습니다.",
-    icon: "MessagesSquare" as const,
-    metric: "Collaboration",
-    tags: ["Storybook", "Notion", "Code Review"],
-  },
+    "title": "운영 데이터를 의사결정으로 연결",
+    "description": "SQL 조회·집계와 KPI 대시보드를 구현하고 Elastic·Datadog·GA4로 사용자 행동을 분석했습니다. 콘텐츠 노출·편성 개선으로 전 분기 대비 매출 약 27% 증가에 기여했습니다.",
+    "icon": "BarChart3",
+    "metric": "Data & Operations",
+    "tags": [
+      "SQL",
+      "KPI 시각화",
+      "Datadog / GA4"
+    ]
+  }
 ];

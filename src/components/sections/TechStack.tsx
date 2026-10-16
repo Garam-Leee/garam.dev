@@ -53,10 +53,10 @@ export default function TechStack() {
       transition={{ duration: 0.35, ease }}
     >
       <div className="mx-auto max-w-[1024px] text-center">
-        <p className={SECTION_KICKER}>기술 스택 및 도구</p>
+        <p className={SECTION_KICKER}>기술과 적용 영역</p>
 
         <h2 className={`mx-auto mt-3 max-w-[720px] ${SECTION_TITLE}`}>
-          아래의 기술을 사용할 수 있습니다.
+          경력에서 적용한 기술을 과제별로 정리했습니다.
         </h2>
 
         <GlassPanel className="mx-auto mt-8 flex w-fit max-w-full flex-wrap justify-center gap-1.5 rounded-[20px] p-1.5 sm:mt-10 sm:inline-flex sm:flex-nowrap sm:rounded-full sm:p-1">
@@ -67,6 +67,7 @@ export default function TechStack() {
               <button
                 key={category.key}
                 type="button"
+                aria-pressed={isActive}
                 onClick={() =>
                   setActive((current) =>
                     current === category.key ? null : category.key
@@ -123,7 +124,7 @@ export default function TechStack() {
                     delay: index * 0.02,
                     ease,
                   }}
-                  className="group relative"
+                  className="group relative flex w-[64px] flex-col items-center sm:w-[84px]"
                 >
                   <div
                     className={cn(
@@ -137,11 +138,7 @@ export default function TechStack() {
                     <TechIcon {...item} />
                   </div>
 
-                  {!isDimmed && (
-                    <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#191f28] px-2.5 py-1 text-xs font-semibold text-white opacity-0 shadow-[0px_2px_8px_rgba(0,0,0,0.08)] transition group-hover:opacity-100 sm:block">
-                      {item.name}
-                    </span>
-                  )}
+                  <span className="mt-2 text-center text-[11px] font-semibold leading-4 text-body">{item.name}</span>
                 </motion.div>
               );
             })}

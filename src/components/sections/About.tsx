@@ -55,14 +55,13 @@ export default function About() {
           <p className={SECTION_KICKER}>핵심 역량</p>
 
           <h2 className={`mt-3 ${SECTION_TITLE}`}>
-            서비스를 이해하고,
+            경험으로 설명하는
             <br />
-            필요한 구조를 만듭니다.
+            기술 역량
           </h2>
 
           <p className={SECTION_DESC}>
-            사용자 경험, 운영 효율, 성능, 데이터 흐름을 함께 고려하며
-            프론트엔드 관점에서 제품을 개선해왔습니다.
+            기술을 나열하기보다, 어떤 문제에 적용했고 무엇을 개선했는지 설명합니다.
           </p>
         </FadeUp>
 

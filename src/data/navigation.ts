@@ -2,9 +2,9 @@ import { profile } from "@/data/profile";
 
 export const navLinks = [
   { label: "홈", href: "#hero" },
-  { label: "소개", href: "#about" },
+  { label: "핵심 역량", href: "#about" },
   { label: "경력", href: "#experience" },
-  { label: "프로젝트", href: "#projects" },
+  { label: "기술 사례", href: "#projects" },
   {
     label: "Resume",
     href: profile.resumeUrl,

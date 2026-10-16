@@ -30,9 +30,9 @@ export default function Experience() {
           <p className={SECTION_KICKER}>경력</p>
 
           <h2 className={`mt-3 ${SECTION_TITLE_LARGE}`}>
-            서비스를 만들고,
+            구조 설계부터 운영까지,
             <br />
-            개선해온 과정입니다.
+            기술로 기여한 경력
           </h2>
         </header>
 
@@ -69,8 +69,8 @@ function TimelineItem({
   isOpen: boolean;
   onToggle: () => void;
 }) {
-  const visibleAchievements = experience.highlights.slice(0, 3);
-  const details = experience.highlights.slice(3);
+  const visibleAchievements = experience.achievements;
+  const details = experience.responsibilities;
 
   return (
     <motion.article
@@ -106,6 +106,7 @@ function TimelineItem({
           type="button"
           onClick={onToggle}
           aria-expanded={isOpen}
+          aria-controls={`experience-details-${index}`}
           className="group w-full text-left focus:outline-none"
         >
           <div className="flex items-start justify-between gap-4 sm:gap-5">
@@ -151,11 +152,12 @@ function TimelineItem({
               exit={{ height: 0, opacity: 0, y: -6 }}
               transition={{ duration: 0.28, ease }}
               className="overflow-hidden"
+              id={`experience-details-${index}`}
             >
               <GlassPanel className="mt-5 rounded-[22px] px-5 py-5 sm:mt-6 sm:px-6">
                 <div>
                   <p className="mb-3 text-[11px] font-bold leading-4 tracking-[0.08em] text-[#3182f6]">
-                    IMPACT
+                    주요 성과
                   </p>
 
                   <ul className="space-y-2">
@@ -174,7 +176,7 @@ function TimelineItem({
                 {details.length > 0 && (
                   <div className="mt-5 border-t border-white/60 pt-5">
                     <p className="mb-3 text-[11px] font-bold leading-4 tracking-[0.08em] text-[#8b95a1]">
-                      DETAILS
+                      기술 구현과 담당 업무
                     </p>
 
                     <ul className="space-y-2">
