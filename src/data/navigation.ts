@@ -1,17 +1,15 @@
 import { profile } from "@/data/profile";
 
 export const navLinks = [
-  { label: "홈", href: "#hero" },
+  { label: "기술 사례", href: "#projects" },
   { label: "핵심 역량", href: "#about" },
   { label: "경력", href: "#experience" },
-  { label: "기술 사례", href: "#projects" },
+  { label: "글", href: profile.writingsUrl },
+  { label: "연락", href: "#contact" },
   {
-    label: "Resume",
+    label: "이력서",
     href: profile.resumeUrl,
     external: true,
     download: "garam-lee-product-frontend-engineer.pdf",
   },
-  { label: "GitHub", href: profile.githubUrl, external: true },
-  { label: "LinkedIn", href: profile.linkedinUrl, external: true },
-  { label: "기술 블로그", href: profile.writingsUrl },
 ];

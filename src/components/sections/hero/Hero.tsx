@@ -1,53 +1,44 @@
-"use client";
+import Link from "next/link";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { profile } from "@/data/profile";
 
-import { ChatPanel } from "./ChatPanel";
-import { HeroTitle } from "./HeroTitle";
-import { CONTENT_MAX_WIDTH } from "./hero-utils";
-import { useHeroChat } from "./useHeroChat";
-import { chatAnnouncement } from "@/lib/chat-announcement";
+const outcomes = [
+  { value: "약 2초", label: "초기 로딩 시간 단축", context: "웹툰 플랫폼 · API 중복 요청 및 데이터 구조 개선" },
+  { value: "62 → 91", label: "Lighthouse SEO 점수", context: "비대면 진료 · SSG 전환과 메타데이터 개선" },
+  { value: "+27%", label: "전 분기 대비 매출 증가에 기여", context: "KPI 분석 · 콘텐츠 노출과 편성 전략 개선" },
+];
 
 export default function Hero() {
-  const {
-    answerQuestion,
-    chatRef,
-    hasStarted,
-    input,
-    loading,
-    messages,
-    setInput,
-    typingText,
-  } = useHeroChat();
-
   return (
-    <section
-      id="hero"
-      className="relative isolate min-h-screen overflow-hidden bg-transparent px-4 pt-28 sm:px-6 sm:pt-36 lg:px-8"
-    >
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,rgba(255,255,255,0.24),rgba(248,252,255,0.18)_46%,rgba(255,255,255,0.26))]" />
-      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
-        {chatAnnouncement(messages, loading)}
-      </div>
-
-      <div
-        className={`mx-auto flex min-h-[calc(100vh-7rem)] w-full ${CONTENT_MAX_WIDTH} flex-col`}
-      >
-        <div
-          className={`flex flex-1 flex-col items-center justify-center ${hasStarted ? "pb-14" : "pb-16"}`}
-        >
-          <div className={hasStarted ? "sr-only" : "w-full"}>
-            <HeroTitle />
+    <section id="hero" className="px-6 pb-16 pt-36 sm:px-10 sm:pb-24 sm:pt-48">
+      <div className="mx-auto max-w-[1080px]">
+        <p className="section-label">GARAM LEE / FRONTEND ENGINEER</p>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
+          <h1 className="break-keep text-[clamp(2.4rem,5.5vw,4.5rem)] font-semibold leading-[1.2] tracking-[-0.065em] text-heading">
+            구조를 설계하고,<br />
+            성능과 안정성을<br className="hidden lg:block" /> 개선합니다.
+          </h1>
+          <div className="pb-1">
+            <p className="max-w-[460px] break-keep text-[15px] leading-[1.9] text-body sm:text-base">{profile.introduction}</p>
+            <div className="mt-7 flex flex-wrap items-center gap-6">
+              <Link href="#projects" className="inline-flex items-center gap-2 border-b border-heading pb-1.5 text-sm font-semibold text-heading hover:text-blue">
+                기술 사례 보기 <ArrowDown size={15} aria-hidden="true" />
+              </Link>
+              <a href={profile.resumeUrl} download className="inline-flex items-center gap-1 border-b border-border pb-1.5 text-sm text-body hover:border-heading hover:text-heading">
+                이력서 다운로드 <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+            </div>
           </div>
-          <ChatPanel
-            chatRef={chatRef}
-            input={input}
-            loading={loading}
-            messages={messages}
-            onAsk={answerQuestion}
-            onInputChange={setInput}
-            typingText={typingText}
-            variant={hasStarted ? "active" : "initial"}
-          />
         </div>
+        <dl className="mt-14 grid grid-cols-3 gap-4 border-t border-heading pt-7 sm:mt-20 sm:gap-10">
+          {outcomes.map((outcome) => (
+            <div key={outcome.value}>
+              <dt className="min-h-10 break-keep text-[11px] font-medium leading-5 text-body sm:min-h-0 sm:text-[13px]">{outcome.label}</dt>
+              <dd className="mt-2 whitespace-nowrap text-[26px] font-semibold leading-tight tracking-[-0.055em] text-heading sm:text-[42px]">{outcome.value}</dd>
+              <dd className="mt-2 hidden max-w-[280px] break-keep text-[12px] leading-6 text-muted sm:block">{outcome.context}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

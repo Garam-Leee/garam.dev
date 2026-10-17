@@ -25,7 +25,7 @@ export function ProjectDetails({ project }: { project: Project }) {
               key={section.title}
               className={cn(
                 glassStyles.panel,
-                "rounded-[26px] p-4 sm:p-5"
+                "rounded-lg p-4 sm:p-5"
               )}
             >
               <h3 className="text-[15px] font-bold text-[#191f28]">

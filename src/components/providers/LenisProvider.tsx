@@ -1,7 +1,6 @@
 "use client";
 
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
 import { useEffect } from "react";
 
@@ -68,5 +67,5 @@ export default function LenisProvider({
     };
   }, [reducedMotion]);
 
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return <>{children}</>;
 }

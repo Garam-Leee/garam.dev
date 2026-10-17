@@ -1,115 +1,24 @@
-"use client";
-
-import { ease } from "@/lib/motion";
-
 import { strengths } from "@/data/strengths";
-import { GlassChip, GlassIcon, GlassPanel } from "@/components/ui/Glass";
-import {
-  SECTION_DESC,
-  SECTION_KICKER,
-  SECTION_MAX_WIDTH,
-  SECTION_TITLE,
-} from "@/lib/section-styles";
-import { motion, useInView } from "framer-motion";
-import { BarChart3, Code2, Gauge, MessagesSquare } from "lucide-react";
-import { useRef } from "react";
-
-
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 14 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.35, delay, ease }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-
-
-const strengthIcons = { Code2, Gauge, BarChart3, MessagesSquare };
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden bg-transparent px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
-    >
-      <div className={`mx-auto ${SECTION_MAX_WIDTH}`}>
-        <FadeUp className="mx-auto max-w-2xl text-center">
-          <p className={SECTION_KICKER}>핵심 역량</p>
-
-          <h2 className={`mt-3 ${SECTION_TITLE}`}>
-            경험으로 설명하는
-            <br />
-            기술 역량
-          </h2>
-
-          <p className={SECTION_DESC}>
-            기술을 나열하기보다, 어떤 문제에 적용했고 무엇을 개선했는지 설명합니다.
-          </p>
-        </FadeUp>
-
-        <div className="mt-10 grid gap-3 sm:gap-4 md:grid-cols-2">
-          {strengths.map((item, index) => {
-            const Icon = strengthIcons[item.icon];
-
-            return (
-              <FadeUp key={item.title} delay={index * 0.04}>
-                <GlassPanel
-                  as="article"
-                  interactive
-                  className="group h-full rounded-[20px] p-5 duration-200 hover:-translate-y-0.5 sm:p-6"
-                >
-                  <div className="flex items-start gap-4">
-                    <GlassIcon className="h-11 w-11 shrink-0 rounded-[14px]">
-                      <Icon size={22} strokeWidth={2.2} />
-                    </GlassIcon>
-
-                    <div className="min-w-0 flex-1">
-                      <GlassChip className="mb-2 px-2.5 py-1 text-[12px] font-semibold leading-4 text-[#4e5968]">
-                        {item.metric}
-                      </GlassChip>
-
-                      <h3 className="text-[18px] font-bold leading-[26px] tracking-[-0.02em] text-[#191f28] sm:text-[20px] sm:leading-7">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-2 text-[14px] font-normal leading-[22px] text-[#6b7684] sm:text-[15px] sm:leading-7">
-                        {item.description}
-                      </p>
-
-                      <div className="mt-4 flex flex-wrap gap-1.5">
-                        {item.tags.map((tag) => (
-                          <GlassChip
-                            key={tag}
-                            className="px-2.5 py-1 text-[12px] font-semibold leading-4 text-[#4e5968]"
-                          >
-                            {tag}
-                          </GlassChip>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </GlassPanel>
-              </FadeUp>
-            );
-          })}
+    <section id="about" className="section-shell bg-[#f7f8fa]">
+      <div className="section-container">
+        <header className="section-heading">
+          <div>
+            <p className="section-label">02 / EXPERTISE</p>
+            <h2 className="section-title">기술을 쓰는 기준.</h2>
+          </div>
+          <p className="section-intro">새로운 기능을 만드는 것만큼,<br />유지하고 개선할 수 있는 구조를 중요하게 생각합니다.</p>
+        </header>
+        <div className="grid gap-x-12 sm:grid-cols-2">
+          {strengths.map((item, index) => (
+            <article key={item.title} className="border-t border-[#d7dce3] py-7 sm:py-9">
+              <p className="font-mono text-[11px] tracking-wider text-muted">0{index + 1} / {item.metric.toUpperCase()}</p>
+              <h3 className="mt-4 break-keep text-[21px] font-semibold tracking-[-0.035em] text-heading">{item.title}</h3>
+              <p className="mt-3 break-keep text-[14px] leading-7 text-body">{item.description}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

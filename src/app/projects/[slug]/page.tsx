@@ -27,7 +27,7 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <main className="min-h-screen bg-[#f8fbff] px-5 py-12 sm:px-8">
+    <main className="min-h-screen bg-white px-6 py-12 sm:px-10 sm:py-16">
       <article className="mx-auto max-w-[900px]">
         <Link href="/#projects" className="inline-block rounded text-sm font-semibold text-blue">
           ← 프로젝트 목록
