@@ -2,7 +2,7 @@ import { categories, techItems } from "@/data/tech-stack";
 
 export default function TechStack() {
   return (
-    <section id="skills" className="section-shell border-t border-border">
+    <section id="skills" className="section-shell">
       <div className="section-container">
         <header className="section-heading">
           <div>
@@ -11,12 +11,12 @@ export default function TechStack() {
           </div>
           <p className="section-intro">경력에서 실제로 적용한 기술을<br />사용 목적에 따라 정리했습니다.</p>
         </header>
-        <dl className="divide-y divide-border border-y border-border">
+        <dl className="toolkit-list">
           {categories.map((category) => (
-            <div key={category.key} className="grid gap-4 py-6 sm:grid-cols-[230px_1fr] sm:gap-8">
+            <div key={category.key} className="toolkit-row">
               <dt className="text-sm font-medium text-heading">{category.label}</dt>
               <dd className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-body">
-                {techItems.filter((item) => item.category === category.key).map((item) => <span key={item.name}>{item.name}</span>)}
+                {techItems.filter((item) => item.category === category.key).map((item) => <span key={item.name} className="toolkit-tag">{item.name}</span>)}
               </dd>
             </div>
           ))}
