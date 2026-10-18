@@ -30,7 +30,7 @@ export default function Nav() {
       <header className="site-header">
         <div className="site-header-inner">
           <Link href="/" className="inline-flex items-center gap-3 text-[14px] font-semibold tracking-tight text-heading" aria-label="Garam Lee 홈">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-heading font-mono text-[11px] tracking-[-0.05em] text-white" aria-hidden="true">GL</span>
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-heading font-mono text-[11px] tracking-[-0.05em] text-white" aria-hidden="true">GL</span>
             Garam Lee
           </Link>
           <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">
@@ -41,7 +41,7 @@ export default function Nav() {
             ))}
           </nav>
           <Dialog.Trigger asChild>
-            <button type="button" aria-label="메뉴 열기" className="grid h-10 w-10 place-items-center rounded-full bg-[#f3f6fb] text-heading md:hidden"><Menu size={22} /></button>
+            <button type="button" aria-label="메뉴 열기" className="grid h-10 w-10 place-items-center rounded-lg bg-[#f2f4f6] text-heading md:hidden"><Menu size={22} /></button>
           </Dialog.Trigger>
         </div>
       </header>
@@ -50,7 +50,7 @@ export default function Nav() {
         <Dialog.Content data-lenis-prevent className="mobile-menu">
           <Dialog.Title className="sr-only">사이트 메뉴</Dialog.Title>
           <Dialog.Description className="sr-only">기술 사례, 경력과 연락처로 이동합니다.</Dialog.Description>
-          <div className="mb-3 flex justify-end"><Dialog.Close aria-label="메뉴 닫기" className="grid h-10 w-10 place-items-center rounded-full bg-[#f3f6fb]"><X size={22} /></Dialog.Close></div>
+          <div className="mb-3 flex justify-end"><Dialog.Close aria-label="메뉴 닫기" className="grid h-10 w-10 place-items-center rounded-lg bg-[#f2f4f6]"><X size={22} /></Dialog.Close></div>
           <nav aria-label="모바일 주 메뉴">
             {navLinks.map((link) => (
               <Dialog.Close asChild key={link.label}>
