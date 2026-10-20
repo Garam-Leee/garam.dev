@@ -3,10 +3,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/data/navigation";
 
 export default function Nav() {
+  const pathname = usePathname();
+  const hrefFor = (href: string) => href.startsWith("#") && pathname !== "/" ? "/" + href : href;
+  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   useEffect(() => {
@@ -23,19 +27,18 @@ export default function Nav() {
     }, { rootMargin: "-12% 0px -65% 0px", threshold: 0 });
     document.querySelectorAll("main section[id], footer[id]").forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <header className="site-header">
         <div className="site-header-inner">
-          <Link href="/" className="inline-flex items-center gap-3 text-[14px] font-semibold tracking-tight text-heading" aria-label="Garam Lee 홈">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-heading font-mono text-[11px] tracking-[-0.05em] text-white" aria-hidden="true">GL</span>
-            Garam Lee
+          <Link href="/" className="inline-flex items-center gap-3 text-[14px] font-semibold tracking-tight text-heading" aria-label="garam.dev 홈">
+            garam.dev
           </Link>
           <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <Link key={link.label} href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={link.href === "#" + activeSection ? "location" : undefined} className="nav-link">
+              <Link key={link.label} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)} className="nav-link">
                 {link.label}{link.external && <ArrowUpRight size={12} aria-hidden="true" />}
               </Link>
             ))}
@@ -54,7 +57,7 @@ export default function Nav() {
           <nav aria-label="모바일 주 메뉴">
             {navLinks.map((link) => (
               <Dialog.Close asChild key={link.label}>
-                <Link href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={link.href === "#" + activeSection ? "location" : undefined} className="mobile-nav-link">
+                <Link href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)} className="mobile-nav-link">
                   {link.label}{link.external && <ArrowUpRight size={15} aria-hidden="true" />}
                 </Link>
               </Dialog.Close>

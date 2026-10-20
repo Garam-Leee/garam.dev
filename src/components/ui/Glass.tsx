@@ -2,14 +2,14 @@ import { cn } from "@/lib/utils";
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 
 const panelClass =
-  "border border-[#e6ebf3] bg-white";
+  "border border-border bg-white";
 
 export const glassStyles = {
   panel: panelClass,
   panelInteractive:
     `${panelClass} transition-colors duration-300 hover:border-blue/30`,
   chip:
-    "inline-flex items-center rounded-full border border-[#e8edf5] bg-[#f3f6fb]",
+    "ui-tag",
   icon:
     "grid place-items-center border border-border bg-white text-blue",
 } as const;

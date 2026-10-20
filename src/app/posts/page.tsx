@@ -24,16 +24,15 @@ export default async function PostsPage({ searchParams }: Props) {
   const { posts, total, page, totalPages } = queryPosts(allPosts, { tag: selectedTag, query, page: first(params.page) });
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#3182f6]/[0.055] blur-3xl" />
+    <div className="min-h-screen bg-page">
 
-      <section className="relative px-5 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-36">
-        <div className="mx-auto max-w-[860px]">
-          <p className="text-[13px] font-bold leading-5 text-[#3182f6]">
+      <section className="content-heading">
+        <div className="mx-auto max-w-[1080px]">
+          <p className="section-label">
             Posts
           </p>
 
-          <h1 className="mt-4 max-w-[760px] text-[clamp(1.4rem,7vw,3.2rem)] font-bold leading-[1.04] tracking-[-0.065em] text-[#191f28]">
+          <h1 className="page-title mt-4">
           개발하며 경험한 것들
           </h1>
 
@@ -44,21 +43,21 @@ export default async function PostsPage({ searchParams }: Props) {
         </div>
       </section>
 
-      <main className="relative mx-auto max-w-[860px] px-5 pb-24 sm:px-8 md:px-0">
+      <main className="content-list-container">
         <form action="/posts" method="get" role="search" className="mb-6 flex flex-wrap items-end gap-3">
           <label className="min-w-[180px] flex-1 text-sm font-semibold text-body" htmlFor="post-search">
             글 검색
-            <input id="post-search" name="q" type="search" defaultValue={query} placeholder="제목, 설명, 태그 검색" className="mt-2 w-full rounded-xl border border-border bg-white px-3 py-2 text-heading" />
+            <input id="post-search" name="q" type="search" defaultValue={query} placeholder="제목, 설명, 태그 검색" className="form-control mt-2" />
           </label>
           <label className="text-sm font-semibold text-body" htmlFor="post-tag">
             태그
-            <select id="post-tag" name="tag" defaultValue={selectedTag} className="mt-2 block max-w-full rounded-xl border border-border bg-white px-3 py-2 text-heading">
+            <select id="post-tag" name="tag" defaultValue={selectedTag} className="form-control mt-2 max-w-full">
               <option value="">전체 태그</option>
               {selectedTag && !tags.includes(selectedTag) && <option value={selectedTag}>{selectedTag}</option>}
               {tags.map((tag) => <option key={tag} value={tag}>{tag}</option>)}
             </select>
           </label>
-          <button type="submit" className="rounded-xl bg-blue px-4 py-2 font-semibold text-white">검색</button>
+          <button type="submit" className="action-link action-link-primary">검색</button>
         </form>
         <p className="mb-4 text-sm text-body">총 {total}개의 글 · {page} / {totalPages} 페이지</p>
         {(selectedTag || query) && (
@@ -69,7 +68,7 @@ export default async function PostsPage({ searchParams }: Props) {
             </p>
             <Link
               href="/posts"
-              className="rounded-full bg-[#f2f4f6] px-3 py-1.5 text-[13px] font-semibold text-[#4e5968] transition hover:bg-[#e8f3ff] hover:text-[#2272eb] focus-visible:ring-2 focus-visible:ring-[#3182f6] focus-visible:ring-offset-2"
+              className="ui-tag"
             >
               필터 해제
             </Link>
@@ -89,12 +88,12 @@ export default async function PostsPage({ searchParams }: Props) {
             </p>
           </div>
         ) : (
-          <ul className="border-t border-[#e5e8eb]">
+          <ul className="content-list">
             {posts.map((post) => (
-              <li key={post.slug} className="border-b border-[#e5e8eb]">
+              <li key={post.slug} className="content-list-item">
                 <Link
                   href={`/posts/${post.slug}`}
-                  className="group block py-8 transition md:py-10"
+                  className="content-row"
                 >
                   <div className="flex flex-wrap items-center gap-2 text-[12px] font-semibold text-[#8b95a1]">
                     <span>{formatDate(post.date)}</span>
@@ -102,7 +101,7 @@ export default async function PostsPage({ searchParams }: Props) {
                     <span>{post.readingTime}분 읽기</span>
                   </div>
 
-                  <h2 className="mt-4 max-w-[760px] text-[25px] font-bold leading-[1.25] tracking-[-0.04em] text-[#191f28] transition-colors group-hover:text-[#3182f6] md:text-[32px]">
+                  <h2 className="content-row-title mt-3">
                     {post.title}
                   </h2>
 
@@ -111,11 +110,11 @@ export default async function PostsPage({ searchParams }: Props) {
                   </p>
 
                   {post.tags.length > 0 && (
-                    <div className="mt-5 flex flex-wrap gap-2">
+                    <div className="mt-4 flex flex-wrap gap-2">
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full bg-[#f2f4f6] px-3 py-1 text-[12px] font-semibold text-[#4e5968] transition group-hover:bg-[#e8f3ff] group-hover:text-[#2272eb]"
+                          className="ui-tag"
                         >
                           {tag}
                         </span>
@@ -135,7 +134,7 @@ export default async function PostsPage({ searchParams }: Props) {
                 href={postsHref({ tag: selectedTag, query, page: number })}
                 aria-current={number === page ? "page" : undefined}
                 aria-label={`${number}페이지`}
-                className={`rounded-lg px-4 py-2 text-sm font-semibold ${number === page ? "bg-blue text-white" : "bg-[#f2f4f6] text-body"}`}
+                className="pagination-link"
               >
                 {number}
               </Link>

@@ -24,7 +24,7 @@ export function ProjectInfo({ project }: { project: Project }) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#3182f6]/20 bg-[#3182f6]/10 px-3 py-1.5 text-[13px] font-bold text-[#3182f6] transition hover:bg-[#3182f6]/20 hover:border-[#3182f6]/30"
+                className="ui-tag"
               >
                 <span>{link.label}</span>
                 <ExternalLink size={13} strokeWidth={2.3} />

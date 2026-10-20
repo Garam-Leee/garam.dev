@@ -14,12 +14,13 @@ export default function Hero() {
       <div className="mx-auto max-w-[1080px]">
         <p className="section-label">GARAM LEE / FRONTEND ENGINEER</p>
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
-          <h1 className="break-keep text-[clamp(2.4rem,5.5vw,4.5rem)] font-semibold leading-[1.2] tracking-[-0.04em] text-heading">
-            구조를 설계하고,<br />
-            성능과 안정성을<br className="hidden lg:block" /> 개선합니다.
+          <h1 className="break-keep text-[clamp(2.125rem,5vw,4rem)] font-semibold leading-[1.2] tracking-[-0.04em] text-heading">
+            복잡한 서비스를,<br />
+            빠르고 안정적인<br /> 사용자 경험으로.
           </h1>
           <div className="pb-1">
-            <p className="max-w-[460px] break-keep text-[15px] leading-[1.9] text-body sm:text-base">{profile.introduction}</p>
+            <p className="max-w-[460px] break-keep text-[17px] leading-[1.8] text-body">{profile.introduction}</p>
+            <p className="mt-4 text-sm leading-6 text-muted">React · Next.js · TypeScript를 기반으로<br />구조 설계부터 성능 개선, 운영 안정화까지 함께합니다.</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link href="#projects" className="action-link action-link-primary">
                 기술 사례 보기 <ArrowDown size={15} aria-hidden="true" />
