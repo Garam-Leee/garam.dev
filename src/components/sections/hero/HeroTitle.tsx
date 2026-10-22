@@ -36,7 +36,7 @@ export function Avatar({ size = "md" }: { size?: "md" | "lg" }) {
       : "h-8 w-8 sm:h-9 sm:w-9";
 
   return (
-    <span className="relative shrink-0">
+    <span className="relative shrink-0" aria-hidden="true">
       <span
         className={`grid ${sizeClass} place-items-center overflow-hidden rounded-full bg-[#191f28] text-[11px] font-bold text-white shadow-[0px_1px_3px_rgba(0,0,0,0.06)] ring-2 ring-white`}
       >
