@@ -11,17 +11,17 @@ export default function Experience() {
           </div>
           <p className="section-intro">웹툰, 헬스케어, 건축 ERP, 클라우드.<br />서로 다른 서비스에서 쌓은 경험입니다.</p>
         </header>
-        <div className="border-t border-heading">
+        <div className="career-list">
           {experiences.map((experience, index) => (
-            <details key={experience.company} open={index === 0} className="group border-b border-border py-7 sm:py-9">
-              <summary className="grid cursor-pointer list-none grid-cols-[1fr_24px] gap-y-3 sm:grid-cols-[180px_1fr_24px] sm:gap-x-8 [&::-webkit-details-marker]:hidden">
+            <details key={experience.company} open={index === 0} className="career-entry">
+              <summary className="career-summary">
                 <p className="col-span-2 font-mono text-[11px] leading-6 text-muted sm:col-span-1">{experience.period}</p>
                 <div>
                   <h3 className="text-[23px] font-semibold tracking-[-0.04em] text-heading">{experience.company}</h3>
                   <p className="mt-1 text-xs text-muted">{experience.role}</p>
                   <p className="mt-3 max-w-[650px] break-keep text-sm leading-7 text-body">{experience.summary}</p>
                 </div>
-                <span aria-hidden="true" className="text-2xl font-light leading-8 text-muted transition-transform group-open:rotate-45">+</span>
+                <span aria-hidden="true" className="career-toggle">+</span>
               </summary>
               <div className="mt-8 grid gap-8 sm:ml-[212px] lg:grid-cols-2 lg:gap-10">
                 <div>

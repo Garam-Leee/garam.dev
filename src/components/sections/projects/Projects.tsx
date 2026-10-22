@@ -12,7 +12,7 @@ export default function Projects() {
           </div>
           <p className="section-intro">구조 설계부터 성능 개선, 실시간 연결까지.<br />경력에서 직접 다룬 7가지 기술 과제입니다.</p>
         </header>
-        <ol className="border-t border-heading">
+        <ol className="work-list">
           {careerProjects.map((project, index) => (
             <li key={project.slug}><ProjectCard project={project} index={index} /></li>
           ))}

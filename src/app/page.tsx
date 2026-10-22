@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <LenisProvider>
       <Nav />
-      <main className="bg-white">
+      <main className="portfolio-main">
           <Hero />
           <Projects />
           <About />

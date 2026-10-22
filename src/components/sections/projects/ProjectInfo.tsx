@@ -6,7 +6,7 @@ export function ProjectInfo({ project }: { project: Project }) {
   return (
     <GlassPanel
       as="dl"
-      className="mt-5 grid gap-4 rounded-lg p-4 sm:grid-cols-2 sm:p-5"
+      className="mt-5 grid gap-4 rounded-[24px] p-4 sm:grid-cols-2 sm:p-5"
     >
       {project.company && <Info label="회사" value={project.company} />}
       <Info label="역할" value={project.role} />

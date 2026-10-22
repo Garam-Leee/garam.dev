@@ -10,7 +10,7 @@ const outcomes = [
 
 export default function Hero() {
   return (
-    <section id="hero" className="px-6 pb-16 pt-36 sm:px-10 sm:pb-24 sm:pt-48">
+    <section id="hero" className="hero-section">
       <div className="mx-auto max-w-[1080px]">
         <p className="section-label">GARAM LEE / FRONTEND ENGINEER</p>
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
@@ -21,16 +21,16 @@ export default function Hero() {
           <div className="pb-1">
             <p className="max-w-[460px] break-keep text-[15px] leading-[1.9] text-body sm:text-base">{profile.introduction}</p>
             <div className="mt-7 flex flex-wrap items-center gap-6">
-              <Link href="#projects" className="inline-flex items-center gap-2 border-b border-heading pb-1.5 text-sm font-semibold text-heading hover:text-blue">
+              <Link href="#projects" className="action-link action-link-primary">
                 기술 사례 보기 <ArrowDown size={15} aria-hidden="true" />
               </Link>
-              <a href={profile.resumeUrl} download className="inline-flex items-center gap-1 border-b border-border pb-1.5 text-sm text-body hover:border-heading hover:text-heading">
+              <a href={profile.resumeUrl} download className="action-link action-link-secondary">
                 이력서 다운로드 <ArrowUpRight size={15} aria-hidden="true" />
               </a>
             </div>
           </div>
         </div>
-        <dl className="mt-14 grid grid-cols-3 gap-4 border-t border-heading pt-7 sm:mt-20 sm:gap-10">
+        <dl className="outcomes-grid">
           {outcomes.map((outcome) => (
             <div key={outcome.value}>
               <dt className="min-h-10 break-keep text-[11px] font-medium leading-5 text-body sm:min-h-0 sm:text-[13px]">{outcome.label}</dt>

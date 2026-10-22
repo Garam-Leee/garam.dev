@@ -2,8 +2,8 @@ import { strengths } from "@/data/strengths";
 
 export default function About() {
   return (
-    <section id="about" className="section-shell bg-[#f7f8fa]">
-      <div className="section-container">
+    <section id="about" className="section-shell">
+      <div className="section-container surface-panel">
         <header className="section-heading">
           <div>
             <p className="section-label">02 / EXPERTISE</p>
@@ -13,7 +13,7 @@ export default function About() {
         </header>
         <div className="grid gap-x-12 sm:grid-cols-2">
           {strengths.map((item, index) => (
-            <article key={item.title} className="border-t border-[#d7dce3] py-7 sm:py-9">
+            <article key={item.title} className="border-t border-[#e1e7f0] py-7 sm:py-9">
               <p className="font-mono text-[11px] tracking-wider text-muted">0{index + 1} / {item.metric.toUpperCase()}</p>
               <h3 className="mt-4 break-keep text-[21px] font-semibold tracking-[-0.035em] text-heading">{item.title}</h3>
               <p className="mt-3 break-keep text-[14px] leading-7 text-body">{item.description}</p>
