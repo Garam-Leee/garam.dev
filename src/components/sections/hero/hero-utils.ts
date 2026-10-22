@@ -81,7 +81,9 @@ export function detectIntent(question: string): ChatIntent {
 export function openTarget(href: string, external?: boolean) {
   if (href.startsWith("#")) {
     document.querySelector(href)?.scrollIntoView({
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
       block: "start",
     });
     return;
