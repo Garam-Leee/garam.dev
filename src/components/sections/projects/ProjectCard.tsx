@@ -4,7 +4,7 @@ import type { Project } from "@/types/project";
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <Link href={"/projects/" + project.slug} className="work-card">
+    <Link href={"/projects/" + project.slug} className="work-card content-row">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:block">
         <span className="work-index">{String(index + 1).padStart(2, "0")}</span>
         <p className="text-[14px] font-medium text-body sm:mt-4">{project.company}</p>

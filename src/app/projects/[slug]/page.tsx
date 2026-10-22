@@ -1,3 +1,4 @@
+import Nav from "@/components/ui/Nav";
 import { projects } from "@/data/projects";
 import { ProjectDetails } from "@/components/sections/projects/ProjectDetails";
 import { GlassChip } from "@/components/ui/Glass";
@@ -27,14 +28,16 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <main className="min-h-screen bg-white px-6 py-12 sm:px-10 sm:py-16">
+    <>
+    <Nav />
+    <main className="detail-page">
       <article className="mx-auto max-w-[900px]">
         <Link href="/#projects" className="inline-block rounded text-sm font-semibold text-blue">
           ← 프로젝트 목록
         </Link>
         <header className="mb-8 mt-10">
           <p className="text-sm font-semibold text-muted">{project.period}</p>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-heading sm:text-5xl">
+          <h1 className="page-title mt-3">
             {project.title}
           </h1>
           <p className="mt-5 text-base leading-8 text-body">{project.summary}</p>
@@ -47,5 +50,6 @@ export default async function ProjectPage({ params }: Props) {
         <ProjectDetails project={project} />
       </article>
     </main>
+    </>
   );
 }

@@ -40,10 +40,9 @@ export default async function PostPage({ params }: Props) {
   const nextPost = allPosts[currentIdx - 1] ?? null;
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[720px] -translate-x-1/2 rounded-full bg-[#3182f6]/[0.055] blur-3xl" />
+    <div className="min-h-screen bg-page">
 
-      <header className="relative px-5 pb-12 pt-28 sm:px-8 md:pb-16 md:pt-36">
+      <header className="content-heading">
         <div className="mx-auto max-w-[760px]">
           <div className="mb-6 flex flex-wrap items-center gap-2 text-[12px] font-semibold text-[#8b95a1]">
             <span>{formatDate(post.date)}</span>
@@ -51,7 +50,7 @@ export default async function PostPage({ params }: Props) {
             <span>{post.readingTime}분 읽기</span>
           </div>
 
-          <h1 className="text-[clamp(2rem,7vw,3.6rem)] font-bold leading-[1.08] tracking-[-0.06em] text-[#191f28]">
+          <h1 className="page-title">
             {post.title}
           </h1>
 
@@ -65,7 +64,7 @@ export default async function PostPage({ params }: Props) {
                 <Link
                   key={tag}
                   href={`/posts?tag=${encodeURIComponent(tag)}`}
-                  className="rounded-full bg-[#f2f4f6]/80 px-3 py-1 text-[12px] font-semibold text-[#4e5968] backdrop-blur-md transition hover:bg-[#e8f3ff] hover:text-[#2272eb]"
+                  className="ui-tag"
                 >
                   {tag}
                 </Link>
@@ -84,7 +83,7 @@ export default async function PostPage({ params }: Props) {
         <section className="mx-auto max-w-[720px] border-t border-[#e5e8eb] py-12 md:py-16">
           <div className="mb-6 flex items-center justify-between">
             <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[#8b95a1]">
-              More posts
+              다른 글도 읽어보세요
             </p>
 
             <Link
@@ -99,7 +98,7 @@ export default async function PostPage({ params }: Props) {
             {prevPost && (
               <PostNavLink
                 href={`/posts/${prevPost.slug}`}
-                label="Previous"
+                label="이전 글"
                 title={prevPost.title}
                 align="left"
               />
@@ -108,7 +107,7 @@ export default async function PostPage({ params }: Props) {
             {nextPost && (
               <PostNavLink
                 href={`/posts/${nextPost.slug}`}
-                label="Next"
+                label="다음 글"
                 title={nextPost.title}
                 align="right"
               />
@@ -135,7 +134,7 @@ function PostNavLink({
     <Link
       href={href}
       className={[
-        "group block py-5 transition hover:bg-[#f9fafb]",
+        "content-row",
         align === "left" ? "md:pr-6" : "md:pl-6",
       ].join(" ")}
     >

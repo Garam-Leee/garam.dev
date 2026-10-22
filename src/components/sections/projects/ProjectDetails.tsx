@@ -38,7 +38,7 @@ export function ProjectDetails({ project }: { project: Project }) {
                     key={item}
                     className="grid grid-cols-[6px_1fr] gap-3"
                   >
-                    <span className="mt-[0.7em] h-1.5 w-1.5 rounded-full bg-[#3182f6] shadow-[0_0_12px_rgba(49,130,246,0.30)]" />
+                    <span className="mt-[0.7em] h-1.5 w-1.5 rounded-full bg-[#3182f6]" />
                     <span>{item}</span>
                   </li>
                 ))}
