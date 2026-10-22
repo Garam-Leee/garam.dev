@@ -21,12 +21,14 @@ export default function LenisProvider({
 
     lenisRef.current = lenis;
 
+    let rafId: number;
+
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // Handle hash link clicks
     const handleAnchorClick = (e: MouseEvent) => {
