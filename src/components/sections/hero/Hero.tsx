@@ -14,13 +14,13 @@ export default function Hero() {
       <div className="mx-auto max-w-[1080px]">
         <p className="section-label">GARAM LEE / FRONTEND ENGINEER</p>
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
-          <h1 className="break-keep text-[clamp(2.4rem,5.5vw,4.5rem)] font-semibold leading-[1.2] tracking-[-0.065em] text-heading">
+          <h1 className="break-keep text-[clamp(2.4rem,5.5vw,4.5rem)] font-semibold leading-[1.2] tracking-[-0.04em] text-heading">
             구조를 설계하고,<br />
             성능과 안정성을<br className="hidden lg:block" /> 개선합니다.
           </h1>
           <div className="pb-1">
             <p className="max-w-[460px] break-keep text-[15px] leading-[1.9] text-body sm:text-base">{profile.introduction}</p>
-            <div className="mt-7 flex flex-wrap items-center gap-6">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link href="#projects" className="action-link action-link-primary">
                 기술 사례 보기 <ArrowDown size={15} aria-hidden="true" />
               </Link>
