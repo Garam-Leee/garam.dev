@@ -1,5 +1,7 @@
 "use client";
 
+import { ease } from "@/lib/motion";
+
 import { strengths } from "@/data/strengths";
 import { GlassChip, GlassIcon, GlassPanel } from "@/components/ui/Glass";
 import {
@@ -12,7 +14,6 @@ import { motion, useInView } from "framer-motion";
 import { BarChart3, Code2, Gauge, MessagesSquare } from "lucide-react";
 import { useRef } from "react";
 
-const ease = [0.4, 0, 0.2, 1] as const;
 
 function FadeUp({
   children,

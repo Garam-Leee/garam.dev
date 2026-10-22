@@ -1,7 +1,7 @@
 import type { ChatIntent } from "@/lib/portfolio";
 
-export const ease = [0.4, 0, 0.2, 1] as const;
-export const CONTENT_MAX_WIDTH = "max-w-[1080px]";
+export { ease } from "@/lib/motion";
+export { CONTENT_MAX_WIDTH } from "@/lib/section-styles";
 export const CHAT_MAX_WIDTH = "max-w-3xl";
 
 export const assistantBubbleClass =
