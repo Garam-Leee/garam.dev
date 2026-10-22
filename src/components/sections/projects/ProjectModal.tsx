@@ -2,9 +2,9 @@ import { GlassChip, glassStyles } from "@/components/ui/Glass";
 import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import { ProjectInfo } from "./ProjectInfo";
+import { ProjectDetails } from "./ProjectDetails";
+import Link from "next/link";
 import type { Project } from "@/types/project";
-import { ProjectSummaryCard } from "./ProjectSummaryCard";
 
 export function ProjectModal({
   open,
@@ -75,48 +75,15 @@ export function ProjectModal({
                       </GlassChip>
                     ))}
                   </div>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="mt-4 inline-block rounded text-sm font-semibold text-blue underline underline-offset-4"
+                  >
+                    상세 페이지 열기
+                  </Link>
                 </header>
 
-                <ProjectInfo project={project} />
-
-                <div className="mt-3 grid gap-3 md:grid-cols-2">
-                  <ProjectSummaryCard title="문제" content={project.problem} />
-                  <ProjectSummaryCard title="결과" content={project.result} />
-                </div>
-
-                <section className="mt-6">
-                  <h4 className="px-1 text-[18px] font-bold tracking-[-0.035em] text-[#191f28]">
-                    상세 내용
-                  </h4>
-
-                  <div className="mt-4 space-y-3">
-                    {project.detailSections.map((section) => (
-                      <section
-                        key={section.title}
-                        className={cn(
-                          glassStyles.panel,
-                          "rounded-[26px] p-4 sm:p-5"
-                        )}
-                      >
-                        <h5 className="text-[15px] font-bold text-[#191f28]">
-                          {section.title}
-                        </h5>
-
-                        <ul className="mt-3 space-y-2 text-[14px] leading-[1.68] text-[#4e5968]">
-                          {section.items.map((item) => (
-                            <li
-                              key={item}
-                              className="grid grid-cols-[6px_1fr] gap-3"
-                            >
-                              <span className="mt-[0.7em] h-1.5 w-1.5 rounded-full bg-[#3182f6] shadow-[0_0_12px_rgba(49,130,246,0.30)]" />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </section>
-                    ))}
-                  </div>
-                </section>
+                <ProjectDetails project={project} />
               </div>
             </div>
           )}
