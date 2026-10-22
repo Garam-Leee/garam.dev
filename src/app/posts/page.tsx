@@ -1,6 +1,7 @@
 import { formatDate, getAllPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { postsHref, queryPosts } from "@/lib/post-filters";
 
 export const metadata: Metadata = {
   title: "Posts — 이가람",
@@ -8,16 +9,17 @@ export const metadata: Metadata = {
 };
 
 interface Props {
-  searchParams: Promise<{ tag?: string | string[] }>;
+  searchParams: Promise<{ tag?: string | string[]; q?: string | string[]; page?: string | string[] }>;
 }
 
 export default async function PostsPage({ searchParams }: Props) {
-  const { tag } = await searchParams;
-  const selectedTag = (Array.isArray(tag) ? tag[0] : tag)?.trim() ?? "";
+  const params = await searchParams;
+  const first = (value?: string | string[]) => (Array.isArray(value) ? value[0] : value)?.trim() ?? "";
+  const selectedTag = first(params.tag);
+  const query = first(params.q);
   const allPosts = getAllPosts();
-  const posts = selectedTag
-    ? allPosts.filter((post) => post.tags.includes(selectedTag))
-    : allPosts;
+  const tags = [...new Set(allPosts.flatMap((post) => post.tags))].sort();
+  const { posts, total, page, totalPages } = queryPosts(allPosts, { tag: selectedTag, query, page: first(params.page) });
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -41,11 +43,27 @@ export default async function PostsPage({ searchParams }: Props) {
       </section>
 
       <main className="relative mx-auto max-w-[860px] px-5 pb-24 sm:px-8 md:px-0">
-        {selectedTag && (
+        <form action="/posts" method="get" role="search" className="mb-6 flex flex-wrap items-end gap-3">
+          <label className="min-w-[180px] flex-1 text-sm font-semibold text-body" htmlFor="post-search">
+            글 검색
+            <input id="post-search" name="q" type="search" defaultValue={query} placeholder="제목, 설명, 태그 검색" className="mt-2 w-full rounded-xl border border-border bg-white px-3 py-2 text-heading" />
+          </label>
+          <label className="text-sm font-semibold text-body" htmlFor="post-tag">
+            태그
+            <select id="post-tag" name="tag" defaultValue={selectedTag} className="mt-2 block max-w-full rounded-xl border border-border bg-white px-3 py-2 text-heading">
+              <option value="">전체 태그</option>
+              {selectedTag && !tags.includes(selectedTag) && <option value={selectedTag}>{selectedTag}</option>}
+              {tags.map((tag) => <option key={tag} value={tag}>{tag}</option>)}
+            </select>
+          </label>
+          <button type="submit" className="rounded-xl bg-blue px-4 py-2 font-semibold text-white">검색</button>
+        </form>
+        <p className="mb-4 text-sm text-body">총 {total}개의 글 · {page} / {totalPages} 페이지</p>
+        {(selectedTag || query) && (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <p className="text-[14px] font-semibold text-[#4e5968]">
-              <span className="text-[#3182f6]">#{selectedTag}</span>
-              {" · "}{posts.length}개의 글
+              {selectedTag && <span className="text-[#3182f6]">#{selectedTag} </span>}
+              {query && <span>검색어: {query}</span>}
             </p>
             <Link
               href="/posts"
@@ -58,12 +76,12 @@ export default async function PostsPage({ searchParams }: Props) {
         {posts.length === 0 ? (
           <div className="border-t border-[#e5e8eb] py-20 text-center">
             <p className="text-[17px] font-bold text-[#191f28]">
-              {selectedTag
-                ? "선택한 태그의 포스트가 없습니다."
+              {selectedTag || query
+                ? "조건에 맞는 포스트가 없습니다."
                 : "아직 작성된 포스트가 없습니다."}
             </p>
             <p className="mt-2 text-[14px] leading-6 text-[#8b95a1]">
-              {selectedTag
+              {selectedTag || query
                 ? "필터를 해제하면 전체 글을 볼 수 있습니다."
                 : "새로운 글이 올라오면 이곳에서 확인할 수 있습니다."}
             </p>
@@ -106,6 +124,21 @@ export default async function PostsPage({ searchParams }: Props) {
               </li>
             ))}
           </ul>
+        )}
+        {totalPages > 1 && (
+          <nav aria-label="글 목록 페이지" className="mt-8 flex flex-wrap justify-center gap-2">
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map((number) => (
+              <Link
+                key={number}
+                href={postsHref({ tag: selectedTag, query, page: number })}
+                aria-current={number === page ? "page" : undefined}
+                aria-label={`${number}페이지`}
+                className={`rounded-lg px-4 py-2 text-sm font-semibold ${number === page ? "bg-blue text-white" : "bg-[#f2f4f6] text-body"}`}
+              >
+                {number}
+              </Link>
+            ))}
+          </nav>
         )}
       </main>
     </div>
