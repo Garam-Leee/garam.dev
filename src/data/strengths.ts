@@ -3,7 +3,7 @@ type Strength = { title: string; description: string; icon: "Code2" | "Gauge" | 
 export const strengths: Strength[] = [
   {
     "title": "공통 구조와 개발 환경 설계",
-    "description": "웹툰 플랫폼 초기 멤버로 Atomic Design·모노레포 공통 컴포넌트를 구축했습니다. Storybook 문서화와 Next.js 보일러플레이트·ESLint 규칙으로 팀의 구현 기준을 정리했습니다.",
+    "description": "웹툰 플랫폼 초기 멤버로 Atomic Design 기반 아키텍처와 모노레포 공통 UI·유틸리티·훅 패키지를 구축했습니다. Storybook 문서화와 Next.js 보일러플레이트·ESLint 규칙으로 팀의 구현 기준을 정리했습니다.",
     "icon": "Code2",
     "metric": "Architecture",
     "tags": [

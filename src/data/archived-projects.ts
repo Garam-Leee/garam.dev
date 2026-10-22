@@ -95,52 +95,6 @@ export const archivedProjects: Project[] = [
     ]
   },
   {
-    "slug": "webtoon-run",
-    "domain": "웹툰",
-    "title": "웹툰런 공모전 플랫폼",
-    "description": "전국 대학생 웹툰 경연 플랫폼 개발 및 운영",
-    "problem": "전국 대학생 웹툰 경연에서 작품 제출, 작품 탐색, 조회수, 하트, 응원, 댓글 등 사용자 참여 지표를 안정적으로 제공해야 했습니다.",
-    "result": "React Query 기반 SSR Hydration, 무한스크롤, 이미지 우선 로딩 전략을 적용해 작품 탐색과 웹툰 뷰어 경험을 개선하고 공모전 기간 동안 안정적으로 서비스를 운영했습니다.",
-    "role": "프론트엔드 개발, 웹툰 뷰어 개발, 공모전 목록 UX, 운영 대응",
-    "tools": [
-      "Next.js",
-      "TypeScript",
-      "React Query",
-      "Emotion",
-      "Turborepo",
-      "GA4"
-    ],
-    "accent": "#2F80ED",
-    "team": "PM, Design, FE, BE 협업",
-    "period": "2024.01 ~ 2024.12",
-    "relatedLinks": [
-      {
-        "label": "웹툰런",
-        "href": "https://webtoonrun.com/"
-      }
-    ],
-    "summary": "웹툰런 공모전 플랫폼을 개발하며 작품 목록, 사용자 참여, 웹툰 뷰어, 평가 흐름을 안정적으로 제공했습니다.",
-    "detailSections": [
-      {
-        "title": "공모전 목록과 참여형 탐색 경험",
-        "items": [
-          "React Query의 prefetchQuery, prefetchInfiniteQuery, HydrationBoundary를 활용해 서버 프리패치 데이터와 클라이언트 캐시를 연결했습니다.",
-          "IntersectionObserver와 useInfiniteQuery를 결합한 무한스크롤 구조를 공통화해 페이지 단위 데이터 로딩과 중복 요청 방지를 구현했습니다.",
-          "GA4 스크립트를 운영 HTTPS 도메인에서만 로드하도록 제한해 실제 사용자 데이터 품질을 관리했습니다."
-        ]
-      },
-      {
-        "title": "웹툰 뷰어와 사용자 피드백",
-        "items": [
-          "웹툰 뷰어에서 초반 컷은 priority, fetchPriority로 우선 로드하고 이후 이미지는 캐시 여부에 따라 순차 로딩하도록 구성했습니다.",
-          "뷰어 스크롤 위치 저장 API를 타이머 기반으로 합쳐 빠른 스크롤 중 발생할 수 있는 연속 저장 요청을 줄였습니다.",
-          "Alert, Confirm, Toast, Spinner를 전역 레이아웃과 store 기반 API로 통합해 평가, 댓글, 작품 탐색 과정에서 일관된 피드백을 제공했습니다."
-        ]
-      }
-    ],
-    "featured": false
-  },
-  {
     "slug": "jaedam-website",
     "domain": "기업 사이트",
     "title": "재담미디어 공식 홈페이지",
