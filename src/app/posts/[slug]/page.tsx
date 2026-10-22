@@ -3,6 +3,7 @@ import "@/styles/prose.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,10 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) return { title: "Not Found" };
 
-  return {
+  return pageMetadata({
     title: `${post.title} — 이가람`,
     description: post.description,
-  };
+    path: `/posts/${post.slug}`,
+    kind: "article",
+    date: post.date,
+  });
 }
 
 export default async function PostPage({ params }: Props) {

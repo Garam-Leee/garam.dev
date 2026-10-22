@@ -2,11 +2,13 @@ import { formatDate, getAllPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { postsHref, queryPosts } from "@/lib/post-filters";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Posts — 이가람",
   description: "프론트엔드 개발, 성능 최적화, 디자인 시스템에 대한 이야기",
-};
+  path: "/posts",
+});
 
 interface Props {
   searchParams: Promise<{ tag?: string | string[]; q?: string | string[]; page?: string | string[] }>;

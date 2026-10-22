@@ -2,8 +2,11 @@ import "@/styles/globals.css";
 import "@/styles/fonts.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
+import { siteUrl, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
+  alternates: { canonical: absoluteUrl("/") },
   title: {
     default: "Garam Lee — Product Frontend Engineer",
     template: "%s | Garam Lee",
@@ -24,18 +27,20 @@ export const metadata: Metadata = {
     "Design System",
     "Portfolio",
   ],
-  authors: [{ name: "Garam Lee", url: "https://garam-dev.vercel.app" }],
+  authors: [{ name: "Garam Lee", url: siteUrl.toString() }],
   creator: "Garam Lee",
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://garam-dev.vercel.app",
+    url: siteUrl.toString(),
+    images: [{ url: "/og", width: 1200, height: 630, alt: "Garam Lee Portfolio" }],
     title: "Garam Lee — Product Frontend Engineer",
     description:
       "React, Next.js, TypeScript 기반으로 서비스 성장과 사용자 경험 개선을 만들어가는 프론트엔드 엔지니어 포트폴리오.",
     siteName: "Garam Lee Portfolio",
   },
   twitter: {
+    images: ["/og"],
     card: "summary_large_image",
     title: "Garam Lee — Product Frontend Engineer",
     description:

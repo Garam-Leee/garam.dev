@@ -4,6 +4,7 @@ import { GlassChip } from "@/components/ui/Glass";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
   if (!project) return { title: "프로젝트를 찾을 수 없습니다" };
-  return { title: project.title, description: project.summary };
+  return pageMetadata({ title: project.title, description: project.summary, path: `/projects/${project.slug}` });
 }
 
 export default async function ProjectPage({ params }: Props) {
