@@ -9,22 +9,12 @@ export function HeroTitle() {
           <Avatar size="lg" />
         </div>
 
-        <h1 className="min-w-0 max-w-full text-left text-[clamp(2rem,8.5vw,3.65rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[#191f28] break-words">
-          <span>I&apos;m </span>
-          <span className="relative inline-block px-1.5">
-            <span className="absolute inset-0 border-l-2 border-r-2 border-[#3182f6]/45 bg-[#3182f6]/10" />
-            <span className="absolute left-0 top-0 h-[5px] w-[5px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#3182f6]" />
-            <span className="absolute bottom-0 right-0 h-[5px] w-[5px] translate-x-1/2 translate-y-1/2 rounded-full bg-[#3182f6]" />
-            <span className="relative">{profile.name}</span>
-          </span>
-          <span> — based in Seoul.</span>
-          <br />
-          <span>I build product experiences,&nbsp;</span>
-          <span className="inline whitespace-normal font-serif italic tracking-[-0.03em]">
-            end to end.
-          </span>
+        <h1 className="min-w-0 max-w-full break-keep text-left text-[clamp(2rem,8.5vw,3.65rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[#191f28]">
+          {profile.headline}
         </h1>
       </div>
+      <p className="mt-5 text-sm font-semibold text-blue">이가람 · {profile.role}</p>
+      <p className="mt-3 max-w-[760px] break-keep text-[15px] leading-7 text-body sm:text-[17px] sm:leading-8">{profile.introduction}</p>
     </div>
   );
 }

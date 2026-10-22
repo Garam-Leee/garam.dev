@@ -2,6 +2,7 @@ import fs from "node:fs";
 import vm from "node:vm";
 import { createRequire } from "node:module";
 import ts from "typescript";
+import path from "node:path";
 
 const require = createRequire(import.meta.url);
 
@@ -21,7 +22,14 @@ export function loadTypeScript(file, mocks = {}) {
     console,
     URL,
     URLSearchParams,
-    require: (name) => mocks[name] ?? require(name),
+    require: (name) => {
+      if (mocks[name]) return mocks[name];
+      if (name.startsWith(".")) {
+        const target = path.resolve(path.dirname(file), `${name}.ts`);
+        if (fs.existsSync(target)) return loadTypeScript(target, mocks);
+      }
+      return require(name);
+    },
   }, { filename: file });
   return exports;
 }

@@ -121,7 +121,7 @@ export function ChatInput({
         <input
           value={input}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="ask Garam anything..."
+          placeholder="기술 경험에 대해 질문해 주세요"
           aria-label="가람에게 질문하기"
           readOnly={loading}
           aria-describedby="chat-help"

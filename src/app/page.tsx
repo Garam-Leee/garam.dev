@@ -21,9 +21,9 @@ export default function Home() {
         <div className="relative">
           <Hero />
           <About />
-          <TechStack />
           <Experience />
           <Projects />
+          <TechStack />
           <Footer />
         </div>
       </main>

@@ -1,12 +1,12 @@
 import { profile } from "@/data/profile";
 
 export const quickQuestions = [
-  { label: "About Me", intent: "developer" },
-  { label: "My Work", intent: "work" },
-  { label: "How I Improve Products", intent: "growth" },
-  { label: "Tech Stack", intent: "tools" },
-  { label: "Let's Talk", intent: "chat" },
-  { label: "Resume", intent: "resume" },
+  { label: "개발자 소개", intent: "developer" },
+  { label: "기술 사례", intent: "work" },
+  { label: "성능·개선 성과", intent: "growth" },
+  { label: "사용 기술", intent: "tools" },
+  { label: "연락하기", intent: "chat" },
+  { label: "이력서", intent: "resume" },
   { label: "LinkedIn", intent: "linkedin" },
 ] as const;
 
@@ -23,32 +23,32 @@ export const chatAnswers: Record<
   }
 > = {
   developer: {
-    text: "프론트엔드 개발을 중심으로 사용자 경험과 비즈니스 가치를 함께 고민합니다. 웹툰 플랫폼, 헬스케어 서비스, 운영 도구를 개발하며 성능 최적화, 데이터 기반 개선, 디자인 시스템 구축 경험을 쌓아왔습니다.",
+    text: "React·Next.js·TypeScript 기반의 프론트엔드 개발자 이가람입니다. 웹툰 플랫폼과 헬스케어 서비스, 운영 시스템에서 공통 구조 설계, 렌더링·데이터 요청 최적화, 연결·권한·입력 검증을 담당했습니다.",
   },
 
   work: {
-    text: "콘텐츠 플랫폼, 결제 시스템, 운영 백오피스, KPI 대시보드, 헬스케어 서비스 등 다양한 제품을 개발했습니다. 단순 기능 구현보다 사용자의 문제를 해결하고 서비스 성장을 만드는 과정에 집중합니다.",
-    actionLabel: "프로젝트 보기",
+    text: "웹툰 플랫폼의 SSR·SWR 데이터 흐름, SQL 기반 KPI 대시보드, 비대면 진료 플랫폼의 SSG 전환, Agora 실시간 상담, 관리자 권한·폼 검증, Canvas 도면 편집을 개발했습니다. 기술 사례에서 구현 과정과 성과를 확인할 수 있습니다.",
+    actionLabel: "기술 사례 보기",
     actionHref: "#projects",
   },
 
   growth: {
-    text: "Datadog, Elastic, GA4, SQL 등을 활용해 사용자 행동과 서비스 지표를 분석합니다. 데이터 기반으로 개선 과제를 도출하고 콘텐츠 노출, 광고 영역, 사용자 흐름을 개선해 실제 매출 성장과 성능 개선으로 연결한 경험이 있습니다.",
+    text: "웹툰 플랫폼에서는 중복 API 요청 제거와 데이터 관리 구조 개선으로 주요 화면 초기 로딩을 약 2초 단축했습니다. 비대면 진료 랜딩 페이지는 SSG 전환·메타데이터 최적화로 Lighthouse SEO 62→91점을 달성했습니다. 콘텐츠 노출·편성 개선으로 전 분기 대비 서비스 매출 약 27% 증가에 기여했습니다.",
   },
 
   tools: {
-    text: "React, Next.js, TypeScript를 중심으로 개발하며 SWR, Zustand, Storybook을 활용해 유지보수 가능한 구조를 만듭니다. 성능 최적화와 운영 효율을 고려한 아키텍처 설계에도 관심이 많습니다.",
+    text: "React·Next.js·TypeScript를 중심으로 SSR·SSG와 SWR 캐싱·재검증을 적용했습니다. Atomic Design·모노레포·Storybook으로 공통 UI를 관리하고, Agora SDK·React Hook Form·Canvas로 연결·입력·도면 편집을 구현했습니다. SQL·Elastic·Datadog·GA4는 운영 지표와 오류 분석에 활용했습니다.",
   },
 
   chat: {
-    text: "서비스 개발, 프론트엔드 아키텍처, 데이터 기반 개선, 협업 문화에 대한 이야기를 좋아합니다. 편하게 연락 주세요.",
+    text: "프론트엔드 구조 설계, 데이터 요청 최적화, 실시간 연결과 운영 안정성에 관한 이야기를 나누고 싶습니다. 메일로 연락 주세요.",
     actionLabel: "메일 보내기",
     actionHref: `mailto:${profile.email}`,
     external: true,
   },
 
   resume: {
-    text: "경력 기술서와 주요 프로젝트 경험, 기술 역량을 확인할 수 있습니다.",
+    text: "회사별 담당 업무와 주요 성과는 경력 및 기술 사례에서 확인할 수 있습니다. PDF 이력서도 내려받을 수 있습니다.",
     actionLabel: "이력서 보기",
     actionHref: profile.resumeUrl,
     external: true,
@@ -63,7 +63,7 @@ export const chatAnswers: Record<
   },
 
   fallback: {
-    text: "프로젝트 경험, 기술 스택, 서비스 개선 사례, 데이터 분석 경험에 대해 질문해보세요.",
+    text: "SSR·SWR 성능 개선, 프론트엔드 구조 설계, 실시간 상담, KPI 대시보드 등 기술 경험을 질문해 주세요.",
     actionLabel: "메일 보내기",
     actionHref: `mailto:${profile.email}`,
     external: true,

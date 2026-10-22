@@ -8,9 +8,10 @@ export function ProjectInfo({ project }: { project: Project }) {
       as="dl"
       className="mt-5 grid gap-4 rounded-[26px] p-4 sm:grid-cols-2 sm:p-5"
     >
+      {project.company && <Info label="회사" value={project.company} />}
       <Info label="역할" value={project.role} />
       <Info label="참여" value={project.team} />
-      <Info label="기간" value={project.period} />
+      <Info label={project.periodLabel ?? "기간"} value={project.period} />
 
       <div>
         <dt className="text-[12px] font-bold text-[#8b95a1]">링크</dt>

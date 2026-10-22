@@ -1,6 +1,7 @@
 import { projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/posts";
 import { renderOgImage } from "@/lib/og-image";
+import { profile } from "@/data/profile";
 
 export async function GET(request: Request) {
   const params = new URL(request.url).searchParams;
@@ -14,5 +15,5 @@ export async function GET(request: Request) {
     const project = projects.find((item) => item.slug === slug);
     return project ? renderOgImage(project.title, "Projects") : new Response("Not Found", { status: 404 });
   }
-  return renderOgImage("서비스 성장과 사용자 경험을 만드는 프론트엔드 개발자", "Portfolio");
+  return renderOgImage(profile.headline, "Portfolio");
 }

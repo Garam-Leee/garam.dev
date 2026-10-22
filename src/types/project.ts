@@ -2,6 +2,8 @@ export type ProjectDomain = "웹툰" | "운영 도구" | "기업 사이트" | "�
 
 export interface Project {
   slug: string;
+  company?: string;
+  periodLabel?: string;
   domain: ProjectDomain;
   featured?: boolean;
   title: string;
