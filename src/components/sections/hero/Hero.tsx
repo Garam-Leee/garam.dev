@@ -1,72 +1,45 @@
-"use client";
+import Link from "next/link";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { profile } from "@/data/profile";
 
-import { motion } from "framer-motion";
-import { ChatPanel } from "./ChatPanel";
-import { HeroTitle } from "./HeroTitle";
-import { CONTENT_MAX_WIDTH, ease } from "./hero-utils";
-import { useHeroChat } from "./useHeroChat";
+const outcomes = [
+  { value: "약 2초", label: "초기 로딩 시간 단축", context: "웹툰 플랫폼 · API 중복 요청 및 데이터 구조 개선" },
+  { value: "62 → 91", label: "Lighthouse SEO 점수", context: "비대면 진료 · SSG 전환과 메타데이터 개선" },
+  { value: "+27%", label: "전 분기 대비 매출 증가에 기여", context: "KPI 분석 · 콘텐츠 노출과 편성 전략 개선" },
+];
 
 export default function Hero() {
-  const {
-    answerQuestion,
-    chatRef,
-    hasStarted,
-    input,
-    loading,
-    messages,
-    setInput,
-    typingText,
-  } = useHeroChat();
-
   return (
-    <section
-      id="hero"
-      className="relative isolate min-h-screen overflow-hidden bg-transparent px-4 pt-28 font-['Toss_Product_Sans','Tossface','SF_Pro_KR','SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Basier_Square','Apple_SD_Gothic_Neo',Roboto,'Noto_Sans_KR',sans-serif] sm:px-6 sm:pt-36 lg:px-8"
-    >
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,rgba(255,255,255,0.24),rgba(248,252,255,0.18)_46%,rgba(255,255,255,0.26))]" />
-
-      <div
-        className={`mx-auto flex min-h-[calc(100vh-7rem)] w-full ${CONTENT_MAX_WIDTH} flex-col`}
-      >
-        {!hasStarted ? (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease }}
-            className="flex flex-1 flex-col items-center justify-center pb-16"
-          >
-            <HeroTitle />
-
-            <ChatPanel
-              chatRef={chatRef}
-              input={input}
-              loading={loading}
-              messages={messages}
-              onAsk={answerQuestion}
-              onInputChange={setInput}
-              typingText={typingText}
-              variant="initial"
-            />
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.25, ease }}
-            className="flex flex-1 flex-col items-center justify-center pb-14"
-          >
-            <ChatPanel
-              chatRef={chatRef}
-              input={input}
-              loading={loading}
-              messages={messages}
-              onAsk={answerQuestion}
-              onInputChange={setInput}
-              typingText={typingText}
-              variant="active"
-            />
-          </motion.div>
-        )}
+    <section id="hero" className="hero-section">
+      <div className="mx-auto max-w-[1080px]">
+        <p className="section-label">GARAM LEE / FRONTEND ENGINEER</p>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
+          <h1 className="break-keep text-[clamp(2.125rem,5vw,4rem)] font-semibold leading-[1.2] tracking-[-0.04em] text-heading">
+            복잡한 서비스를,<br />
+            빠르고 안정적인<br /> 사용자 경험으로.
+          </h1>
+          <div className="pb-1">
+            <p className="max-w-[460px] break-keep text-[17px] leading-[1.8] text-body">{profile.introduction}</p>
+            <p className="mt-4 text-sm leading-6 text-muted">React · Next.js · TypeScript를 기반으로<br />구조 설계부터 성능 개선, 운영 안정화까지 함께합니다.</p>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link href="#projects" className="action-link action-link-primary">
+                기술 사례 보기 <ArrowDown size={15} aria-hidden="true" />
+              </Link>
+              <a href={profile.resumeUrl} download className="action-link action-link-secondary">
+                이력서 다운로드 <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <dl className="outcomes-grid">
+          {outcomes.map((outcome) => (
+            <div key={outcome.value}>
+              <dt className="min-h-10 break-keep text-[11px] font-medium leading-5 text-body sm:min-h-0 sm:text-[13px]">{outcome.label}</dt>
+              <dd className="mt-2 whitespace-nowrap text-[26px] font-semibold leading-tight tracking-[-0.055em] text-heading sm:text-[42px]">{outcome.value}</dd>
+              <dd className="mt-2 hidden max-w-[280px] break-keep text-[12px] leading-6 text-muted sm:block">{outcome.context}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
