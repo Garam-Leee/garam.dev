@@ -7,8 +7,17 @@ export const metadata: Metadata = {
   description: "프론트엔드 개발, 성능 최적화, 디자인 시스템에 대한 이야기",
 };
 
-export default function PostsPage() {
-  const posts = getAllPosts();
+interface Props {
+  searchParams: Promise<{ tag?: string | string[] }>;
+}
+
+export default async function PostsPage({ searchParams }: Props) {
+  const { tag } = await searchParams;
+  const selectedTag = (Array.isArray(tag) ? tag[0] : tag)?.trim() ?? "";
+  const allPosts = getAllPosts();
+  const posts = selectedTag
+    ? allPosts.filter((post) => post.tags.includes(selectedTag))
+    : allPosts;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -32,13 +41,31 @@ export default function PostsPage() {
       </section>
 
       <main className="relative mx-auto max-w-[860px] px-5 pb-24 sm:px-8 md:px-0">
+        {selectedTag && (
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-[14px] font-semibold text-[#4e5968]">
+              <span className="text-[#3182f6]">#{selectedTag}</span>
+              {" · "}{posts.length}개의 글
+            </p>
+            <Link
+              href="/posts"
+              className="rounded-full bg-[#f2f4f6] px-3 py-1.5 text-[13px] font-semibold text-[#4e5968] transition hover:bg-[#e8f3ff] hover:text-[#2272eb] focus-visible:ring-2 focus-visible:ring-[#3182f6] focus-visible:ring-offset-2"
+            >
+              필터 해제
+            </Link>
+          </div>
+        )}
         {posts.length === 0 ? (
           <div className="border-t border-[#e5e8eb] py-20 text-center">
             <p className="text-[17px] font-bold text-[#191f28]">
-              아직 작성된 포스트가 없습니다.
+              {selectedTag
+                ? "선택한 태그의 포스트가 없습니다."
+                : "아직 작성된 포스트가 없습니다."}
             </p>
             <p className="mt-2 text-[14px] leading-6 text-[#8b95a1]">
-              새로운 글이 올라오면 이곳에서 확인할 수 있습니다.
+              {selectedTag
+                ? "필터를 해제하면 전체 글을 볼 수 있습니다."
+                : "새로운 글이 올라오면 이곳에서 확인할 수 있습니다."}
             </p>
           </div>
         ) : (
