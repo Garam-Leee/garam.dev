@@ -30,7 +30,12 @@ function getSlugs(): string[] {
     .readdirSync(POSTS_DIR, {
       withFileTypes: true,
     })
-    .filter((dirent) => dirent.isDirectory())
+    .filter(
+      (dirent) =>
+        dirent.isDirectory() &&
+        fs.existsSync(path.join(POSTS_DIR, dirent.name, "index.md")) &&
+        fs.statSync(path.join(POSTS_DIR, dirent.name, "index.md")).isFile()
+    )
     .map((dirent) => dirent.name);
 }
 
@@ -40,38 +45,77 @@ function calcReadingTime(content: string): number {
   return Math.max(1, Math.round(chars / 400));
 }
 
+function isValidDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
+function readPost(slug: string): { meta: PostMeta; content: string } | null {
+  // Only accept a direct child folder, including for dynamic route requests.
+  if (!slug || slug === "." || slug === ".." || /[/\\]/.test(slug)) return null;
+  const filePath = path.join(POSTS_DIR, slug, "index.md");
+  if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) return null;
+
+  const { data, content } = matter(fs.readFileSync(filePath, "utf-8"));
+  const invalid = (field: string, expected: string): never => {
+    throw new Error(`Invalid post metadata in ${filePath}: ${field} ${expected}`);
+  };
+  const requiredText = (field: string): string => {
+    const value: unknown = data[field];
+    if (typeof value !== "string" || !value.trim()) {
+      return invalid(field, "must be a non-empty string");
+    }
+    return value.trim();
+  };
+
+  const title = requiredText("title");
+  const description = requiredText("description");
+  const date = requiredText("date");
+  if (!isValidDate(date)) invalid("date", "must be a valid YYYY-MM-DD date");
+
+  const rawTags: unknown = data.tags === undefined ? [] : data.tags;
+  if (
+    !Array.isArray(rawTags) ||
+    !rawTags.every((tag: unknown) => typeof tag === "string" && tag.trim())
+  ) {
+    invalid("tags", "must be an array of non-empty strings");
+  }
+  const tags = [...new Set((rawTags as string[]).map((tag) => tag.trim()))];
+  const thumbnail: unknown = data.thumbnail;
+  if (thumbnail !== undefined && (typeof thumbnail !== "string" || !thumbnail.trim())) {
+    invalid("thumbnail", "must be a non-empty string when provided");
+  }
+
+  return {
+    meta: {
+      slug,
+      title,
+      description,
+      date,
+      tags,
+      thumbnail: typeof thumbnail === "string" ? thumbnail.trim() : undefined,
+      readingTime: calcReadingTime(content),
+    },
+    content,
+  };
+}
+
 /* 전체 포스트 */
 export function getAllPosts(): PostMeta[] {
   return getSlugs()
-    .map((slug) => {
-      const file = fs.readFileSync(
-        path.join(POSTS_DIR, slug, "index.md"),
-        "utf-8"
-      );
-
-      const { data, content } = matter(file);
-
-      return {
-        slug,
-        title: data.title ?? slug,
-        description: data.description ?? "",
-        date: data.date ?? "",
-        tags: data.tags ?? [],
-        thumbnail: data.thumbnail,
-        readingTime: calcReadingTime(content),
-      } satisfies PostMeta;
+    .flatMap((slug) => {
+      const post = readPost(slug);
+      return post ? [post.meta] : [];
     })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 }
 
 /* 단일 포스트 */
 export async function getPost(slug: string): Promise<Post | null> {
-  const filePath = path.join(POSTS_DIR, slug, "index.md");
-
-  if (!fs.existsSync(filePath)) return null;
-
-  const file = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(file);
+  const post = readPost(slug);
+  if (!post) return null;
+  const { meta, content } = post;
 
   const processed = await remark()
     .use(remarkGfm)
@@ -83,20 +127,14 @@ export async function getPost(slug: string): Promise<Post | null> {
     .process(content);
 
   return {
-    slug,
-    title: data.title ?? slug,
-    description: data.description ?? "",
-    date: data.date ?? "",
-    tags: data.tags ?? [],
-    thumbnail: data.thumbnail,
-    readingTime: calcReadingTime(content),
+    ...meta,
     contentHtml: processed.toString(),
   };
 }
 
 /* 날짜 포맷 */
 export function formatDate(dateStr: string): string {
-  if (!dateStr) return "";
+  if (!isValidDate(dateStr)) return "";
 
   const d = new Date(dateStr);
 
@@ -104,5 +142,6 @@ export function formatDate(dateStr: string): string {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC",
   });
 }
