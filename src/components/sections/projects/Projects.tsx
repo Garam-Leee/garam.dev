@@ -4,10 +4,9 @@ import { GlassChip } from "@/components/ui/Glass";
 import { projects } from "@/lib/portfolio";
 import { SECTION_KICKER } from "@/lib/section-styles";
 import { useState } from "react";
+import type { Project } from "@/types/project";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
-
-export type Project = (typeof projects)[number];
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

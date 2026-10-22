@@ -4,7 +4,7 @@ import { GlassChip, glassStyles } from "@/components/ui/Glass";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import type { Project } from "./Projects";
+import type { Project } from "@/types/project";
 
 
 export function ProjectCard({

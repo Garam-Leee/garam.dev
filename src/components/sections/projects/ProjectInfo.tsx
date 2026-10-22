@@ -1,6 +1,6 @@
 import { GlassChip, GlassPanel } from "@/components/ui/Glass";
 import { ExternalLink } from "lucide-react";
-import type { Project } from "./Projects";
+import type { Project } from "@/types/project";
 
 export function ProjectInfo({ project }: { project: Project }) {
   return (

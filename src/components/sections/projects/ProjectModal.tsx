@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { ProjectInfo } from "./ProjectInfo";
-import type { Project } from "./Projects";
+import type { Project } from "@/types/project";
 import { ProjectSummaryCard } from "./ProjectSummaryCard";
 
 export function ProjectModal({
