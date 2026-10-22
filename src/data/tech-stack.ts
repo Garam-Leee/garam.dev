@@ -1,13 +1,12 @@
 export type Category = "frontend" | "library" | "deploy" | "design";
 
-type TechItem = {
+export type TechItem = {
   name: string;
   category: Category;
   icon?: string;
   fallback?: string;
 };
 
-const iconBase = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
 export const categories: { key: Category; label: string }[] = [
   { key: "frontend", label: "프론트엔드" },
@@ -20,22 +19,22 @@ export const techItems: TechItem[] = [
   {
     name: "JavaScript",
     category: "frontend",
-    icon: `${iconBase}/javascript/javascript-original.svg`,
+    icon: "/icons/javascript-original.svg",
   },
   {
     name: "TypeScript",
     category: "frontend",
-    icon: `${iconBase}/typescript/typescript-original.svg`,
+    icon: "/icons/typescript-original.svg",
   },
   {
     name: "React",
     category: "frontend",
-    icon: `${iconBase}/react/react-original.svg`,
+    icon: "/icons/react-original.svg",
   },
   {
     name: "Next.js",
     category: "frontend",
-    icon: `${iconBase}/nextjs/nextjs-original.svg`,
+    icon: "/icons/nextjs-original.svg",
   },
   {
     name: "SWR",
@@ -60,7 +59,7 @@ export const techItems: TechItem[] = [
   {
     name: "Tailwind CSS",
     category: "library",
-    icon: `${iconBase}/tailwindcss/tailwindcss-original.svg`,
+    icon: "/icons/tailwindcss-original.svg",
   },
   {
     name: "Zustand",
@@ -75,17 +74,17 @@ export const techItems: TechItem[] = [
   {
     name: "GitHub",
     category: "deploy",
-    icon: `${iconBase}/github/github-original.svg`,
+    icon: "/icons/github-original.svg",
   },
   {
     name: "Vercel",
     category: "deploy",
-    icon: `${iconBase}/vercel/vercel-original.svg`,
+    icon: "/icons/vercel-original.svg",
   },
   {
     name: "AWS",
     category: "deploy",
-    icon: `${iconBase}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
+    icon: "/icons/amazonwebservices-original-wordmark.svg",
   },
   {
     name: "Datadog",
@@ -95,16 +94,16 @@ export const techItems: TechItem[] = [
   {
     name: "Elastic",
     category: "deploy",
-    icon: `${iconBase}/elasticsearch/elasticsearch-original.svg`,
+    icon: "/icons/elasticsearch-original.svg",
   },
   {
     name: "Figma",
     category: "design",
-    icon: `${iconBase}/figma/figma-original.svg`,
+    icon: "/icons/figma-original.svg",
   },
   {
     name: "Notion",
     category: "design",
-    icon: `${iconBase}/notion/notion-original.svg`,
+    icon: "/icons/notion-original.svg",
   },
 ];
