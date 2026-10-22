@@ -1,6 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { cache } from "react";
 import { remark } from "remark";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
@@ -112,7 +113,7 @@ export function getAllPosts(): PostMeta[] {
 }
 
 /* 단일 포스트 */
-export async function getPost(slug: string): Promise<Post | null> {
+export const getPost = cache(async (slug: string): Promise<Post | null> => {
   const post = readPost(slug);
   if (!post) return null;
   const { meta, content } = post;
@@ -130,7 +131,7 @@ export async function getPost(slug: string): Promise<Post | null> {
     ...meta,
     contentHtml: processed.toString(),
   };
-}
+});
 
 /* 날짜 포맷 */
 export function formatDate(dateStr: string): string {
