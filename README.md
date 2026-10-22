@@ -29,18 +29,18 @@
 | ---------------- | -------------------------- |
 | Frontend         | React, Next.js, TypeScript |
 | Styling          | Tailwind CSS               |
-| State Management | Zustand, SWR, React Query  |
-| Animation        | Framer Motion              |
-| Analytics        | GA4, Datadog, Elastic      |
+| Content          | Markdown, gray-matter, remark |
+| UI               | Radix Dialog, Lucide       |
+| Monitoring       | Vercel Speed Insights      |
 | Deployment       | Vercel                     |
 
 ## Features
 
 - 반응형 웹 지원
-- 프로젝트 상세 모달
-- 경력 타임라인
-- 기술 스택 필터링
-- 인터랙티브 애니메이션
+- 기술 사례 목록과 공유 가능한 상세 페이지
+- 성과와 담당 업무를 구분한 경력 아코디언
+- 적용 영역별 기술 목록
+- 소개와 대표 성과를 바로 보여주는 첫 화면
 - PDF 이력서 제공
 - 기술 블로그 연동
 
@@ -85,9 +85,9 @@ tags: ["React", "회고"]
 `src/data/projects.ts`에서 프로젝트를 관리하며 `src/types/project.ts`의 공통 타입으로 검사합니다.
 
 - `slug`는 `/projects/<slug>` 상세 페이지 주소입니다. 공유된 주소가 유지되도록 고유한 값을 지정합니다.
-- `domain`과 `tools`는 메인 페이지의 도메인·기술 필터에 사용합니다. 두 필터는 함께 적용됩니다.
-- `featured: true`인 프로젝트는 필터 결과에서 먼저 표시합니다.
-- 모달과 상세 페이지는 같은 프로젝트 데이터와 상세 컴포넌트를 사용합니다.
+- `careerProjects` 배열의 순서대로 7개 기술 사례를 표시합니다. 별도의 검색·필터는 사용하지 않습니다.
+- `domain`과 `tools`는 사례의 분야와 사용 기술을 설명합니다.
+- 목록에서 사례를 선택하면 고유한 상세 페이지로 이동합니다.
 
 ## 검증
 

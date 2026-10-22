@@ -1,61 +1,20 @@
-"use client";
-
-import { profile } from "@/lib/portfolio";
-import { Mail, Link2, ExternalLink } from "lucide-react";
+import { profile } from "@/data/profile";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="relative overflow-hidden bg-transparent px-4 py-16 sm:px-6 lg:px-8">
+    <footer id="contact" className="bg-heading px-6 py-16 text-white sm:px-10 sm:py-20">
       <div className="mx-auto max-w-[1080px]">
-        <div className="flex flex-col items-center justify-between gap-8 border-t border-[#e5e8eb] pt-12 sm:flex-row">
-          <div className="text-center sm:text-left">
-            <p className="text-[15px] font-bold tracking-[-0.02em] text-[#191f28]">
-              {profile.name}
-            </p>
-            <p className="mt-1 text-[13px] text-[#6b7684]">
-              {profile.role} · {profile.location}
-            </p>
+        <p className="font-mono text-[11px] tracking-[0.15em] text-white/50">LET'S TALK</p>
+        <p className="mt-5 break-keep text-[28px] font-medium tracking-[-0.04em] sm:text-[36px]">함께 풀어갈 문제가 있다면.</p>
+        <a href={"mailto:" + profile.email} className="mt-5 inline-flex max-w-full items-center gap-3 break-all text-lg text-white/75 hover:text-white sm:text-2xl">{profile.email}<ArrowUpRight size={20} aria-hidden="true" /></a>
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-6 border-t border-white/15 pt-6 text-xs text-white/50">
+          <p>© {new Date().getFullYear()} Garam Lee</p>
+          <div className="flex gap-6">
+            <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub ↗</a>
+            <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn ↗</a>
+            <a href={profile.resumeUrl} download className="hover:text-white">이력서 ↓</a>
           </div>
-
-          <div className="flex items-center gap-3">
-            <a
-              href={`mailto:${profile.email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="grid h-10 w-10 place-items-center rounded-full border border-[#e5e8eb] bg-white text-[#6b7684] transition hover:border-[#3182f6] hover:bg-[#3182f6] hover:text-white focus:outline-none focus:ring-4 focus:ring-[#3182f6]/20"
-              aria-label="Email"
-            >
-              <Mail size={18} strokeWidth={2} />
-            </a>
-            <a
-              href={profile.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="grid h-10 w-10 place-items-center rounded-full border border-[#e5e8eb] bg-white text-[#6b7684] transition hover:border-[#3182f6] hover:bg-[#3182f6] hover:text-white focus:outline-none focus:ring-4 focus:ring-[#3182f6]/20"
-              aria-label="GitHub"
-              title="GitHub"
-            >
-              <ExternalLink size={18} strokeWidth={2} />
-            </a>
-            <a
-              href={profile.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="grid h-10 w-10 place-items-center rounded-full border border-[#e5e8eb] bg-white text-[#6b7684] transition hover:border-[#3182f6] hover:bg-[#3182f6] hover:text-white focus:outline-none focus:ring-4 focus:ring-[#3182f6]/20"
-              aria-label="LinkedIn"
-              title="LinkedIn"
-            >
-              <Link2 size={18} strokeWidth={2} />
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-[12px] text-[#8b95a1]">
-            © {currentYear} {profile.name}. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

@@ -11,22 +11,14 @@ export default function Home() {
   return (
     <LenisProvider>
       <Nav />
-      <main className="glass-paint-stage relative overflow-hidden bg-[#f8fbff]">
-        <div className="glass-paint-background" aria-hidden="true">
-          <div className="glass-paint-wash" />
-          <div className="glass-paint-veil" />
-          <div className="glass-paint-sheen" />
-        </div>
-
-        <div className="relative">
+      <main className="bg-white">
           <Hero />
+          <Projects />
           <About />
           <Experience />
-          <Projects />
           <TechStack />
-          <Footer />
-        </div>
       </main>
+      <Footer />
     </LenisProvider>
   );
 }

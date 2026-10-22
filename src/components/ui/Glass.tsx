@@ -2,16 +2,16 @@ import { cn } from "@/lib/utils";
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 
 const panelClass =
-  "border border-white/72 bg-white/46 shadow-[inset_0_1px_0_rgba(255,255,255,0.88),0_14px_36px_rgba(25,31,40,0.065)] backdrop-blur-2xl";
+  "border border-border bg-white";
 
 export const glassStyles = {
   panel: panelClass,
   panelInteractive:
-    `${panelClass} transition hover:border-blue/28 hover:bg-white/62 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.94),0_18px_44px_rgba(25,31,40,0.09)]`,
+    `${panelClass} transition-colors hover:border-blue/40`,
   chip:
-    "inline-flex items-center rounded-full border border-white/74 bg-white/44 shadow-[inset_0_1px_0_rgba(255,255,255,0.84),0_1px_3px_rgba(25,31,40,0.035)] backdrop-blur-xl",
+    "inline-flex items-center rounded border border-transparent bg-[#f3f4f6]",
   icon:
-    "grid place-items-center border border-white/74 bg-white/44 text-blue shadow-[inset_0_1px_0_rgba(255,255,255,0.88),0_8px_18px_rgba(25,31,40,0.055)] backdrop-blur-xl",
+    "grid place-items-center border border-border bg-white text-blue",
 } as const;
 
 type GlassPanelProps<T extends ElementType> = {

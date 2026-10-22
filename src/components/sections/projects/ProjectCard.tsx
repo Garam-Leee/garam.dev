@@ -1,83 +1,21 @@
-
-import { ease } from "@/lib/motion";
-import { GlassChip, glassStyles } from "@/components/ui/Glass";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/types/project";
 
-
-export function ProjectCard({
-  project,
-  index,
-  onClick,
-}: {
-  project: Project;
-  index: number;
-  onClick: () => void;
-}) {
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <motion.button
-      type="button"
-      onClick={onClick}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      whileHover={{ y: -5 }}
-      whileTap={{ scale: 0.985 }}
-      transition={{ duration: 0.35, delay: index * 0.035, ease }}
-      className={cn(
-        glassStyles.panelInteractive,
-        "group relative flex h-full min-h-[280px] w-full flex-col overflow-hidden rounded-[24px] p-5 text-left transition-all focus:outline-none focus:ring-4 focus:ring-[#3182f6]/20"
-      )}
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.68),rgba(255,255,255,0))]" />
-
-      <div className="relative mb-5 flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-semibold text-blue">
-          {project.featured ? `대표 · ${project.domain}` : project.domain}
-        </span>
-        <GlassChip className="px-2.5 py-1 text-right text-[12px] font-semibold leading-[1.4] text-[#8b95a1]">
-          {project.periodLabel && <span className="mr-1">{project.periodLabel}</span>}
-          {project.period}
-        </GlassChip>
+    <Link href={"/projects/" + project.slug} className="group grid gap-4 border-b border-border py-7 transition-colors hover:bg-[#f7f8fa] sm:grid-cols-[160px_1fr_32px] sm:gap-8 sm:py-9">
+      <div className="flex items-center gap-4 sm:block">
+        <span className="font-mono text-[12px] text-muted">{String(index + 1).padStart(2, "0")}</span>
+        <p className="text-[12px] font-medium text-body sm:mt-4">{project.company}</p>
+        <p className="text-[11px] text-muted sm:mt-1">{project.domain}</p>
       </div>
-
-      <h3 className="relative break-keep text-[22px] font-bold leading-[1.28] tracking-[-0.035em] text-[#191f28] transition-colors group-hover:text-[#3182f6]">
-        {project.title}
-      </h3>
-      {project.company && <p className="relative mt-2 text-xs font-semibold text-body">{project.company}</p>}
-
-      <p className="relative mt-3 line-clamp-3 text-[14px] leading-[1.75] text-[#6b7684]">
-        {project.description}
-      </p>
-
-      <div className="relative mt-5 flex flex-wrap gap-2">
-        {project.tools.slice(0, 3).map((tool) => (
-          <GlassChip
-            key={tool}
-            className="px-2.5 py-1 text-[12px] font-semibold text-[#4e5968]"
-          >
-            {tool}
-          </GlassChip>
-        ))}
-
-        {project.tools.length > 3 && (
-          <GlassChip className="px-2.5 py-1 text-[12px] font-semibold text-[#8b95a1]">
-            +{project.tools.length - 3}
-          </GlassChip>
-        )}
+      <div>
+        <h3 className="break-keep text-[21px] font-semibold leading-[1.5] tracking-[-0.035em] text-heading group-hover:text-blue sm:text-[25px]">{project.title}</h3>
+        <p className="mt-2 max-w-[650px] break-keep text-[14px] leading-7 text-body">{project.description}</p>
+        <p className="mt-4 text-[11px] font-medium leading-6 text-muted">{project.tools.slice(0, 5).join(" / ")}</p>
       </div>
-
-      <div className="relative mt-auto flex items-center justify-between border-t border-white/58 pt-5">
-        <span className="text-[13px] font-bold text-[#8b95a1] transition-colors group-hover:text-[#3182f6]">
-          자세히 보기
-        </span>
-
-        <span className="grid h-8 w-8 place-items-center rounded-full bg-[#3182f6] text-white transition-transform group-hover:translate-x-1">
-          <ArrowRight size={16} strokeWidth={2.4} />
-        </span>
-      </div>
-    </motion.button>
+      <ArrowUpRight className="hidden text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue sm:block" size={24} aria-hidden="true" />
+    </Link>
   );
 }
