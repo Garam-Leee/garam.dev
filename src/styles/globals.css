@@ -113,7 +113,8 @@ a {
 }
 
 :focus-visible {
-  outline: 0;
+  outline: 2px solid #2272eb;
+  outline-offset: 3px;
 }
 
 .glass-paint-stage {
