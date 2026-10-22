@@ -33,7 +33,10 @@ export function ProjectCard({
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.68),rgba(255,255,255,0))]" />
 
-      <div className="relative mb-5 flex items-center justify-end">
+      <div className="relative mb-5 flex flex-wrap items-center justify-between gap-2">
+        <span className="text-xs font-semibold text-blue">
+          {project.featured ? `대표 · ${project.domain}` : project.domain}
+        </span>
         <GlassChip className="px-2.5 py-1 text-right text-[12px] font-semibold leading-[1.4] text-[#8b95a1]">
           {project.period}
         </GlassChip>

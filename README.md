@@ -75,3 +75,23 @@ tags: ["React", "회고"]
 - `thumbnail`은 선택 항목이며, 지정 시 비어 있지 않은 문자열이어야 합니다.
 - 잘못된 메타데이터는 파일 경로와 항목을 포함한 오류를 발생시킵니다. `index.md`가 없는 폴더는 목록에서 제외됩니다.
 - 본문은 Markdown으로 작성합니다. 원시 HTML은 렌더링하지 않으며, HTML 예제는 코드 블록에 작성합니다.
+
+## 프로젝트 관리
+
+`src/data/projects.ts`에서 프로젝트를 관리하며 `src/types/project.ts`의 공통 타입으로 검사합니다.
+
+- `slug`는 `/projects/<slug>` 상세 페이지 주소입니다. 공유된 주소가 유지되도록 고유한 값을 지정합니다.
+- `domain`과 `tools`는 메인 페이지의 도메인·기술 필터에 사용합니다. 두 필터는 함께 적용됩니다.
+- `featured: true`인 프로젝트는 필터 결과에서 먼저 표시합니다.
+- 모달과 상세 페이지는 같은 프로젝트 데이터와 상세 컴포넌트를 사용합니다.
+
+## 검증
+
+```bash
+npm run lint
+npm run type-check
+npm test
+npm run build
+```
+
+GitHub Actions는 push와 pull request마다 Node.js 22에서 의존성을 설치하고 위 검증을 실행합니다.
