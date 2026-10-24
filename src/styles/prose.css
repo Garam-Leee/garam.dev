@@ -19,7 +19,7 @@
 .prose h2 {
   margin-top: 64px;
   margin-bottom: 18px;
-  color: #191f28;
+  color: var(--color-heading);
   font-size: 28px;
   font-weight: 700;
   line-height: 1.3;
@@ -30,7 +30,7 @@
 .prose h3 {
   margin-top: 40px;
   margin-bottom: 14px;
-  color: #191f28;
+  color: var(--color-heading);
   font-size: 22px;
   font-weight: 700;
   line-height: 1.35;
@@ -43,12 +43,12 @@
 }
 
 .prose strong {
-  color: #191f28;
+  color: var(--color-heading);
   font-weight: 700;
 }
 
 .prose a {
-  color: #2272eb;
+  color: var(--color-blue);
   font-weight: 600;
   text-decoration: underline;
   text-decoration-color: rgba(49, 130, 246, 0.28);
@@ -85,23 +85,8 @@
 }
 
 .prose blockquote {
-  margin: 32px 0;
-  border: 1px solid rgba(229, 232, 235, 0.8);
-  border-left: 4px solid #3182f6;
-  border-radius: 0 18px 18px 0;
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.82),
-      rgba(249, 250, 251, 0.72)
-    ),
-    radial-gradient(circle at 0% 0%, rgba(49, 130, 246, 0.08), transparent 45%);
-  padding: 18px 22px;
-  color: #4e5968;
-  font-weight: 500;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  margin: 32px 0; border-left: 3px solid var(--color-border);
+  padding: 12px 20px; color: var(--color-body); background: #f9fafb;
 }
 
 .prose blockquote p {
@@ -119,7 +104,7 @@
   border-radius: 8px;
   background: rgba(242, 244, 246, 0.82);
   padding: 2px 6px;
-  color: #2272eb;
+  color: var(--color-blue);
   font-size: 0.88em;
   font-family: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
@@ -128,18 +113,13 @@
   margin: 28px 0;
   overflow-x: auto;
   border: 1px solid rgba(229, 232, 235, 0.16);
-  border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    rgba(51, 61, 75, 0.96),
-    rgba(25, 31, 40, 0.98)
-  );
+  border-radius: var(--radius-control);
+  background: #191f28;
   padding: 20px;
   color: #f9fafb;
   font-size: 14px;
   line-height: 1.75;
-  box-shadow: 0 18px 48px rgba(25, 31, 40, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
 }
 
 .prose pre code {
@@ -157,10 +137,10 @@
   border-spacing: 0;
   overflow: hidden;
   border: 1px solid #e5e8eb;
-  border-radius: 18px;
+  border-radius: var(--radius-control);
   background: rgba(255, 255, 255, 0.72);
   font-size: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
 }
 
 .prose th,
@@ -172,13 +152,13 @@
 }
 
 .prose th {
-  color: #191f28;
+  color: var(--color-heading);
   font-weight: 700;
   background: #f9fafb;
 }
 
 .prose td {
-  color: #4e5968;
+  color: var(--color-body);
 }
 
 .prose tr:last-child td {
@@ -190,8 +170,8 @@
   height: auto;
   margin: 32px 0;
   border: 1px solid rgba(229, 232, 235, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 12px 34px rgba(25, 31, 40, 0.08);
+  border-radius: var(--radius-control);
+
 }
 
 @media (max-width: 768px) {
@@ -213,11 +193,11 @@
 
   .prose blockquote {
     padding: 16px 18px;
-    border-radius: 0 16px 16px 0;
+    border-radius: 0;
   }
 
   .prose pre {
-    border-radius: 16px;
+    border-radius: var(--radius-control);
     padding: 16px;
     font-size: 13px;
   }
@@ -226,7 +206,7 @@
     display: block;
     overflow-x: auto;
     white-space: nowrap;
-    border-radius: 16px;
+    border-radius: var(--radius-control);
   }
 
   .prose th,
@@ -235,6 +215,6 @@
   }
 
   .prose img {
-    border-radius: 16px;
+    border-radius: var(--radius-control);
   }
 }

@@ -1,16 +1,17 @@
 import { GlassChip, GlassPanel } from "@/components/ui/Glass";
 import { ExternalLink } from "lucide-react";
-import type { Project } from "./Projects";
+import type { Project } from "@/types/project";
 
 export function ProjectInfo({ project }: { project: Project }) {
   return (
     <GlassPanel
       as="dl"
-      className="mt-5 grid gap-4 rounded-[26px] p-4 sm:grid-cols-2 sm:p-5"
+      className="mt-5 grid gap-4 rounded-xl p-4 sm:grid-cols-2 sm:p-5"
     >
+      {project.company && <Info label="회사" value={project.company} />}
       <Info label="역할" value={project.role} />
       <Info label="참여" value={project.team} />
-      <Info label="기간" value={project.period} />
+      <Info label={project.periodLabel ?? "기간"} value={project.period} />
 
       <div>
         <dt className="text-[12px] font-bold text-[#8b95a1]">링크</dt>
@@ -23,7 +24,7 @@ export function ProjectInfo({ project }: { project: Project }) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#3182f6]/20 bg-[#3182f6]/10 px-3 py-1.5 text-[13px] font-bold text-[#3182f6] transition hover:bg-[#3182f6]/20 hover:border-[#3182f6]/30"
+                className="ui-tag"
               >
                 <span>{link.label}</span>
                 <ExternalLink size={13} strokeWidth={2.3} />
