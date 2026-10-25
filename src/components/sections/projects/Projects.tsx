@@ -1,3 +1,4 @@
+import { ItemList, ListItem } from "@/components/ui/Primitives";
 import { careerProjects } from "@/data/projects";
 import { ProjectCard } from "./ProjectCard";
 
@@ -12,11 +13,11 @@ export default function Projects() {
           </div>
           <p className="section-intro">구조 설계부터 성능 개선, 실시간 연결까지.<br />경력에서 직접 다룬 {careerProjects.length}가지 기술 과제입니다.</p>
         </header>
-        <ol className="work-list">
+        <ItemList ordered>
           {careerProjects.map((project, index) => (
-            <li key={project.slug}><ProjectCard project={project} index={index} /></li>
+            <ListItem key={project.slug}><ProjectCard project={project} index={index} /></ListItem>
           ))}
-        </ol>
+        </ItemList>
       </div>
     </section>
   );

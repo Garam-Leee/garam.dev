@@ -1,3 +1,4 @@
+import { Tag } from "@/components/ui/Primitives";
 import { categories, techItems } from "@/data/tech-stack";
 
 export default function TechStack() {
@@ -14,9 +15,9 @@ export default function TechStack() {
         <dl className="toolkit-list">
           {categories.map((category) => (
             <div key={category.key} className="toolkit-row">
-              <dt className="text-sm font-medium text-heading">{category.label}</dt>
-              <dd className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-body">
-                {techItems.filter((item) => item.category === category.key).map((item) => <span key={item.name} className="toolkit-tag">{item.name}</span>)}
+              <dt className="text-ds-14 font-medium text-heading">{category.label}</dt>
+              <dd className="flex flex-wrap gap-x-6 gap-y-3 text-ds-14 text-body">
+                {techItems.filter((item) => item.category === category.key).map((item) => <Tag key={item.name}>{item.name}</Tag>)}
               </dd>
             </div>
           ))}
