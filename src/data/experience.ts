@@ -17,7 +17,6 @@ export const experiences = [
       "Elastic",
       "GA4"
     ],
-    "accent": "#3182f6",
     "achievements": [
       "API 중복 요청 제거와 데이터 관리 구조 개선으로 주요 화면 초기 로딩 시간 약 2초 단축",
       "WebP 변환·이미지 리사이징과 Skeleton UI로 콘텐츠 로딩 경험 개선",
@@ -51,7 +50,6 @@ export const experiences = [
       "Agora SDK",
       "React Hook Form"
     ],
-    "accent": "#3182f6",
     "achievements": [
       "주요 랜딩 페이지 Lighthouse SEO 점수 62점 → 91점 개선",
       "수백만 명 규모의 사용자가 이용하는 서비스 안정화와 핵심 기능 개선에 기여",
@@ -78,7 +76,6 @@ export const experiences = [
       "좌표 변환",
       "Drag & Drop"
     ],
-    "accent": "#191f28",
     "achievements": [
       "Canvas 기반 창호 배치·위치 조정 등 도면 편집 작업 지원",
       "크기·위치·배치 가능 영역 검증으로 잘못된 도면 배치 방지 및 데이터 정합성 개선"
@@ -101,7 +98,6 @@ export const experiences = [
       "CSS",
       "공통 컴포넌트"
     ],
-    "accent": "#4e5968",
     "achievements": [
       "UI 가이드·개발 규칙 표준화로 화면 일관성과 협업 기준 마련",
       "공통 UI 재사용과 업무 문서화로 반복 작업 감소·유지보수 효율 개선"

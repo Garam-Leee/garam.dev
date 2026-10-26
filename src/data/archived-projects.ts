@@ -20,7 +20,6 @@ export const archivedProjects: Project[] = [
       "Zustand",
       "Monorepo"
     ],
-    "accent": "#191F28",
     "team": "PM, Design, FE, BE 협업",
     "period": "2025.03 ~ 2026.07",
     "relatedLinks": [
@@ -65,7 +64,6 @@ export const archivedProjects: Project[] = [
       "Zustand",
       "REST API"
     ],
-    "accent": "#3182F6",
     "team": "PM, Design, FE, BE 협업",
     "period": "2025.03 ~ 2026.07",
     "relatedLinks": [
@@ -111,7 +109,6 @@ export const archivedProjects: Project[] = [
       "GA4",
       "Elastic"
     ],
-    "accent": "#A234C7",
     "team": "1명",
     "period": "2024.12 ~ 2025.03",
     "relatedLinks": [
@@ -159,7 +156,6 @@ export const archivedProjects: Project[] = [
       "Markdown",
       "Vercel"
     ],
-    "accent": "#3182F6",
     "team": "1명",
     "period": "2023.12 ~",
     "relatedLinks": [
