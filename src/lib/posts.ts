@@ -23,7 +23,6 @@ export interface Post extends PostMeta {
   contentHtml: string;
 }
 
-/* posts 폴더명 -> slug */
 function getSlugs(): string[] {
   if (!fs.existsSync(POSTS_DIR)) return [];
 
@@ -40,7 +39,6 @@ function getSlugs(): string[] {
     .map((dirent) => dirent.name);
 }
 
-/* 읽기 시간 */
 function calcReadingTime(content: string): number {
   const chars = content.replace(/\s/g, "").length;
   return Math.max(1, Math.round(chars / 400));
@@ -102,17 +100,15 @@ function readPost(slug: string): { meta: PostMeta; content: string } | null {
   };
 }
 
-/* 전체 포스트 */
-export function getAllPosts(): PostMeta[] {
+export const getAllPosts = cache((): PostMeta[] => {
   return getSlugs()
     .flatMap((slug) => {
       const post = readPost(slug);
       return post ? [post.meta] : [];
     })
     .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
-}
+});
 
-/* 단일 포스트 */
 export const getPost = cache(async (slug: string): Promise<Post | null> => {
   const post = readPost(slug);
   if (!post) return null;
@@ -133,7 +129,6 @@ export const getPost = cache(async (slug: string): Promise<Post | null> => {
   };
 });
 
-/* 날짜 포맷 */
 export function formatDate(dateStr: string): string {
   if (!isValidDate(dateStr)) return "";
 

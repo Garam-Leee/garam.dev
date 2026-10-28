@@ -1,6 +1,5 @@
 import { CaseStudyBlock } from "./CaseStudyBlock";
-import { glassStyles } from "@/components/ui/Glass";
-import { cn } from "@/lib/utils";
+import { GlassPanel } from "@/components/ui/Glass";
 import type { Project } from "@/types/project";
 import { ProjectInfo } from "./ProjectInfo";
 import { ProjectSummaryCard } from "./ProjectSummaryCard";
@@ -10,7 +9,7 @@ export function ProjectDetails({ project }: { project: Project }) {
     <>
       <ProjectInfo project={project} />
 
-      {project.caseStudy?.length ? (
+      {project.caseStudy ? (
         <div className="mt-10">
           {project.caseStudy.map((block) => <CaseStudyBlock key={block.title} block={block} />)}
         </div>
@@ -28,13 +27,7 @@ export function ProjectDetails({ project }: { project: Project }) {
 
         <div className="mt-4 space-y-3">
           {project.detailSections.map((section) => (
-            <section
-              key={section.title}
-              className={cn(
-                glassStyles.panel,
-                "rounded-xl p-4 sm:p-5"
-              )}
-            >
+            <GlassPanel as="section" key={section.title} className="rounded-xl p-4 sm:p-5">
               <h3 className="text-ds-15 font-bold text-heading">
                 {section.title}
               </h3>
@@ -50,7 +43,7 @@ export function ProjectDetails({ project }: { project: Project }) {
                   </li>
                 ))}
               </ul>
-            </section>
+            </GlassPanel>
           ))}
         </div>
       </section>

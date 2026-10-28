@@ -1,13 +1,12 @@
-"use client";
-
-import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
-import { useState } from "react";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { CaseStudyBlock } from "@/components/sections/projects/CaseStudyBlock";
 import { ProjectCard } from "@/components/sections/projects/ProjectCard";
-import { projects } from "@/data/projects";
+import { careerProjects } from "@/data/projects";
 import type { CaseBlock } from "@/types/case-study";
 import { GlassIcon, GlassPanel } from "./Glass";
-import { AccordionItem, Breadcrumb, Button, ButtonLink, Card, Chip, DataTable, Divider, EmptyState, IconButton, ItemList, ListItem, ListItemLink, ListRow, Loading, Pagination, SearchField, Select, Tag, TagLink, TextField, TopNavLink } from "./Primitives";
+import { AccordionItem, Breadcrumb, Button, ButtonLink, Card, DataTable, Divider, EmptyState, ItemList, ListItem, ListItemLink, ListRow, Loading, Tag, TagLink, TopNavLink } from "./Primitives";
+import { ButtonPreview, ChipPreview, EmptyStateAction, FormPreview, IconPreview, PaginationPreview } from "./GalleryInteractive";
+import { GallerySample as Sample } from "./GallerySample";
 import { Tooltip } from "./Tooltip";
 
 const menu = [
@@ -39,17 +38,7 @@ function GallerySection({ id, number, title, description, children }: { id: stri
   </section>;
 }
 
-function Sample({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
-  return <div className="gallery-sample"><div className="gallery-sample-head"><h3>{title}</h3>{note && <span>{note}</span>}</div><div className="gallery-sample-body">{children}</div></div>;
-}
-
 export default function ComponentGallery() {
-  const [query, setQuery] = useState("");
-  const [choice, setChoice] = useState("");
-  const [page, setPage] = useState(1);
-  const [clicked, setClicked] = useState(false);
-  const [chip, setChip] = useState("전체");
-
   return <main className="gallery-page">
     <div className="gallery-shell">
       <header className="gallery-hero">
@@ -69,27 +58,26 @@ export default function ComponentGallery() {
           </GallerySection>
 
           <GallerySection id="buttons" number="02" title="Button" description="주요 행동과 보조 행동을 구분하고, 상태 변화를 짧게 전달합니다.">
-            <Sample title="Variants" note="Primary · Secondary · Text"><div className="gallery-row"><Button onClick={() => setClicked(!clicked)}>{clicked ? "선택 완료" : "Primary"}</Button><Button variant="secondary" onClick={() => setClicked(!clicked)}>Secondary</Button><Button variant="text" onClick={() => setClicked(!clicked)}>Text <ArrowRight size={16} aria-hidden="true" /></Button><Button disabled>Disabled</Button></div></Sample>
+            <Sample title="Variants" note="Primary · Secondary · Text"><ButtonPreview /></Sample>
             <Sample title="Sizes" note="24 · 32 · 40 · 44 · 48 · 56"><div className="gallery-row gallery-row-baseline">{([24, 32, 40, 44, 48, 56] as const).map((size) => <Button key={size} size={size} variant="secondary">{size}px</Button>)}</div></Sample>
             <Sample title="Flexible width"><Button fullWidth>전체 너비 버튼</Button></Sample>
-            <Sample title="Link & icon" note="44px target"><div className="gallery-row"><ButtonLink href="/#projects" variant="primary">기술 사례 보기 <ArrowUpRight size={16} aria-hidden="true" /></ButtonLink><IconButton aria-label="미리보기 아이콘 버튼" onClick={() => setClicked(!clicked)}><Plus aria-hidden="true" /></IconButton></div></Sample>
+            <Sample title="Link & icon" note="44px target"><div className="gallery-row"><ButtonLink href="/#projects" variant="primary">기술 사례 보기 <ArrowUpRight size={16} aria-hidden="true" /></ButtonLink><IconPreview /></div></Sample>
           </GallerySection>
 
           <GallerySection id="tags" number="03" title="Tag" description="기술과 주제를 짧은 단위로 묶어 표시합니다.">
             <Sample title="Size & tone" note="18 · 20 · 24px"><div className="gallery-row"><Tag size={18}>Small</Tag><Tag size={20} tone="blue">Medium</Tag><Tag size={24} tone="green">Large</Tag><TagLink href="/posts">글 목록 보기 <ArrowUpRight size={14} aria-hidden="true" /></TagLink></div></Sample>
-            <Sample title="Chip" note="선택 상태"><div className="gallery-row">{["전체", "React", "Next.js"].map((value) => <Chip key={value} selected={chip === value} onClick={() => setChip(value)}>{value}</Chip>)}</div></Sample>
+            <Sample title="Chip" note="선택 상태"><ChipPreview /></Sample>
           </GallerySection>
 
           <GallerySection id="forms" number="04" title="Input" description="실제 입력과 선택이 가능한 필드입니다.">
-            <div className="gallery-two-col"><Sample title="Search field"><label className="gallery-field-label" htmlFor="gallery-search">검색어</label><SearchField id="gallery-search" placeholder="기술 키워드를 입력해 보세요" value={query} onChange={(event) => setQuery(event.target.value)} /><p className="gallery-field-help">{query ? `입력한 값: ${query}` : "입력하면 이곳에 값이 표시됩니다."}</p></Sample><Sample title="Select"><label className="gallery-field-label" htmlFor="gallery-select">분류</label><Select id="gallery-select" value={choice} onChange={(event) => setChoice(event.target.value)}><option value="">선택해 보세요</option><option value="frontend">Frontend</option><option value="performance">Performance</option></Select><p className="gallery-field-help">{choice ? `선택한 분류: ${choice}` : "옵션을 선택할 수 있습니다."}</p></Sample></div>
-            <Sample title="Text field" note="Default · Error"><div className="gallery-two-col"><TextField id="gallery-name" label="이름" placeholder="이름을 입력하세요" helper="표시할 이름을 입력해 주세요." /><TextField id="gallery-error" label="이메일" placeholder="name@example.com" error="이메일 형식을 확인해 주세요." /></div></Sample>
+            <FormPreview />
           </GallerySection>
 
           <GallerySection id="content" number="05" title="Content" description="목록, 카드와 펼침 UI를 실제 데이터로 미리 봅니다.">
             <Sample title="Top navigation" note="현재 페이지 표시"><nav aria-label="미리보기 내비게이션" className="gallery-row"><TopNavLink href="/">홈</TopNavLink><TopNavLink href="/posts" aria-current="page">글</TopNavLink><TopNavLink href="/components">컴포넌트</TopNavLink></nav></Sample>
             <Sample title="Breadcrumb"><Breadcrumb items={[{ label: "홈", href: "/" }, { label: "글", href: "/posts" }, { label: "현재 글" }]} /></Sample>
             <Sample title="Card" note="Outline · Filled"><div className="gallery-two-col"><Card><Tag size={20} tone="blue">기술 사례</Tag><h3 className="text-ds-20 font-semibold text-heading">구조를 정리한 기록</h3><p className="text-ds-14 leading-6 text-body">정보를 하나의 단위로 묶고, 필요한 행동을 함께 배치합니다.</p><ButtonLink href="/#projects" variant="text" size={44}>사례 보기 <ArrowUpRight size={16} aria-hidden="true" /></ButtonLink></Card><Card variant="filled"><Tag size={20}>운영</Tag><h3 className="text-ds-20 font-semibold text-heading">데이터 흐름 개선</h3><p className="text-ds-14 leading-6 text-body">관련된 정보와 성과를 한눈에 살펴볼 수 있습니다.</p></Card></div></Sample>
-            <Sample title="Project card" note="Live project data"><ItemList><ListItem><ProjectCard project={projects[0]} index={0} /></ListItem></ItemList></Sample>
+            <Sample title="Project card" note="Live project data"><ItemList><ListItem><ProjectCard project={careerProjects[0]} index={0} /></ListItem></ItemList></Sample>
             <Sample title="List row"><ItemList><ListItem><ListItemLink href="/posts"><ListRow headline="글 목록" description="기술과 경험을 정리한 기록" trailing={<ArrowUpRight size={18} aria-hidden="true" />} /></ListItemLink></ListItem></ItemList></Sample>
             <Sample title="Accordion" note="Click to expand"><AccordionItem summary={<div><strong className="text-ds-18 text-heading">프론트엔드 구조 설계</strong><p className="mt-2 text-ds-14 text-body">공통 UI와 데이터 흐름을 설계했습니다.</p></div>}><div className="gallery-accordion-body">서비스 초기부터 컴포넌트와 개발 규칙을 정리해 일관된 화면을 구축했습니다.</div></AccordionItem></Sample>
           </GallerySection>
@@ -97,8 +85,8 @@ export default function ComponentGallery() {
           <GallerySection id="states" number="06" title="States" description="결과가 없을 때와 여러 페이지가 있을 때의 표시입니다.">
             <Sample title="Loading" note="Small · Medium · Large"><div className="gallery-row"><Loading size="small" label="짧은 작업" /><Loading label="불러오는 중" /><Loading size="large" label="전체 화면" /></div></Sample>
             <Sample title="Tooltip" note="눌러서 열기"><div className="gallery-row"><span className="text-ds-14 text-body">도움말</span><Tooltip label="도움말 열기">이 요소에 대한 추가 설명입니다.</Tooltip></div></Sample>
-            <Sample title="Empty state"><EmptyState title="검색 결과가 없습니다" description="다른 키워드로 다시 검색해 보세요." action={<Button variant="secondary" onClick={() => setQuery("")}>검색어 지우기</Button>} /></Sample>
-            <Sample title="Pagination" note={`Page ${page} / 3`}><Pagination label="미리보기 페이지" page={page} totalPages={3} hrefForPage={(number) => `?page=${number}#states`} onPageChange={setPage} /><div className="gallery-pagination-actions"><Button size={40} variant="text" onClick={() => setPage((current) => current === 3 ? 1 : current + 1)}>다음 페이지 미리보기 <ArrowRight size={16} aria-hidden="true" /></Button></div></Sample>
+            <Sample title="Empty state"><EmptyState title="검색 결과가 없습니다" description="다른 키워드로 다시 검색해 보세요." action={<EmptyStateAction />} /></Sample>
+            <PaginationPreview />
           </GallerySection>
 
           <GallerySection id="cases" number="07" title="Case study" description="프로젝트 상세에서 쓰는 일곱 가지 기록 형식입니다.">
