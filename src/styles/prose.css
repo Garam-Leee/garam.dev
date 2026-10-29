@@ -17,8 +17,8 @@
 }
 
 .prose h2 {
-  margin-top: 64px;
-  margin-bottom: 18px;
+  margin-top: var(--ds-space-48);
+  margin-bottom: var(--ds-space-16);
   color: var(--color-heading);
   font-size: var(--ds-font-32);
   font-weight: var(--ds-weight-bold);
@@ -28,8 +28,8 @@
 }
 
 .prose h3 {
-  margin-top: 40px;
-  margin-bottom: 14px;
+  margin-top: var(--ds-space-32);
+  margin-bottom: var(--ds-space-12);
   color: var(--color-heading);
   font-size: var(--ds-font-22);
   font-weight: var(--ds-weight-bold);
@@ -39,7 +39,7 @@
 }
 
 .prose p {
-  margin: 18px 0;
+  margin: var(--ds-space-12) 0;
 }
 
 .prose strong {
@@ -63,7 +63,7 @@
 
 .prose ul,
 .prose ol {
-  margin: 18px 0 24px;
+  margin: var(--ds-space-16) 0 var(--ds-space-20);
   padding-left: 1.4em;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .prose li {
-  margin: 8px 0;
+  margin: var(--ds-space-6) 0;
   padding-left: 4px;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .prose blockquote {
-  margin: 32px 0; border-left: 3px solid var(--color-border);
+  margin: var(--ds-space-24) 0; border-left: 3px solid var(--color-border);
   padding: 12px 20px; color: var(--color-body); background: var(--color-surface);
 }
 
@@ -94,7 +94,7 @@
 }
 
 .prose hr {
-  margin: 48px 0;
+  margin: var(--ds-space-40) 0;
   border: 0;
   border-top: 1px solid var(--color-border);
 }
@@ -110,7 +110,7 @@
 }
 
 .prose pre {
-  margin: 28px 0;
+  margin: var(--ds-space-24) 0;
   overflow-x: auto;
   border: 1px solid var(--ds-gray-650);
   border-radius: var(--radius-control);
@@ -132,7 +132,7 @@
 
 .prose table {
   width: 100%;
-  margin: 32px 0;
+  margin: var(--ds-space-24) 0;
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
@@ -168,7 +168,7 @@
 .prose img {
   width: 100%;
   height: auto;
-  margin: 32px 0;
+  margin: var(--ds-space-24) 0;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
 
@@ -182,12 +182,12 @@
   }
 
   .prose h2 {
-    margin-top: 48px;
+    margin-top: var(--ds-space-40);
     font-size: var(--ds-font-24);
   }
 
   .prose h3 {
-    margin-top: 34px;
+    margin-top: var(--ds-space-24);
     font-size: var(--ds-font-20);
   }
 
