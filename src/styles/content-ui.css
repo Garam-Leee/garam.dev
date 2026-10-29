@@ -7,7 +7,6 @@
 .content-list-item + .content-list-item { border-top: 1px solid var(--color-surface-hover); }
 .content-row { display: block; padding: 28px 0; border-radius: var(--radius-control); transition: background-color var(--ds-motion-medium) var(--ds-ease-out); }
 .work-card.content-row { display: grid; }
-.content-row:focus-visible { background: var(--color-surface-hover); }
 .content-row-title { font-size: var(--ds-font-22); font-weight: var(--ds-weight-semibold); line-height: var(--ds-line-default); letter-spacing: -.025em; color: var(--color-heading); word-break: keep-all; }
 .ui-tag { display: inline-flex; align-items: center; gap: var(--ds-space-6); padding: var(--ds-space-4) var(--ds-space-8); border-radius: var(--radius-tag); background: var(--color-surface-hover); color: var(--color-body); font-size: var(--ds-font-13); font-weight: var(--ds-weight-medium); line-height: var(--ds-line-default); }
 .ui-tag--18 { min-height: 18px; padding: 0 var(--ds-space-4); font-size: var(--ds-font-12); }
@@ -69,7 +68,6 @@ a.ui-tag { min-height: var(--ds-target); transition: background-color var(--ds-m
 .ui-tooltip::after { content: ""; position: absolute; top: 100%; left: var(--ds-space-16); border: 6px solid transparent; border-top-color: var(--color-heading); }
 .ui-tooltip button { display: grid; place-items: center; flex: none; width: var(--ds-icon-20); height: var(--ds-icon-20); }
 @media (hover: hover) and (pointer: fine) {
- .content-row:hover { background: var(--color-surface); }
  a.ui-tag:hover, .pagination-link:not(.pagination-link--disabled):hover { background: var(--color-border); }
  .ui-breadcrumb a:hover { color: var(--color-blue); }
  .ui-chip:hover { background: var(--color-surface); }
