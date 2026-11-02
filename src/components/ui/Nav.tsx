@@ -11,7 +11,7 @@ import { navLinks } from "@/data/navigation";
 export default function Nav() {
   const pathname = usePathname();
   const hrefFor = (href: string) => href.startsWith("#") && pathname !== "/" ? "/" + href : href;
-  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
+  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : href === "#experience" && pathname === "/experience" ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   useEffect(() => {
