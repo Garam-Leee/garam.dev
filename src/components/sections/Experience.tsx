@@ -21,7 +21,7 @@ export default function Experience() {
                 <h3 className="experience-overview-company">{experience.company}</h3>
                 <p className="experience-overview-role">{experience.role}</p>
               </div>
-              <p className="experience-overview-summary">{experience.summary}</p>
+              <div className="experience-overview-highlights"><p>{experience.homeRole}</p><strong>{experience.homeOutcome}</strong></div>
             </li>
           ))}
         </ol>
