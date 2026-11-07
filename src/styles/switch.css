@@ -1,0 +1,12 @@
+.ui-switch { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--ds-space-16); min-height: var(--ds-target); width: 100%; max-width: 400px; color: var(--color-heading); cursor: pointer; }
+.ui-switch-label { font-size: var(--ds-font-16); line-height: var(--ds-line-default); }
+.ui-switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ui-switch-track { display: flex; flex: none; align-items: center; width: 44px; height: 26px; padding: 3px; border-radius: var(--ds-radius-circle); background: var(--ds-gray-300); transition: background-color var(--ds-motion-medium) var(--ds-ease-out); }
+.ui-switch-track > span { width: 20px; height: 20px; border-radius: var(--ds-radius-circle); background: var(--ds-static-white); box-shadow: 0 1px 3px rgb(19 20 21 / 15%); transition: transform var(--ds-motion-medium) var(--ds-ease-out); }
+.ui-switch input:checked + .ui-switch-track { background: var(--ds-blue-500); }
+.ui-switch input:checked + .ui-switch-track > span { transform: translateX(18px); }
+.ui-switch input:focus-visible + .ui-switch-track { outline: 2px solid var(--ds-blue-500); outline-offset: 3px; }
+.ui-switch--disabled { color: var(--ds-gray-400); cursor: not-allowed; }
+.ui-switch--disabled .ui-switch-track { background: var(--ds-gray-150); }
+.ui-switch--disabled input:checked + .ui-switch-track { background: var(--ds-blue-200); }
+@media (prefers-reduced-motion: reduce) { .ui-switch-track, .ui-switch-track > span { transition: none; } }
