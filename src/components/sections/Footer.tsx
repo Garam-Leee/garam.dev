@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="flex gap-6">
             <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub ↗</a>
             <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn ↗</a>
-            <a href={profile.resumeUrl} download className="hover:text-white">이력서 ↓</a>
+            <a href={profile.resumeUrl} className="hover:text-white">이력서 ↗</a>
           </div>
         </div>
       </div>
