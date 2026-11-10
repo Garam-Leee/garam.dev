@@ -9,5 +9,7 @@ export const navLinks = [
   {
     label: "이력서",
     href: profile.resumeUrl,
+    external: true,
+    download: "garam-lee-product-frontend-engineer.pdf",
   },
 ];
