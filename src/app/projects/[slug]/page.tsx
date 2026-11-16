@@ -1,9 +1,8 @@
 import Nav from "@/components/ui/Nav";
 import { projects } from "@/data/projects";
 import { ProjectDetails } from "@/components/sections/projects/ProjectDetails";
-import { GlassChip } from "@/components/ui/Glass";
+import { Breadcrumb, Tag } from "@/components/ui/Primitives";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -32,18 +31,16 @@ export default async function ProjectPage({ params }: Props) {
     <Nav />
     <main className="detail-page">
       <article className="mx-auto max-w-[900px]">
-        <Link href="/#projects" className="inline-block rounded text-sm font-semibold text-blue">
-          ← 프로젝트 목록
-        </Link>
+        <Breadcrumb items={[{ label: "기술 사례", href: "/#projects" }, { label: project.title }]} />
         <header className="mb-8 mt-10">
-          <p className="text-sm font-semibold text-muted">{project.period}</p>
+          <p className="text-ds-14 font-semibold text-muted">{project.period}</p>
           <h1 className="page-title mt-3">
             {project.title}
           </h1>
           <p className="mt-5 text-base leading-8 text-body">{project.summary}</p>
           <div className="mt-5 flex flex-wrap gap-2">
             {project.tools.map((tool) => (
-              <GlassChip key={tool} className="px-3 py-1 text-sm text-blue">{tool}</GlassChip>
+              <Tag key={tool} className="px-3 py-1 text-ds-14 text-blue">{tool}</Tag>
             ))}
           </div>
         </header>

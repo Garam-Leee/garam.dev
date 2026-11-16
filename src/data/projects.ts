@@ -25,13 +25,70 @@ export const careerProjects: Project[] = [
       "Storybook",
       "Datadog RUM"
     ],
-    "accent": "#3182f6",
     "relatedLinks": [
       {
         "label": "웹툰 플랫폼 개발 및 운영"
       }
     ],
     "summary": "서비스 초기 멤버로 Atomic Design 기반 아키텍처와 모노레포 공통 UI·유틸리티·훅 패키지를 구축했습니다. SSR 데이터 페칭, 웹툰 뷰어 인터랙션과 콘텐츠 로딩을 설계하고 성능·운영 오류를 개선했습니다.",
+    "caseStudy": [
+      {
+        "kind": "statement",
+        "title": "문제",
+        "text": "웹툰 주요 화면에서 중복 API 요청과 요청 간 의존성이 초기 로딩에 영향을 줬습니다."
+      },
+      {
+        "kind": "list",
+        "title": "개선 목표",
+        "columns": 2,
+        "items": [
+          "중복 요청을 줄이고 데이터 요청 구조를 정리합니다.",
+          "뷰어 이미지 로딩과 읽기 흐름을 개선합니다."
+        ]
+      },
+      {
+        "kind": "table",
+        "title": "데이터 요청 구조 비교",
+        "columns": [
+          "개선 전",
+          "개선 후"
+        ],
+        "rows": [
+          {
+            "label": "API 구성",
+            "cells": [
+              "통합 API",
+              "도메인별 API"
+            ]
+          },
+          {
+            "label": "요청 관리",
+            "cells": [
+              "중복 요청과 호출 의존성",
+              "SWR 캐싱·재검증과 호출 의존성 최적화"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "metrics",
+        "title": "개선 결과",
+        "items": [
+          {
+            "value": "약 2초 단축",
+            "label": "주요 화면 초기 로딩 시간"
+          }
+        ]
+      },
+      {
+        "kind": "list",
+        "title": "운영과 사용자 경험",
+        "items": [
+          "WebP 변환·이미지 리사이징과 Skeleton UI로 콘텐츠 로딩 경험을 개선했습니다.",
+          "Datadog RUM으로 간헐적인 뷰어 애니메이션 오류와 운영 장애를 분석하고 해결했습니다."
+        ]
+      }
+    ],
     "detailSections": [
       {
         "title": "아키텍처와 개발 환경 표준화",
@@ -81,7 +138,6 @@ export const careerProjects: Project[] = [
       "Turborepo",
       "GA4"
     ],
-    "accent": "#2F80ED",
     "team": "PM, Design, FE, BE 협업",
     "period": "2023.06 ~ 2026.07",
     "relatedLinks": [
@@ -91,6 +147,36 @@ export const careerProjects: Project[] = [
       }
     ],
     "summary": "실시간 웹툰 경연 서비스의 투표·집계와 순위·결과 업데이트를 개발했습니다. 중복 투표·API 요청을 방지하고 동시 접속 증가에 대응해 요청·렌더링 성능을 최적화했습니다.",
+    "caseStudy": [
+      {
+        "kind": "statement",
+        "title": "문제",
+        "text": "경연 중 투표·순위를 실시간으로 갱신하면서 중복 투표와 동시 접속 증가에 대응해야 했습니다."
+      },
+      {
+        "kind": "flow",
+        "title": "실시간 경연 진행 흐름",
+        "steps": [
+          {
+            "label": "투표",
+            "detail": "중복 투표와 중복 API 요청을 방지합니다."
+          },
+          {
+            "label": "집계",
+            "detail": "투표 결과를 집계합니다."
+          },
+          {
+            "label": "순위·결과 갱신",
+            "detail": "변경된 순위와 결과를 화면에 반영합니다."
+          }
+        ]
+      },
+      {
+        "kind": "statement",
+        "title": "결과",
+        "text": "실시간 투표와 순위 갱신으로 경연 진행 상황을 제공했고, 중복 요청 방지와 렌더링 최적화로 동시 접속 환경의 안정성을 개선했습니다."
+      }
+    ],
     "detailSections": [
       {
         "title": "투표·집계와 실시간 순위 업데이트",
@@ -131,7 +217,6 @@ export const careerProjects: Project[] = [
       "GA4",
       "데이터 시각화"
     ],
-    "accent": "#03b26c",
     "relatedLinks": [
       {
         "label": "내부 운영 대시보드"
@@ -178,7 +263,6 @@ export const careerProjects: Project[] = [
       "코드 스플리팅",
       "Lighthouse"
     ],
-    "accent": "#3182f6",
     "relatedLinks": [
       {
         "label": "비대면 진료 플랫폼"
@@ -227,7 +311,6 @@ export const careerProjects: Project[] = [
       "Agora SDK",
       "상태 관리"
     ],
-    "accent": "#7b61ff",
     "relatedLinks": [
       {
         "label": "심리상담 서비스"
@@ -269,7 +352,6 @@ export const careerProjects: Project[] = [
       "React Hook Form",
       "접근 제어"
     ],
-    "accent": "#2272eb",
     "relatedLinks": [
       {
         "label": "내부 관리자 시스템"
@@ -311,7 +393,6 @@ export const careerProjects: Project[] = [
       "좌표 변환",
       "Drag & Drop"
     ],
-    "accent": "#191f28",
     "relatedLinks": [
       {
         "label": "삼익가구 건축 ERP"
@@ -353,7 +434,6 @@ export const careerProjects: Project[] = [
       "CSS",
       "공통 컴포넌트"
     ],
-    "accent": "#4e5968",
     "relatedLinks": [
       {
         "label": "Private Cloud 운영 대시보드"

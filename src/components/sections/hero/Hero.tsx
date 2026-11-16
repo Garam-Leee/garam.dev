@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Primitives";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
 
@@ -14,29 +14,29 @@ export default function Hero() {
       <div className="mx-auto max-w-[1080px]">
         <p className="section-label">GARAM LEE / FRONTEND ENGINEER</p>
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
-          <h1 className="break-keep text-[clamp(2.125rem,5vw,4rem)] font-semibold leading-[1.2] tracking-[-0.04em] text-heading">
+          <h1 className="break-keep text-[clamp(var(--ds-font-36),5vw,var(--ds-font-60))] font-semibold leading-[1.2] tracking-[-0.04em] text-heading">
             복잡한 서비스를,<br />
             빠르고 안정적인<br /> 사용자 경험으로.
           </h1>
           <div className="pb-1">
-            <p className="max-w-[460px] break-keep text-[17px] leading-[1.8] text-body">{profile.introduction}</p>
-            <p className="mt-4 text-sm leading-6 text-muted">React · Next.js · TypeScript를 기반으로<br />구조 설계부터 성능 개선, 운영 안정화까지 함께합니다.</p>
+            <p className="max-w-[460px] break-keep text-ds-17 leading-[1.8] text-body">{profile.introduction}</p>
+            <p className="mt-4 text-ds-14 leading-6 text-muted">React · Next.js · TypeScript를 기반으로<br />구조 설계부터 성능 개선, 운영 안정화까지 함께합니다.</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Link href="#projects" className="action-link action-link-primary">
+              <ButtonLink href="#projects">
                 기술 사례 보기 <ArrowDown size={15} aria-hidden="true" />
-              </Link>
-              <a href={profile.resumeUrl} download className="action-link action-link-secondary">
+              </ButtonLink>
+              <ButtonLink href={profile.resumeUrl} download variant="secondary">
                 이력서 다운로드 <ArrowUpRight size={15} aria-hidden="true" />
-              </a>
+              </ButtonLink>
             </div>
           </div>
         </div>
         <dl className="outcomes-grid">
           {outcomes.map((outcome) => (
             <div key={outcome.value}>
-              <dt className="min-h-10 break-keep text-[11px] font-medium leading-5 text-body sm:min-h-0 sm:text-[13px]">{outcome.label}</dt>
-              <dd className="mt-2 whitespace-nowrap text-[26px] font-semibold leading-tight tracking-[-0.055em] text-heading sm:text-[42px]">{outcome.value}</dd>
-              <dd className="mt-2 hidden max-w-[280px] break-keep text-[12px] leading-6 text-muted sm:block">{outcome.context}</dd>
+              <dt className="min-h-10 break-keep text-ds-14 font-medium leading-5 text-body sm:min-h-0 sm:text-ds-13">{outcome.label}</dt>
+              <dd className="mt-2 whitespace-nowrap text-ds-24 font-semibold leading-tight tracking-[-0.055em] text-heading sm:text-ds-40">{outcome.value}</dd>
+              <dd className="mt-2 hidden max-w-[280px] break-keep text-ds-12 leading-6 text-muted sm:block">{outcome.context}</dd>
             </div>
           ))}
         </dl>

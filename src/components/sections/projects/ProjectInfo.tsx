@@ -1,4 +1,5 @@
-import { GlassChip, GlassPanel } from "@/components/ui/Glass";
+import { Tag, TagLink } from "@/components/ui/Primitives";
+import { GlassPanel } from "@/components/ui/Glass";
 import { ExternalLink } from "lucide-react";
 import type { Project } from "@/types/project";
 
@@ -14,28 +15,27 @@ export function ProjectInfo({ project }: { project: Project }) {
       <Info label={project.periodLabel ?? "기간"} value={project.period} />
 
       <div>
-        <dt className="text-[12px] font-bold text-[#8b95a1]">링크</dt>
+        <dt className="text-ds-12 font-bold text-muted">링크</dt>
 
         <dd className="mt-2 flex flex-wrap gap-2">
           {project.relatedLinks.map((link) =>
             "href" in link && link.href ? (
-              <a
+              <TagLink
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ui-tag"
               >
                 <span>{link.label}</span>
                 <ExternalLink size={13} strokeWidth={2.3} />
-              </a>
+              </TagLink>
             ) : (
-              <GlassChip
+              <Tag
                 key={link.label}
-                className="px-3 py-1.5 text-[13px] font-bold text-[#6b7684]"
+                className="px-3 py-1.5 text-ds-13 font-bold text-muted"
               >
                 {link.label}
-              </GlassChip>
+              </Tag>
             )
           )}
         </dd>
@@ -47,8 +47,8 @@ export function ProjectInfo({ project }: { project: Project }) {
 function Info({ label, value }: { label: string; value: string }) {
   return (
     <div className="min-w-0">
-      <dt className="text-[12px] font-bold text-[#8b95a1]">{label}</dt>
-      <dd className="mt-1 text-[14px] font-semibold leading-[1.55] text-[#333d4b]">
+      <dt className="text-ds-12 font-bold text-muted">{label}</dt>
+      <dd className="mt-1 text-ds-14 font-semibold leading-[1.55] text-heading">
         {value}
       </dd>
     </div>

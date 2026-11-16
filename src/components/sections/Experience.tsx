@@ -1,3 +1,4 @@
+import { AccordionItem } from "@/components/ui/Primitives";
 import { experiences } from "@/data/experience";
 
 export default function Experience() {
@@ -13,32 +14,30 @@ export default function Experience() {
         </header>
         <div className="career-list">
           {experiences.map((experience, index) => (
-            <details key={experience.company} open={index === 0} className="career-entry">
-              <summary className="career-summary">
-                <p className="col-span-2 font-mono text-[11px] leading-6 text-muted sm:col-span-1">{experience.period}</p>
+            <AccordionItem key={experience.company} open={index === 0} summary={<>
+                <p className="col-span-2 font-mono text-ds-12 leading-6 text-muted sm:col-span-1">{experience.period}</p>
                 <div>
-                  <h3 className="text-[23px] font-semibold tracking-[-0.04em] text-heading">{experience.company}</h3>
-                  <p className="mt-1 text-xs text-muted">{experience.role}</p>
-                  <p className="mt-3 max-w-[650px] break-keep text-sm leading-7 text-body">{experience.summary}</p>
+                  <h3 className="text-ds-24 font-semibold tracking-[-0.04em] text-heading">{experience.company}</h3>
+                  <p className="mt-1 text-ds-14 text-muted">{experience.role}</p>
+                  <p className="mt-3 max-w-[650px] break-keep text-ds-14 leading-7 text-body">{experience.summary}</p>
                 </div>
-                <span aria-hidden="true" className="career-toggle">+</span>
-              </summary>
+              </>}>
               <div className="mt-8 grid gap-8 sm:ml-[212px] lg:grid-cols-2 lg:gap-10">
                 <div>
-                  <h4 className="text-xs font-semibold text-blue">주요 성과</h4>
-                  <ul className="mt-4 space-y-3 text-[13px] leading-7 text-body">
-                    {experience.achievements.map((item) => <li key={item} className="border-l-2 border-[#d7e4ff] pl-4">{item}</li>)}
+                  <h4 className="text-ds-14 font-semibold text-blue">주요 성과</h4>
+                  <ul className="mt-4 space-y-3 text-ds-13 leading-7 text-body">
+                    {experience.achievements.map((item) => <li key={item} className="border-l-2 border-blue/30 pl-4">{item}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-heading">기술 구현과 담당 업무</h4>
-                  <ul className="mt-4 list-disc space-y-2 pl-4 text-[13px] leading-7 text-body">
+                  <h4 className="text-ds-14 font-semibold text-heading">기술 구현과 담당 업무</h4>
+                  <ul className="mt-4 list-disc space-y-2 pl-4 text-ds-13 leading-7 text-body">
                     {experience.responsibilities.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                 </div>
-                <p className="text-[11px] leading-6 text-muted lg:col-span-2">{experience.tools.join(" / ")}</p>
+                <p className="text-ds-12 leading-6 text-muted lg:col-span-2">{experience.tools.join(" / ")}</p>
               </div>
-            </details>
+            </AccordionItem>
           ))}
         </div>
       </div>

@@ -20,11 +20,11 @@ export default function LenisProvider({
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 1,
     });
 
     let rafId: number;
@@ -49,7 +49,7 @@ export default function LenisProvider({
           if (targetElement && targetElement instanceof HTMLElement) {
             lenis.scrollTo(targetElement, {
               offset: -80, // Offset for fixed header
-              duration: 1.2,
+              duration: 0.7,
             });
             // Update URL without jumping
             history.pushState(null, "", href);
