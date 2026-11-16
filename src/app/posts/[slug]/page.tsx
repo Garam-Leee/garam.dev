@@ -1,3 +1,5 @@
+import { Breadcrumb, ButtonLink, TagLink } from "@/components/ui/Primitives";
+import { ArrowUpRight } from "lucide-react";
 import { formatDate, getAllPosts, getPost } from "@/lib/posts";
 import "@/styles/prose.css";
 import type { Metadata } from "next";
@@ -40,67 +42,28 @@ export default async function PostPage({ params }: Props) {
   const nextPost = allPosts[currentIdx - 1] ?? null;
 
   return (
-    <div className="min-h-screen bg-page">
-
-      <header className="content-heading">
-        <div className="mx-auto max-w-[760px]">
-          <div className="mb-6 flex flex-wrap items-center gap-2 text-[12px] font-semibold text-[#8b95a1]">
-            <span>{formatDate(post.date)}</span>
-            <span className="h-[3px] w-[3px] rounded-full bg-[#d1d6db]" />
-            <span>{post.readingTime}분 읽기</span>
-          </div>
-
-          <h1 className="page-title">
-            {post.title}
-          </h1>
-
-          <p className="mt-6 max-w-[680px] text-[17px] leading-[1.75] tracking-[-0.015em] text-[#6b7684] md:text-[19px]">
-            {post.description}
-          </p>
-
-          {post.tags.length > 0 && (
-            <div className="mt-7 flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <Link
-                  key={tag}
-                  href={`/posts?tag=${encodeURIComponent(tag)}`}
-                  className="ui-tag"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
-          )}
+    <main className="post-page">
+      <header className="post-header">
+        <div className="post-header-inner">
+          <Breadcrumb items={[{ label: "글", href: "/posts" }, { label: post.title }]} />
+          <p className="post-kicker">Writing</p>
+          <h1>{post.title}</h1>
+          <p className="post-deck">{post.description}</p>
+          <div className="post-meta"><span>이가람</span><span>{formatDate(post.date)}</span><span>{post.readingTime}분 읽기</span></div>
+          {post.tags.length > 0 && <div className="post-tags">{post.tags.map((tag) => <TagLink key={tag} href={`/posts?tag=${encodeURIComponent(tag)}`}>{tag}</TagLink>)}</div>}
         </div>
       </header>
 
-      <main className="relative px-5 sm:px-8">
-        <article
-          className="prose mx-auto max-w-[720px]"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-        />
-
-        <section className="mx-auto max-w-[720px] border-t border-[#e5e8eb] py-12 md:py-16">
-          <div className="mb-6 flex items-center justify-between">
-            <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[#8b95a1]">
-              다른 글도 읽어보세요
-            </p>
-
-            <Link
-              href="/posts"
-              className="text-[13px] font-bold text-[#3182f6] transition hover:text-[#2272eb]"
-            >
-              전체 보기
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 gap-0 divide-y divide-[#e5e8eb] md:grid-cols-2 md:divide-x md:divide-y-0">
+      <div className="post-content-shell">
+        <article className="prose post-article" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+        <section className="post-more" aria-label="다른 글">
+          <div className="post-more-heading"><h2>이어서 읽기</h2><ButtonLink href="/posts" variant="text" size={44}>모든 글 <ArrowUpRight size={17} aria-hidden="true" /></ButtonLink></div>
+          <div className="post-more-grid">
             {prevPost && (
               <PostNavLink
                 href={`/posts/${prevPost.slug}`}
                 label="이전 글"
                 title={prevPost.title}
-                align="left"
               />
             )}
 
@@ -109,13 +72,12 @@ export default async function PostPage({ params }: Props) {
                 href={`/posts/${nextPost.slug}`}
                 label="다음 글"
                 title={nextPost.title}
-                align="right"
               />
             )}
           </div>
         </section>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 
@@ -123,27 +85,19 @@ function PostNavLink({
   href,
   label,
   title,
-  align,
 }: {
   href: string;
   label: string;
   title: string;
-  align: "left" | "right";
 }) {
   return (
     <Link
       href={href}
-      className={[
-        "content-row",
-        align === "left" ? "md:pr-6" : "md:pl-6",
-      ].join(" ")}
+      className="post-next-card"
     >
-      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b95a1]">
-        {label}
-      </p>
-      <p className="mt-2 line-clamp-2 text-[17px] font-bold leading-[1.35] tracking-[-0.03em] text-[#191f28] transition group-hover:text-[#3182f6]">
-        {title}
-      </p>
+      <span>{label}</span>
+      <strong>{title}</strong>
+      <ArrowUpRight size={18} aria-hidden="true" />
     </Link>
   );
 }

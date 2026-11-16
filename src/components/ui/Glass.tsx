@@ -7,9 +7,7 @@ const panelClass =
 export const glassStyles = {
   panel: panelClass,
   panelInteractive:
-    `${panelClass} transition-colors duration-300 hover:border-blue/30`,
-  chip:
-    "ui-tag",
+    `${panelClass} transition-colors duration-[var(--ds-motion-medium)] ease-out hover:border-blue/30`,
   icon:
     "grid place-items-center border border-border bg-white text-blue",
 } as const;
@@ -36,13 +34,6 @@ export function GlassPanel<T extends ElementType = "div">({
       {...props}
     />
   );
-}
-
-export function GlassChip({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<"span">) {
-  return <span className={cn(glassStyles.chip, className)} {...props} />;
 }
 
 export function GlassIcon({

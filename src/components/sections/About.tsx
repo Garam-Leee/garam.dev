@@ -13,10 +13,10 @@ export default function About() {
         </header>
         <div className="grid gap-x-12 sm:grid-cols-2">
           {strengths.map((item, index) => (
-            <article key={item.title} className="border-t border-[#e1e7f0] py-7 sm:py-9">
-              <p className="font-mono text-[11px] tracking-wider text-muted">0{index + 1} / {item.metric.toUpperCase()}</p>
-              <h3 className="mt-4 break-keep text-[21px] font-semibold tracking-[-0.035em] text-heading">{item.title}</h3>
-              <p className="mt-3 break-keep text-[14px] leading-7 text-body">{item.description}</p>
+            <article key={item.title} className="border-t border-border py-7 sm:py-9">
+              <p className="font-mono text-ds-12 tracking-wider text-muted">0{index + 1} / {item.metric.toUpperCase()}</p>
+              <h3 className="mt-4 break-keep text-ds-22 font-semibold tracking-[-0.035em] text-heading">{item.title}</h3>
+              <p className="mt-3 break-keep text-ds-14 leading-7 text-body">{item.description}</p>
             </article>
           ))}
         </div>

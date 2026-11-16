@@ -1,5 +1,6 @@
 "use client";
 
+import { IconButton, TopNavLink } from "./Primitives";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -33,18 +34,18 @@ export default function Nav() {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <header className="site-header">
         <div className="site-header-inner">
-          <Link href="/" className="inline-flex items-center gap-3 text-[14px] font-semibold tracking-tight text-heading" aria-label="garam.dev 홈">
+          <Link href="/" className="inline-flex items-center gap-3 text-ds-14 font-semibold tracking-tight text-heading" aria-label="garam.dev 홈">
             garam.dev
           </Link>
           <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <Link key={link.label} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)} className="nav-link">
+              <TopNavLink key={link.label} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
                 {link.label}{link.external && <ArrowUpRight size={12} aria-hidden="true" />}
-              </Link>
+              </TopNavLink>
             ))}
           </nav>
           <Dialog.Trigger asChild>
-            <button type="button" aria-label="메뉴 열기" className="grid h-10 w-10 place-items-center rounded-lg bg-[#f2f4f6] text-heading md:hidden"><Menu size={22} /></button>
+            <IconButton aria-label="메뉴 열기" className="md:hidden"><Menu size={22} /></IconButton>
           </Dialog.Trigger>
         </div>
       </header>
@@ -53,13 +54,13 @@ export default function Nav() {
         <Dialog.Content data-lenis-prevent className="mobile-menu">
           <Dialog.Title className="sr-only">사이트 메뉴</Dialog.Title>
           <Dialog.Description className="sr-only">기술 사례, 경력과 연락처로 이동합니다.</Dialog.Description>
-          <div className="mb-3 flex justify-end"><Dialog.Close aria-label="메뉴 닫기" className="grid h-10 w-10 place-items-center rounded-lg bg-[#f2f4f6]"><X size={22} /></Dialog.Close></div>
+          <div className="mb-3 flex justify-end"><Dialog.Close asChild><IconButton aria-label="메뉴 닫기"><X size={22} /></IconButton></Dialog.Close></div>
           <nav aria-label="모바일 주 메뉴">
             {navLinks.map((link) => (
               <Dialog.Close asChild key={link.label}>
-                <Link href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)} className="mobile-nav-link">
+                <TopNavLink mobile href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
                   {link.label}{link.external && <ArrowUpRight size={15} aria-hidden="true" />}
-                </Link>
+                </TopNavLink>
               </Dialog.Close>
             ))}
           </nav>
