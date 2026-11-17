@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/content-ui.css";
 import "@/styles/fonts.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";

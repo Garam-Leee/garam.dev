@@ -3,7 +3,7 @@ import { strengths } from "@/data/strengths";
 export default function About() {
   return (
     <section id="about" className="section-shell">
-      <div className="section-container surface-panel">
+      <div className="section-container">
         <header className="section-heading">
           <div>
             <p className="section-label">02 / EXPERTISE</p>
