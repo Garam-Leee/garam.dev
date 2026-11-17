@@ -39,7 +39,7 @@ export default function Nav() {
           </Link>
           <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <TopNavLink key={link.label} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
+              <TopNavLink key={link.href} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
                 {link.label}{link.external && <ArrowUpRight size={12} aria-hidden="true" />}
               </TopNavLink>
             ))}
@@ -57,7 +57,7 @@ export default function Nav() {
           <div className="mb-3 flex justify-end"><Dialog.Close asChild><IconButton aria-label="메뉴 닫기"><X size={22} /></IconButton></Dialog.Close></div>
           <nav aria-label="모바일 주 메뉴">
             {navLinks.map((link) => (
-              <Dialog.Close asChild key={link.label}>
+              <Dialog.Close asChild key={link.href}>
                 <TopNavLink mobile href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
                   {link.label}{link.external && <ArrowUpRight size={15} aria-hidden="true" />}
                 </TopNavLink>

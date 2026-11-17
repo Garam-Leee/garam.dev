@@ -45,7 +45,7 @@ export default async function PostPage({ params }: Props) {
     <main className="post-page">
       <header className="post-header">
         <div className="post-header-inner">
-          <Breadcrumb items={[{ label: "글", href: "/posts" }, { label: post.title }]} />
+          <Breadcrumb items={[{ label: "블로그", href: "/posts" }, { label: post.title }]} />
           <p className="post-kicker">Writing</p>
           <h1>{post.title}</h1>
           <p className="post-deck">{post.description}</p>

@@ -74,8 +74,8 @@ export default function ComponentGallery() {
           </GallerySection>
 
           <GallerySection id="content" number="05" title="Content" description="목록, 카드와 펼침 UI를 실제 데이터로 미리 봅니다.">
-            <Sample title="Top navigation" note="현재 페이지 표시"><nav aria-label="미리보기 내비게이션" className="gallery-row"><TopNavLink href="/">홈</TopNavLink><TopNavLink href="/posts" aria-current="page">글</TopNavLink><TopNavLink href="/components">컴포넌트</TopNavLink></nav></Sample>
-            <Sample title="Breadcrumb"><Breadcrumb items={[{ label: "홈", href: "/" }, { label: "글", href: "/posts" }, { label: "현재 글" }]} /></Sample>
+            <Sample title="Top navigation" note="현재 페이지 표시"><nav aria-label="미리보기 내비게이션" className="gallery-row"><TopNavLink href="/">홈</TopNavLink><TopNavLink href="/posts" aria-current="page">블로그</TopNavLink><TopNavLink href="/components">컴포넌트</TopNavLink></nav></Sample>
+            <Sample title="Breadcrumb"><Breadcrumb items={[{ label: "홈", href: "/" }, { label: "블로그", href: "/posts" }, { label: "현재 글" }]} /></Sample>
             <Sample title="Card" note="Outline · Filled"><div className="gallery-two-col"><Card><Tag size={20} tone="blue">기술 사례</Tag><h3 className="text-ds-20 font-semibold text-heading">구조를 정리한 기록</h3><p className="text-ds-14 leading-6 text-body">정보를 하나의 단위로 묶고, 필요한 행동을 함께 배치합니다.</p><ButtonLink href="/#projects" variant="text" size={44}>사례 보기 <ArrowUpRight size={16} aria-hidden="true" /></ButtonLink></Card><Card variant="filled"><Tag size={20}>운영</Tag><h3 className="text-ds-20 font-semibold text-heading">데이터 흐름 개선</h3><p className="text-ds-14 leading-6 text-body">관련된 정보와 성과를 한눈에 살펴볼 수 있습니다.</p></Card></div></Sample>
             <Sample title="Project card" note="Live project data"><ItemList><ListItem><ProjectCard project={careerProjects[0]} index={0} /></ListItem></ItemList></Sample>
             <Sample title="List row"><ItemList><ListItem><ListItemLink href="/posts"><ListRow headline="글 목록" description="기술과 경험을 정리한 기록" trailing={<ArrowUpRight size={18} aria-hidden="true" />} /></ListItemLink></ListItem></ItemList></Sample>
