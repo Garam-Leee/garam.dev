@@ -123,11 +123,11 @@ section[id], footer[id] { scroll-margin-top: 112px; }
 .career-list { display: grid; gap: 0; }
 .career-entry + .career-entry { border-top: 1px solid var(--color-surface-hover); }
 #about { background: var(--color-surface); }
-.work-card { position: relative; display: grid; gap: var(--ds-layout-control-gap); padding: var(--ds-layout-group-gap) 0; border-radius: var(--ds-radius-12); color: var(--color-heading); transition: background-color var(--ds-motion-medium) var(--ds-ease-out); }
+.work-card { position: relative; display: grid; gap: var(--ds-layout-control-gap); padding: var(--ds-layout-group-gap) 0; border-radius: var(--ds-radius-12); color: var(--color-heading); }
 .work-index { font-size: var(--ds-font-13); font-weight: var(--ds-weight-medium); color: var(--color-muted); }
 .work-title { padding-right: var(--ds-space-12); font-size: var(--ds-font-20); font-weight: var(--ds-weight-semibold); line-height: var(--ds-line-default); letter-spacing: -.035em; word-break: keep-all; transition: color var(--ds-motion-medium) var(--ds-ease-out); }
 .work-action { position: absolute; top: var(--ds-layout-group-gap); right: 0; display: grid; width: var(--ds-icon-24); height: var(--ds-icon-24); place-items: center; color: var(--color-muted); transition: color var(--ds-motion-medium) var(--ds-ease-out), transform var(--ds-motion-medium) var(--ds-ease-out); }
-.work-card:focus-visible { background: var(--color-surface-hover); }
+.work-card:focus-visible .work-title { color: var(--color-blue); }
 .work-card:focus-visible .work-action { color: var(--color-blue); }
 
 
@@ -167,10 +167,8 @@ section[id], footer[id] { scroll-margin-top: 112px; }
 @keyframes menu-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-5px); } }
 
 @media (hover: hover) and (pointer: fine) {
-  .work-card:hover { background: var(--color-surface); }
-
-
-  .work-card:hover .work-action { color: var(--color-body); transform: translate(2px, -2px); }
+  .work-card:hover .work-title, .work-card:hover .work-action { color: var(--color-blue); }
+  .work-card:hover .work-action { transform: translate(2px, -2px); }
 
   .nav-link:hover, .mobile-nav-link:hover { background: var(--color-surface-hover); color: var(--color-blue); }
   .career-summary:hover .career-toggle { color: var(--color-blue); }
