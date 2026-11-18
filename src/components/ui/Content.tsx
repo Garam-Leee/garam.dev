@@ -23,7 +23,7 @@ export function ListItemLink({ className, ...props }: ComponentProps<typeof Link
 
 export function AccordionItem({ summary, children, showIcon = true, ...props }: ComponentProps<"details"> & { summary: ReactNode; showIcon?: boolean }) {
   return <details {...props} className={cn("career-entry", props.className)}>
-    <summary className="career-summary">
+    <summary className={cn("career-summary", !showIcon && "career-summary--no-icon")}>
       {summary}
       {showIcon && <span aria-hidden="true" className="career-toggle">+</span>}
     </summary>
@@ -46,6 +46,6 @@ export function TopNavLink({ mobile = false, className, ...props }: ComponentPro
   return <Link {...props} className={cn(mobile ? "mobile-nav-link" : "nav-link", className)} />;
 }
 
-export function DataTable({ label, columns, rows }: { label: string; columns: string[]; rows: { label: string; cells: ReactNode[] }[] }) {
-  return <div className="ui-table-scroll" role="region" aria-label={label} tabIndex={0}><table className="ui-table"><caption className="sr-only">{label}</caption><thead><tr><th scope="col">항목</th>{columns.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead><tbody>{rows.map((row) => <tr key={row.label}><th scope="row">{row.label}</th>{columns.map((column, index) => <td key={column}>{row.cells[index]}</td>)}</tr>)}</tbody></table></div>;
+export function DataTable({ label, columns, rows, variant = "data" }: { label: string; columns: string[]; rows: { label: string; cells: ReactNode[] }[]; variant?: "data" | "list" }) {
+  return <div className="ui-table-scroll" role="region" aria-label={label} tabIndex={0}><table className={cn("ui-table", variant === "list" && "ui-table--list")}><caption className="sr-only">{label}</caption><thead><tr><th scope="col">항목</th>{columns.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead><tbody>{rows.map((row) => <tr key={row.label}><th scope="row">{row.label}</th>{columns.map((column, index) => <td key={column}>{row.cells[index]}</td>)}</tr>)}</tbody></table></div>;
 }

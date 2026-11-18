@@ -1,0 +1,9 @@
+.ui-info-table-scroll { width: 100%; max-width: 100%; overflow-x: auto; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.ui-info-table { width: 100%; min-width: 36rem; border-collapse: collapse; color: var(--color-body); font-size: var(--ds-font-14); line-height: var(--ds-line-reading-2); text-align: left; }
+.ui-info-table th, .ui-info-table td { padding: var(--ds-space-16) var(--ds-space-20); border-bottom: 1px solid var(--color-border); vertical-align: top; }
+.ui-info-table thead { background: var(--ds-gray-25); color: var(--color-heading); }
+.ui-info-table thead th { font-weight: var(--ds-weight-semibold); }
+.ui-info-table tbody th { color: var(--color-heading); font-weight: var(--ds-weight-medium); }
+.ui-info-table tbody tr:last-child > * { border-bottom: 0; }
+.ui-info-table--text tbody th { width: 28%; }
+.ui-info-table--data td { font-variant-numeric: tabular-nums; }

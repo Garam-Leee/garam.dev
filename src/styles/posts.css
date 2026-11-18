@@ -6,7 +6,7 @@
 .writing-header > span { display: block; margin-top: var(--ds-space-16); color: var(--color-body); font-size: var(--ds-font-17); line-height: var(--ds-line-reading-1); word-break: keep-all; }
 .writing-filters { display: flex; align-items: center; gap: var(--ds-layout-control-gap); padding-bottom: var(--ds-layout-group-gap); }
 .writing-search { display: block; flex: 1; min-width: 0; }
-.writing-search:focus-within, .writing-select:focus-within { outline: 2px solid var(--color-blue); outline-offset: 2px; }
+.writing-select:focus-within { outline: 2px solid var(--color-blue); outline-offset: 2px; }
 .writing-search .form-control { min-width: 0; }
 .writing-select { min-width: 160px; }
 .writing-select .form-control { background: var(--ds-background); }
