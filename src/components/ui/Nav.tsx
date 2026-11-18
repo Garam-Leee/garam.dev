@@ -32,7 +32,7 @@ export default function Nav() {
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      <header className="site-header">
+      <header className={`site-header${pathname === "/" ? " site-header--home" : ""}`}>
         <div className="site-header-inner">
           <Link href="/" className="inline-flex items-center gap-3 text-ds-14 font-semibold tracking-tight text-heading" aria-label="garam.dev 홈">
             garam.dev

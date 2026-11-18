@@ -1,6 +1,8 @@
 export const experiences = [
   {
     "company": "(주)재담미디어",
+    "homeRole": "웹툰 플랫폼 구조·데이터 흐름 설계와 운영 도구 개발",
+    "homeOutcome": "주요 화면 초기 로딩 약 2초 단축",
     "role": "Frontend Engineer",
     "period": "2023.06 ~ 2026.07",
     "summary": "서비스 초기 멤버로 웹툰 플랫폼의 아키텍처·공통 패키지와 SSR 데이터 페칭을 설계하고, 뷰어 성능·인터랙션을 개선했습니다. 웹툰런 실시간 투표·순위 갱신과 KPI 대시보드·콘텐츠 편성 관리자를 개발·운영했습니다.",
@@ -29,6 +31,7 @@ export const experiences = [
       "서비스 초기 멤버로 Atomic Design 기반 프론트엔드 아키텍처 설계와 모노레포 공통 UI·유틸리티·훅 패키지 구축",
       "Next.js·TypeScript·SWR 기반 메인·작품 상세·뷰어·편성 화면 개발과 SSR 데이터 페칭 구조 설계",
       "백엔드 개발자와 협업해 통합 API를 도메인별로 분리하고 SWR 캐싱·재검증과 호출 의존성 최적화",
+      "웹툰 운영 어드민에서 항목별 개별 호출과 연속 페이지네이션 요청을 줄이고 ID 기반 배치 요청·응답 매핑 구현",
       "이미지 프리로딩·지연 로딩, 코드 스플리팅과 동적 import를 통한 성능 최적화",
       "모바일·PC 뷰어 인터랙션, 스크롤·읽기 상태, 회차 이동·이어보기와 이미지 로딩 예외 처리",
       "Storybook 문서화, Next.js 보일러플레이트·ESLint 규칙으로 개발 환경 표준화",
@@ -39,6 +42,8 @@ export const experiences = [
   },
   {
     "company": "(주)블루앤트",
+    "homeRole": "비대면 진료·상담 서비스와 역할별 관리자 화면 개발",
+    "homeOutcome": "랜딩 페이지 SEO 점수 62 → 91 개선",
     "role": "Frontend Engineer",
     "period": "2022.05.23 ~ 2023.06.13",
     "summary": "비대면 진료·심리상담 플랫폼과 역할별 관리자 시스템을 개발했습니다. 렌더링·요청 최적화와 실시간 연결·권한·입력 검증을 담당했습니다.",
@@ -68,6 +73,8 @@ export const experiences = [
   },
   {
     "company": "주식회사 하이컴텍",
+    "homeRole": "건축 ERP의 Canvas 도면 편집 기능 개발",
+    "homeOutcome": "창호 배치 검증으로 잘못된 도면 상태 방지",
     "role": "Frontend Engineer",
     "period": "2022.02.07 ~ 2022.05.19",
     "summary": "삼익가구 건축 ERP의 자재·견적·프로젝트 관리와 Canvas 기반 도면 편집 기능을 개발·유지보수했습니다.",
@@ -90,6 +97,8 @@ export const experiences = [
   },
   {
     "company": "(주)바로에이아이",
+    "homeRole": "Private Cloud 대시보드와 대학별 어드민 UI 개발",
+    "homeOutcome": "공통 UI·개발 규칙으로 화면과 협업 기준 정리",
     "role": "Frontend & UI Developer",
     "period": "2021.07.19 ~ 2022.01.31",
     "summary": "React 기반 Private Cloud 운영 대시보드와 어드민을 개발하고, 대학별 UI와 팀의 공통 개발 기준을 정리했습니다.",
