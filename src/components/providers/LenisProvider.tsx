@@ -36,7 +36,6 @@ export default function LenisProvider({
 
     rafId = requestAnimationFrame(raf);
 
-    // Handle hash link clicks
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
@@ -51,7 +50,6 @@ export default function LenisProvider({
               offset: -80, // Offset for fixed header
               duration: 0.7,
             });
-            // Update URL without jumping
             history.pushState(null, "", href);
           }
         }

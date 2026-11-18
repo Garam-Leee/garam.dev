@@ -1,9 +1,10 @@
+import { Tag } from "@/components/ui/Primitives";
 import { strengths } from "@/data/strengths";
 
 export default function About() {
   return (
     <section id="about" className="section-shell">
-      <div className="section-container surface-panel">
+      <div className="section-container">
         <header className="section-heading">
           <div>
             <p className="section-label">02 / EXPERTISE</p>
@@ -17,6 +18,7 @@ export default function About() {
               <p className="font-mono text-ds-12 tracking-wider text-muted">0{index + 1} / {item.metric.toUpperCase()}</p>
               <h3 className="mt-4 break-keep text-ds-22 font-semibold tracking-[-0.035em] text-heading">{item.title}</h3>
               <p className="mt-3 break-keep text-ds-14 leading-7 text-body">{item.description}</p>
+              <div className="expertise-tags" aria-label={`${item.title} 관련 기술`}>{item.tags.map((tag) => <Tag key={tag} size={20}>{tag}</Tag>)}</div>
             </article>
           ))}
         </div>

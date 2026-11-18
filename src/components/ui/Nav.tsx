@@ -11,7 +11,7 @@ import { navLinks } from "@/data/navigation";
 export default function Nav() {
   const pathname = usePathname();
   const hrefFor = (href: string) => href.startsWith("#") && pathname !== "/" ? "/" + href : href;
-  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
+  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : href === "#experience" && pathname === "/experience" ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   useEffect(() => {
@@ -32,14 +32,14 @@ export default function Nav() {
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      <header className="site-header">
+      <header className={`site-header${pathname === "/" ? " site-header--home" : ""}`}>
         <div className="site-header-inner">
           <Link href="/" className="inline-flex items-center gap-3 text-ds-14 font-semibold tracking-tight text-heading" aria-label="garam.dev 홈">
             garam.dev
           </Link>
           <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <TopNavLink key={link.label} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
+              <TopNavLink key={link.href} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
                 {link.label}{link.external && <ArrowUpRight size={12} aria-hidden="true" />}
               </TopNavLink>
             ))}
@@ -57,7 +57,7 @@ export default function Nav() {
           <div className="mb-3 flex justify-end"><Dialog.Close asChild><IconButton aria-label="메뉴 닫기"><X size={22} /></IconButton></Dialog.Close></div>
           <nav aria-label="모바일 주 메뉴">
             {navLinks.map((link) => (
-              <Dialog.Close asChild key={link.label}>
+              <Dialog.Close asChild key={link.href}>
                 <TopNavLink mobile href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
                   {link.label}{link.external && <ArrowUpRight size={15} aria-hidden="true" />}
                 </TopNavLink>

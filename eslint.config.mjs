@@ -42,11 +42,11 @@ export default tseslint.config(
   {
     ignores: [
       ".next/**",
+      ".next-dev/**",
       "node_modules/**",
       "out/**",
       "public/**",
-      "*.config.mjs",
-      "*.config.ts",
+      "next.config.ts",
       "postcss.config.mjs",
     ],
   }
