@@ -11,7 +11,7 @@ import { navLinks } from "@/data/navigation";
 export default function Nav() {
   const pathname = usePathname();
   const hrefFor = (href: string) => href.startsWith("#") && pathname !== "/" ? "/" + href : href;
-  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : href === "#experience" && pathname === "/experience" ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
+  const currentFor = (href: string) => href === "/posts" && pathname.startsWith("/posts") ? "page" as const : href === "/resume" && pathname === "/resume" ? "page" as const : href === "#experience" && pathname === "/experience" ? "page" as const : pathname === "/" && href === "#" + activeSection ? "location" as const : undefined;
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   useEffect(() => {
@@ -39,8 +39,8 @@ export default function Nav() {
           </Link>
           <nav aria-label="주 메뉴" className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <TopNavLink key={link.href} href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
-                {link.label}{link.external && <ArrowUpRight size={12} aria-hidden="true" />}
+              <TopNavLink key={link.href} href={hrefFor(link.href)} aria-current={currentFor(link.href)}>
+                {link.label}{link.href === "/resume" && <ArrowUpRight size={12} aria-hidden="true" />}
               </TopNavLink>
             ))}
           </nav>
@@ -58,8 +58,8 @@ export default function Nav() {
           <nav aria-label="모바일 주 메뉴">
             {navLinks.map((link) => (
               <Dialog.Close asChild key={link.href}>
-                <TopNavLink mobile href={hrefFor(link.href)} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} download={"download" in link ? link.download : undefined} aria-current={currentFor(link.href)}>
-                  {link.label}{link.external && <ArrowUpRight size={15} aria-hidden="true" />}
+                <TopNavLink mobile href={hrefFor(link.href)} aria-current={currentFor(link.href)}>
+                  {link.label}{link.href === "/resume" && <ArrowUpRight size={15} aria-hidden="true" />}
                 </TopNavLink>
               </Dialog.Close>
             ))}
