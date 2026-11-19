@@ -2,7 +2,6 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
 import "@/styles/hero.css";
@@ -100,7 +99,7 @@ export default function Hero() {
       <div className="hero-introduction-inner">
         {!expanded ? (
           <div className="hero-introduction-heading">
-            <span className="hero-profile" aria-hidden="true"><Image src={profile.imageUrl} alt="" fill sizes="56px" priority /><span className="hero-profile-status" /></span>
+            <span className="hero-profile" aria-hidden="true">G<span className="hero-profile-status" /></span>
             <div className="hero-heading-copy">
               <h1 lang="en"><span className="hero-headline-line">I&apos;m <span className="hero-name">Garam Lee</span> — based in Seoul.</span><span className="hero-headline-line">I make complex services feel <em>clear and reliable.</em></span></h1>
               <p>웹툰·헬스케어·운영 도구에서 구조를 설계하고 성능과 안정성을 개선해왔습니다.</p>
@@ -108,10 +107,10 @@ export default function Hero() {
           </div>
         ) : (
           <div className="hero-conversation" ref={conversationRef} aria-live="polite" aria-label="이가람에 대한 질문과 답변">
-            <div className="hero-message hero-message-garam"><span className="hero-avatar" aria-hidden="true"><Image src={profile.imageUrl} alt="" fill sizes="36px" /></span><div className="hero-bubble">안녕하세요, 프론트엔드 개발자 이가람입니다. 제 경력과 작업에 관해 궁금한 점을 물어보세요.</div></div>
+            <div className="hero-message hero-message-garam"><span className="hero-avatar" aria-hidden="true">가</span><div className="hero-bubble">안녕하세요, 프론트엔드 개발자 이가람입니다. 제 경력과 작업에 관해 궁금한 점을 물어보세요.</div></div>
             {messages.map((message) => (
               <div className={`hero-message hero-message-${message.role}`} key={message.id}>
-                {message.role === "garam" && <span className="hero-avatar" aria-hidden="true"><Image src={profile.imageUrl} alt="" fill sizes="36px" /></span>}
+                {message.role === "garam" && <span className="hero-avatar" aria-hidden="true">가</span>}
                 <div className="hero-bubble">
                   {message.id === typingId ? <><span aria-hidden="true">{Array.from(message.text).slice(0, visibleCount).join("")}</span><span className="sr-only">{message.text}</span>{visibleCount < Array.from(message.text).length && <span className="hero-typing-cursor" aria-hidden="true" />}</> : message.text}
                   {message.href && (message.id !== typingId || visibleCount >= Array.from(message.text).length) && <Link href={message.href} className="hero-answer-link">{message.link} <ArrowUpRight size={15} aria-hidden="true" /></Link>}
@@ -125,7 +124,7 @@ export default function Hero() {
           <div className="hero-question-list" aria-label="추천 질문">
             <Link href="#projects" className="hero-question">작업 보기 <ArrowDown size={15} aria-hidden="true" /></Link>
             {questions.map(({ label, answer }) => <button className="hero-question" type="button" key={label} onClick={() => ask(label, answer)}>{label}</button>)}
-            <Link href={profile.resumeUrl} className="hero-question">이력서 <ArrowUpRight size={15} aria-hidden="true" /></Link>
+            <Link href={profile.resumeUrl} className="hero-question" download>이력서 <ArrowUpRight size={15} aria-hidden="true" /></Link>
           </div>
           <form className="hero-chat-input" onSubmit={submit}>
             <span aria-hidden="true">›_</span>
