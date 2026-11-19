@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
 import "@/styles/hero.css";
 import { CaseStudyBlock } from "@/components/sections/projects/CaseStudyBlock";
@@ -131,7 +132,7 @@ export default function ComponentGallery() {
           </GallerySection>
           <GallerySection id="site-patterns" description="메인 페이지에서 사용하는 내비게이션과 채팅의 조합입니다." active={activeCategory === "site-patterns"} selected={activeItem}>
             <Sample title="Navigation" note="Home · Inner pages"><div className="gallery-site-nav"><nav className="gallery-glass-nav" aria-label="메인 메뉴 미리보기"><TopNavLink href="/#projects">기술 사례</TopNavLink><TopNavLink href="/posts">블로그</TopNavLink></nav><nav className="gallery-plain-nav" aria-label="내부 페이지 메뉴 미리보기"><TopNavLink href="/#projects">기술 사례</TopNavLink><TopNavLink href="/posts" aria-current="page">블로그</TopNavLink></nav></div></Sample>
-            <Sample title="Hero chat" note="질문 · 답변 · 입력"><div className="gallery-chat-preview"><div className="hero-message hero-message-garam"><span className="hero-avatar" aria-hidden="true">가</span><div className="hero-bubble">React·Next.js·TypeScript를 중심으로 데이터 흐름과 공통 UI를 설계합니다.</div></div><div className="hero-message hero-message-visitor"><div className="hero-bubble">어떤 기술을 쓰나요?</div></div><div className="hero-chat-input"><span aria-hidden="true">›_</span><span className="gallery-chat-placeholder">이가람에게 궁금한 점을 물어보세요</span><span className="gallery-chat-send" aria-hidden="true"><ArrowRight size={20} /></span></div><p className="hero-chat-note">경력기술서와 기술 사례를 바탕으로 준비한 답변입니다.</p></div></Sample>
+            <Sample title="Hero chat" note="질문 · 답변 · 입력"><div className="gallery-chat-preview"><div className="hero-message hero-message-garam"><span className="hero-avatar" aria-hidden="true"><Image src="/garam-chat-avatar.webp" alt="" width={36} height={36} /></span><div className="hero-bubble">React·Next.js·TypeScript를 중심으로 데이터 흐름과 공통 UI를 설계합니다.</div></div><div className="hero-message hero-message-visitor"><div className="hero-bubble">어떤 기술을 쓰나요?</div></div><div className="hero-chat-input"><span aria-hidden="true">›_</span><span className="gallery-chat-placeholder">이가람에게 궁금한 점을 물어보세요</span><span className="gallery-chat-send" aria-hidden="true"><ArrowRight size={20} /></span></div><p className="hero-chat-note">경력기술서와 기술 사례를 바탕으로 준비한 답변입니다.</p></div></Sample>
           </GallerySection>
         </div></GallerySelectionContext.Provider>
       </div>

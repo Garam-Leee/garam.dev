@@ -108,7 +108,7 @@ a.ui-tag { min-height: var(--ds-target); transition: background-color var(--ds-m
 }
 @media (min-width: 640px) {
  .content-heading { padding: 160px 40px 56px; }
- .content-list-container { max-width: 1160px; padding-inline: 40px; }
+ .content-list-container { max-width: 1080px; padding-inline: 40px; }
  .detail-page { padding: 136px 40px 80px; }
  .content-row { padding: 32px 20px; margin-inline: -20px; }
  .content-row-title { font-size: var(--ds-font-24); }
