@@ -19,6 +19,7 @@
 .hero-headline-line { display: block; }
 .hero-profile { position: relative; display: grid; width: 56px; height: 56px; margin-top: .12em; place-items: center; border: 2px solid var(--ds-background); border-radius: var(--ds-radius-circle); background: var(--ds-blue-150); color: var(--ds-blue-800); font-family: var(--font-sans); font-size: var(--ds-font-24); font-weight: var(--ds-weight-semibold); letter-spacing: 0; box-shadow: 0 2px 8px color-mix(in srgb, var(--ds-static-black) 13%, transparent); }
 .hero-profile-status { position: absolute; right: -2px; bottom: -2px; width: 14px; height: 14px; border: 2px solid var(--ds-background); border-radius: var(--ds-radius-circle); background: var(--ds-teal-400); }
+.hero-profile img, .hero-avatar img { border-radius: var(--ds-radius-circle); object-fit: cover; object-position: center 26%; }
 .hero-name { position: relative; padding-inline: .08em; border-left: 2px solid var(--color-blue); border-right: 2px solid var(--color-blue); background: color-mix(in srgb, var(--ds-purple-150) 50%, var(--ds-blue-150)); white-space: nowrap; }
 .hero-name::before, .hero-name::after { position: absolute; width: 7px; height: 7px; border-radius: var(--ds-radius-circle); background: var(--color-blue); content: ""; }
 .hero-name::before { top: -2px; left: -4px; }
@@ -40,7 +41,7 @@
 .hero-conversation { display: grid; align-content: start; align-self: center; gap: var(--ds-space-20); width: min(100%, 860px); min-height: 260px; max-height: min(52svh, 520px); overflow-y: auto; padding: var(--ds-space-24) 0; animation: hero-content-in var(--ds-motion-long) var(--ds-ease-out) both; }
 .hero-message { display: flex; align-items: flex-start; gap: var(--ds-space-12); max-width: 88%; }
 .hero-message-visitor { justify-self: end; }
-.hero-avatar { display: grid; flex: none; width: 36px; height: 36px; place-items: center; border-radius: var(--ds-radius-circle); background: var(--ds-blue-200); color: var(--ds-blue-800); font-size: var(--ds-font-14); font-weight: var(--ds-weight-semibold); }
+.hero-avatar { position: relative; display: grid; flex: none; width: 36px; height: 36px; place-items: center; border-radius: var(--ds-radius-circle); background: var(--ds-blue-200); color: var(--ds-blue-800); font-size: var(--ds-font-14); font-weight: var(--ds-weight-semibold); }
 .hero-bubble { padding: var(--ds-space-16) var(--ds-space-20); border: 1px solid var(--color-border); border-radius: var(--ds-radius-20); background: var(--ds-background); color: var(--color-heading); font-size: var(--ds-font-15); line-height: var(--ds-line-reading-2); word-break: keep-all; box-shadow: 0 5px 18px color-mix(in srgb, var(--ds-static-black) 5%, transparent); }
 .hero-message-visitor .hero-bubble { border-color: var(--ds-gray-800); background: var(--ds-gray-900); color: var(--ds-static-white); }
 .hero-answer-link { display: flex; align-items: center; gap: var(--ds-space-4); width: fit-content; margin-top: var(--ds-space-12); color: var(--color-blue); font-size: var(--ds-font-14); font-weight: var(--ds-weight-semibold); }
